@@ -1,4 +1,4 @@
 package server.member.dto;
 
-public class memberDto {
+public class MemberDto {
 }

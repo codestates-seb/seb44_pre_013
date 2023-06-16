@@ -1,4 +1,4 @@
 package server.member.mapper;
 
-public class memberMapper {
+public class MemberMapper {
 }

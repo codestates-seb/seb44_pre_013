@@ -1,4 +1,4 @@
 package server.answer.mapper;
 
-public class answerMapper {
+public class AnswerMapper {
 }

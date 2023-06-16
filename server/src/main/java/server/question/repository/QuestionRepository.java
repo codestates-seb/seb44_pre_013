@@ -1,4 +1,4 @@
 package server.question.repository;
 
-public class questionRepository {
+public class QuestionRepository {
 }

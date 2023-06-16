@@ -1,4 +1,4 @@
 package server.question.service;
 
-public class questionService {
+public class QuestionService {
 }
