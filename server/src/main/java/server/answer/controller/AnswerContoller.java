@@ -1,5 +1,5 @@
 package server.answer.controller;
 
-public class answerContoller {
+public class AnswerContoller {
 
 }

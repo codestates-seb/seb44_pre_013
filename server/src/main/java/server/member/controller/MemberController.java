@@ -2,5 +2,5 @@ package server.member.controller;
 
 
 
-public class memberController {
+public class MemberController {
 }

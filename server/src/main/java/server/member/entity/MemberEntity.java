@@ -1,7 +1,7 @@
 package server.member.entity;
 
 import java.time.LocalDateTime;
-public class memberEntity {
+public class MemberEntity {
 
     private Long memberId;
 
