@@ -1,4 +1,4 @@
 package server.auth;
 
-public class Auth {
+public class Filter {
 }
