@@ -1,4 +1,4 @@
 package server.question.dto;
 
-public class questionDto {
+public class QuestionDto {
 }

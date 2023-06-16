@@ -1,4 +1,4 @@
 package server.answer.service;
 
-public class answerService {
+public class AnswerService {
 }

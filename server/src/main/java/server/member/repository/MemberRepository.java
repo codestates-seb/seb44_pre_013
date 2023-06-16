@@ -1,4 +1,4 @@
 package server.member.repository;
 
-public class memberRepository {
+public class MemberRepository {
 }
