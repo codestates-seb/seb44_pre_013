@@ -1,4 +1,4 @@
 package server.answer.entity;
 
-public class answerEntity {
+public class AnswerEntity {
 }
