@@ -4,6 +4,7 @@ import WriteForm from './WriteForm';
 
 const Container = styled.div`
   display: flex;
+  flex-direction: row;
   width: 100%;
   background-color: palegoldenrod;
 `;
@@ -11,7 +12,11 @@ const Container = styled.div`
 const Question = () => {
   return (
     <Container>
-      <WriteForm />
+      왼쪽 영역
+      <div>
+        <WriteForm />
+      </div>
+      <div>오른쪽 영역</div>
     </Container>
   );
 };
