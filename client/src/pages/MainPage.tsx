@@ -20,7 +20,7 @@ const MainRightContainer = styled.div`
   align-items: center;
 `;
 
-const MainTopBtnGather = styled.div`
+const MainTopButtons = styled.div`
   display: flex;
   justify-content: right;
   align-items: center;
@@ -166,14 +166,14 @@ const MainPage = () => {
 
         <MainFilterContainer>
           <p>23,762,310 questions</p>
-          <MainTopBtnGather>
+          <MainTopButtons>
             <MainTopButton>Newest</MainTopButton>
             <MainTopButton>Active</MainTopButton>
             <MainTopButton>Bountied</MainTopButton>
             <MainTopButton>Unanswered</MainTopButton>
             <MainTopButton>More</MainTopButton>
             <MainFilterButton>Filter</MainFilterButton>
-          </MainTopBtnGather>
+          </MainTopButtons>
         </MainFilterContainer>
       </MainPageContainer>
 
