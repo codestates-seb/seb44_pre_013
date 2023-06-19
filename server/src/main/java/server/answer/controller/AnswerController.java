@@ -17,12 +17,12 @@ public class AnswerController {
         this.answerService=answerService;
     }
     @PostMapping
-    public ResponseEntity postAnswer(@Valid @RequestBody AnswerDto.post answerPostDto){
+    public ResponseEntity postAnswer(@Valid @RequestBody AnswerDto.Post answerPostDto){
         return new ResponseEntity<>(HttpStatus.CREATED);
     }
     @PatchMapping("/{answer-id]")
     public ResponseEntity patchAnswer(@PathVariable("answer-id") long answerId,
-                                      @RequestBody AnswerDto.patch answerPatchDto){
+                                      @RequestBody AnswerDto.Patch answerPatchDto){
         answerPatchDto.setAnswerId(answerId);
         return new ResponseEntity<>(HttpStatus.OK);
     }

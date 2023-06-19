@@ -13,8 +13,9 @@ public class AnswerDto {
     @Setter
     @AllArgsConstructor
     @NoArgsConstructor
-    public class post {
+    public class Post {
         private long memberId;
+        private long questionId;
         @NotBlank
         private String content;
     }
@@ -22,14 +23,14 @@ public class AnswerDto {
     @Setter
     @AllArgsConstructor
     @NoArgsConstructor
-    public class patch {
+    public class Patch {
         private long answerId;
         @NotBlank
         private String content;
     }
     @Getter
     @AllArgsConstructor
-    public class response{
+    public class Response{
         private long answerId;
         private long questionId;
         private long memberId;
