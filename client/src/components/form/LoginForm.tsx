@@ -1,15 +1,11 @@
 import { styled } from 'styled-components';
-import FormInput from './FormInput';
-import { Button } from '../ui/buttons/Button';
 
-const LoginForm = () => {
-  return (
-    <FormContainer>
-      <FormInput title="Email" type="text" />
-      <FormInput title="Password" type="password" />
-      <Button>Log in</Button>
-    </FormContainer>
-  );
+interface Props {
+  children: JSX.Element[];
+}
+
+const LoginForm = ({ children }: Props) => {
+  return <FormContainer>{children}</FormContainer>;
 };
 
 const FormContainer = styled.div`
