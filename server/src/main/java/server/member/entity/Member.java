@@ -36,13 +36,13 @@ public class Member {
     @Column
     private Status status = Status.MEMBER_ACTIVE;
 
-    @CreatedDate
-    @Column(name = "created_at")
-    private LocalDateTime createdAt;
+    // @CreatedDate
+    // @Column(name = "created_at")
+    // private LocalDateTime createdAt;
 
-    @LastModifiedDate
-    @Column(name = "modified_at")
-    private LocalDateTime modifiedAt;
+    // @LastModifiedDate
+    // @Column(name = "modified_at")
+    // private LocalDateTime modifiedAt;
 
     public enum Status {
         MEMBER_ACTIVE("활동 회원"),
