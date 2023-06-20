@@ -5,6 +5,7 @@ import { styled } from 'styled-components';
 
 const MainPageContainer = styled.div`
   padding: 24px 24px 0px 24px;
+  background-color: #ffffff;
 `;
 
 const MainTopTitle = styled.div`
@@ -73,6 +74,7 @@ const QuestionContainer = styled.div`
   padding: 16px;
   display: flex;
   border-top: 1px solid rgb(227, 230, 232);
+  background-color: white;
 `;
 
 const QuestionCount = styled.div`
