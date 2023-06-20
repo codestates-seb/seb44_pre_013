@@ -9,7 +9,7 @@ import server.answer.entity.Answer;
 
 @Generated(
     value = "org.mapstruct.ap.MappingProcessor",
-    date = "2023-06-19T21:34:57+0900",
+    date = "2023-06-20T17:50:02+0900",
     comments = "version: 1.5.1.Final, compiler: javac, environment: Java 11 (Oracle Corporation)"
 )
 @Component
@@ -23,8 +23,6 @@ public class AnswerMapperImpl implements AnswerMapper {
 
         Answer answer = new Answer();
 
-        answer.setContent( answerPostDto.getContent() );
-
         return answer;
     }
 
@@ -35,9 +33,6 @@ public class AnswerMapperImpl implements AnswerMapper {
         }
 
         Answer answer = new Answer();
-
-        answer.setAnswerId( answerPatchDto.getAnswerId() );
-        answer.setContent( answerPatchDto.getContent() );
 
         return answer;
     }
@@ -50,8 +45,6 @@ public class AnswerMapperImpl implements AnswerMapper {
 
         AnswerResponseDto answerResponseDto = new AnswerResponseDto();
 
-        answerResponseDto.setAnswerId( answer.getAnswerId() );
-        answerResponseDto.setContent( answer.getContent() );
         answerResponseDto.setCreatedAt( answer.getCreatedAt() );
         answerResponseDto.setModifiedAt( answer.getModifiedAt() );
 

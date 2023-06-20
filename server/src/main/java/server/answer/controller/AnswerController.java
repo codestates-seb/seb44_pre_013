@@ -29,7 +29,7 @@ public class AnswerController {
         this.mapper=mapper;
     }
     @PostMapping
-    public ResponseEntity postAnswer(@Valid @RequestBody AnswerPostDto answerPostDto){
+    public ResponseEntity postAnswer(@Valid @RequestBody AnswerPostDto answerPostDto) {
         Answer answer = answerService.createAnswer(mapper.answerPostDtoToAnswer(answerPostDto));
         URI location =
                 UriComponentsBuilder
@@ -40,6 +40,7 @@ public class AnswerController {
 
         return ResponseEntity.created(location).build();
     }
+
     @PatchMapping("/{answer-id}")
     public ResponseEntity patchAnswer(@PathVariable("answer-id") @Positive long answerId,
                                       @Valid @RequestBody AnswerPatchDto answerPatchDto){

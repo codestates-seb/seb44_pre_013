@@ -6,34 +6,35 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import server.audit.Auditable;
-import server.member.entity.MemberEntity;
-import server.question.entity.QuestionEntity;
+import server.member.entity.Member;
+import server.question.entity.Question;
 
 import javax.persistence.*;
 
 @Entity
-@Getter
-@Setter
-@NoArgsConstructor
-@AllArgsConstructor
+
 public class Answer extends Auditable {
-    public long getMemberId() {
-        return member.getMemberId();
-    }
-    public long getQuestionId(){
-        return question.getQuestionId();
-    }
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long answerId;
     @Column(length = 5000, nullable = false)
     private String content;
 
-    @ManyToOne
+
+    /*@ManyToOne
     @JoinColumn(name = "MEMBER_ID")
-    private MemberEntity member;
+    private Member member;
 
     @ManyToOne
     @JoinColumn(name = "QUESTION_ID")
-    private QuestionEntity question;
+    private Question question;
+
+    public long getMemberId() {
+        return member.getMemberId();
+    }
+    public long getQuestionId(){
+        return question.getQuestionId();
+        }
+        */
+
 }

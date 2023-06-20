@@ -12,8 +12,8 @@ import java.time.LocalDateTime;
 @NoArgsConstructor
 public class AnswerResponseDto {
     private long answerId;
-    private long questionId;
-    private long memberId;
+    //private long questionId;
+    //private long memberId;
     private String content;
     private LocalDateTime createdAt;
     private LocalDateTime modifiedAt;
