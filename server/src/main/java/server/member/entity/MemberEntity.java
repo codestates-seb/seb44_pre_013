@@ -1,9 +1,24 @@
 package server.member.entity;
 
-import java.time.LocalDateTime;
-public class MemberEntity {
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
-    private Long memberId;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.Table;
+import java.time.LocalDateTime;
+
+@Getter
+@Setter
+@NoArgsConstructor
+@AllArgsConstructor
+@Entity
+@Table(name = "MEMBER")
+public class MemberEntity {
+    @Id
+    private Long memberId=1L;
 
     private String name;
 

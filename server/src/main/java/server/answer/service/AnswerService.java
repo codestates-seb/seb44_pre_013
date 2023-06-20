@@ -1,31 +1,38 @@
 package server.answer.service;
 
-import server.answer.entity.AnswerEntity;
+import org.springframework.stereotype.Service;
+import server.answer.dto.AnswerResponseDto;
+import server.answer.entity.Answer;
+import server.answer.repository.AnswerRepository;
+import server.question.repository.QuestionRepository;
 
+import java.time.LocalDateTime;
 import java.util.List;
+import java.util.Optional;
 
+@Service
 public class AnswerService {
-    public AnswerEntity createAnswer(AnswerEntity answerEntity){
-        AnswerEntity createdAnswer = answerEntity;
-        return createdAnswer;
+    private AnswerRepository answerRepository;
+    public AnswerService (AnswerRepository answerRepository){
+        this.answerRepository=answerRepository;
     }
-    public AnswerEntity updateAnswer(AnswerEntity answerEntity){
-        AnswerEntity updatedAnswer = answerEntity;
-        return updatedAnswer;
+    public Answer createAnswer(Answer answer){
+        return answerRepository.save(answer);
     }
-    public AnswerEntity findAnswer(long answerId){
-        AnswerEntity answerEntity =
-                new AnswerEntity(answerId,"hi");
-        return answerEntity;
+    public Answer updateAnswer(Answer answer){
+        return answerRepository.save(answer);
     }
-    public List<AnswerEntity> findAnswers() {
-        List<AnswerEntity> answers = List.of(
-                new AnswerEntity(1, "HI"),
-                new AnswerEntity(2, "no")
-        );
-        return answers;
-    }
-    public void deleteAnswer(long answerId){
+    //public Answer findAnswer(long answerId){
 
+    //}
+
+    public void deleteAnswer(long answerId){
     }
+    //private Answer findVerifiedOrder(long answerId) {
+       // Optional<Answer> optionalOrder = answerRepository.findById(answerId);
+        //Answer findOrder =
+          //      optionalOrder.orElseThrow(() ->
+            //            new BusinessLogicException(ExceptionCode.ORDER_NOT_FOUND));
+        //return optionalOrder;
+    //}
 }

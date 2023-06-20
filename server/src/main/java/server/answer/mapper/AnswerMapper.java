@@ -1,12 +1,14 @@
 package server.answer.mapper;
 
 import org.mapstruct.Mapper;
-import server.answer.dto.AnswerDto;
-import server.answer.entity.AnswerEntity;
+import server.answer.dto.AnswerPatchDto;
+import server.answer.dto.AnswerPostDto;
+import server.answer.dto.AnswerResponseDto;
+import server.answer.entity.Answer;
 
 @Mapper(componentModel = "spring")
 public interface AnswerMapper {
-    AnswerEntity PostToAnswerEntity(AnswerDto.Post post);
-    AnswerEntity PatchToAnswerEntity(AnswerDto.Patch patch);
-    AnswerDto.Response answerEntitiytoResponse(AnswerEntity answerEntity);
+    Answer answerPostDtoToAnswer(AnswerPostDto answerPostDto);
+    Answer answerPatchDtoToAnswer(AnswerPatchDto answerPatchDto);
+    AnswerResponseDto answerToAnswerResponseDto(Answer answer);
 }

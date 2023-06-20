@@ -7,5 +7,7 @@
     </content>
     <orderEntry type="jdk" jdkName="11" jdkType="JavaSDK" />
     <orderEntry type="sourceFolder" forTests="false" />
+    <orderEntry type="library" name="Gradle: org.springframework:spring-context:5.3.27" level="project" />
+    <orderEntry type="module" module-name="seb44_pre_013.server.main" />
   </component>
 </module>
