@@ -6,6 +6,8 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import server.audit.Auditable;
+import server.member.entity.Member;
+import server.question.entity.Question;
 
 import javax.persistence.*;
 
@@ -29,9 +31,9 @@ public class Answer extends Auditable {
 
     @ManyToOne
     @JoinColumn(name = "MEMBER_ID")
-    private MemberEntity member;
+    private Member member;
 
     @ManyToOne
     @JoinColumn(name = "QUESTION_ID")
-    private QuestionEntity question;
+    private Question question;
 }
