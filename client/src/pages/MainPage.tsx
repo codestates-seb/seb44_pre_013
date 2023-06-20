@@ -1,4 +1,6 @@
 import { Button } from '../components/ui/buttons/Button';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faFilter } from '@fortawesome/free-solid-svg-icons';
 import { styled } from 'styled-components';
 
 const MainPageContainer = styled.div`
@@ -20,7 +22,7 @@ const MainRightContainer = styled.div`
   align-items: center;
 `;
 
-const MainTopButtons = styled.div`
+const MainTopButtons = styled.button<MainTopButtons>`
   display: flex;
   justify-content: right;
   align-items: center;
@@ -36,14 +38,15 @@ const MainFilterContainer = styled.div`
   }
 `;
 
-const MainTopButton = styled.div`
+const MainTopButton = styled.div<MainTopButtons>`
   cursor: pointer;
-  padding: 9.6px;
+  padding: 8px;
   margin: 0;
   color: #6a737c;
   border: 1px solid rgb(159, 166, 173);
   font-weight: 300;
   font-size: 13px;
+  border-radius: ${(props) => props.borderradius || '0'};
   &:hover {
     background-color: #e3e6e8;
     color: #525960;
@@ -60,6 +63,10 @@ const MainFilterButton = styled.div`
   color: rgb(57, 115, 157);
   font-weight: 300;
   font-size: 13px;
+`;
+
+const MainFilterText = styled.span`
+  margin-left: 8px;
 `;
 
 const QuestionContainer = styled.div`
@@ -123,6 +130,12 @@ const QuestionTextContainer = styled.div`
 const QuestionBottom = styled.div`
   display: flex;
   align-items: center;
+  justify-content: space-between;
+`;
+
+const TagUserContainer = styled.div`
+  display: flex;
+  align-items: center;
 `;
 
 const TagContainer = styled.div`
@@ -139,7 +152,6 @@ const TagContainer = styled.div`
 
 const UserContainer = styled.div`
   display: flex;
-  justify-content: right;
   font-size: 13px;
   a {
     cursor: pointer;
@@ -152,6 +164,10 @@ const UserContainer = styled.div`
     color: rgb(82, 89, 96);
   }
 `;
+
+interface MainTopButtons {
+  borderradius?: string;
+}
 
 const MainPage = () => {
   return (
@@ -167,12 +183,15 @@ const MainPage = () => {
         <MainFilterContainer>
           <p>23,762,310 questions</p>
           <MainTopButtons>
-            <MainTopButton>Newest</MainTopButton>
+            <MainTopButton borderradius="4px 0 0 4px">Newest</MainTopButton>
             <MainTopButton>Active</MainTopButton>
             <MainTopButton>Bountied</MainTopButton>
             <MainTopButton>Unanswered</MainTopButton>
-            <MainTopButton>More</MainTopButton>
-            <MainFilterButton>Filter</MainFilterButton>
+            <MainTopButton borderradius="0 4px 4px 0">More</MainTopButton>
+            <MainFilterButton>
+              <FontAwesomeIcon icon={faFilter} style={{ color: '#0a95ff' }} />
+              <MainFilterText>Filter</MainFilterText>
+            </MainFilterButton>
           </MainTopButtons>
         </MainFilterContainer>
       </MainPageContainer>
@@ -193,11 +212,13 @@ const MainPage = () => {
             </div>
           </QuestionTextContainer>
           <QuestionBottom>
-            <TagContainer>typeScript</TagContainer>
-            <UserContainer>
-              <a>Ella</a>
-              <span>asked 20 secs ago</span>
-            </UserContainer>
+            <TagUserContainer>
+              <TagContainer>typeScript</TagContainer>
+              <UserContainer>
+                <a>Ella</a>
+                <span>asked 20 secs ago</span>
+              </UserContainer>
+            </TagUserContainer>
           </QuestionBottom>
         </Question>
       </QuestionContainer>
