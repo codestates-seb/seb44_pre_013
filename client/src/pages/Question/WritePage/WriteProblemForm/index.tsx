@@ -1,19 +1,19 @@
 import { MouseEvent } from 'react';
 import styled from 'styled-components';
 
-import Quill from '../../../components/quill/Quill';
-import Label from '../../../components/ui/label/Label';
+import Quill from '../../../../components/quill/Quill';
+import Label from '../../../../components/ui/label/Label';
 
 interface IProps {
   onClick: (e: MouseEvent<HTMLElement>) => void;
 }
 
-const WriteExpectForm = ({ onClick }: IProps) => {
+const WriteProblemForm = ({ onClick }: IProps) => {
   return (
-    <Container onClick={onClick} data-type="expect-form">
-      <Label content="What did you try and what were you expecting?" type="title" />
+    <Container onClick={onClick} data-type="problem-form">
+      <Label content="What are the details of your problem?" type="title" />
       <Label
-        content="Describe what you tried, what you expected to happen, and what actually resulted. Minimum 20 characters."
+        content="Introduce the problem and expand on what you put in the title. Minimum 20 characters."
         type="description"
       />
       <Quill width="100%" height="17.875rem" />
@@ -28,7 +28,6 @@ const Container = styled.div`
   padding: 1.5rem;
   background-color: #fff;
   border: 1px solid #e0e2e2;
-  margin-top: 1rem;
 
   & > label {
     margin: 0.125rem 0 0.125rem 0;
@@ -39,4 +38,4 @@ const Container = styled.div`
   }
 `;
 
-export default WriteExpectForm;
+export default WriteProblemForm;
