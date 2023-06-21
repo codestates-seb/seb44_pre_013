@@ -101,6 +101,7 @@ const PostSignatureWrapper = styled.div`
     margin: 0.5rem 0 0.2rem;
   }
   & > div > img {
+    height: 2rem;
     border-radius: 0.2rem;
   }
 `;
