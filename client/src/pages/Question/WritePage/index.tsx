@@ -1,9 +1,10 @@
 import { MouseEvent, useState } from 'react';
 import styled from 'styled-components';
+import { faPencil } from '@fortawesome/free-solid-svg-icons';
 
+import Tooltip from '../../../components/ui/tooltip/Tooltip';
 import WriteProblemForm from './WriteProblemForm';
-import NoticeWritingQuestion from '../Question/Notice/NoticeWritingQuestion';
-import NoticeWritingSection from '../Question/Notice/NoticeWritingSection';
+import NoticeWritingQuestion from './Notice/NoticeWritingQuestion';
 import TitleForm from './TitleForm';
 import WriteExpectForm from './WriteExpectingForm';
 import Tags from './Tags';
@@ -19,38 +20,46 @@ const Question = () => {
   const renderSideContainer = () => {
     if (selectSection === 'title-form') {
       return (
-        <NoticeWritingSection
+        <Tooltip
           title="Writing a good title"
           subtitle="Your title should summarize the problem."
           content="You might find that you have a better idea of your title after writing out the rest of
         the question."
-          margintop="398"
+          $marginTop="398"
+          $theme="dark"
+          icon={faPencil}
         />
       );
     } else if (selectSection === 'problem-form') {
       return (
-        <NoticeWritingSection
+        <Tooltip
           title="Introduce the problem"
           subtitle="Explain how you encountered the problem you’re trying to solve, and any difficulties that have prevented you from solving it yourself."
-          margintop="550"
+          $marginTop="550"
+          $theme="dark"
+          icon={faPencil}
         />
       );
     } else if (selectSection === 'expect-form') {
       return (
-        <NoticeWritingSection
+        <Tooltip
           title="Expand on the problem"
           subtitle="Show what you’ve tried, tell us what happened, and why it didn’t meet your needs."
           content="Not all questions benefit from including code, but if your problem is better understood with code you’ve written, you should include a minimal, reproducible example. Please make sure to post code and errors as text directly to the question (and not as images), and format them appropriately."
-          margintop="952"
+          $marginTop="952"
+          $theme="dark"
+          icon={faPencil}
         />
       );
     } else if (selectSection === 'tags-form') {
       return (
-        <NoticeWritingSection
+        <Tooltip
           title="Adding tags"
           subtitle="Tags help ensure that your question will get attention from the right people."
           content="Tag things in more than one way so people can find them more easily. Add tags for product lines, projects, teams, and the specific technologies or languages used."
-          margintop="1357"
+          $marginTop="1357"
+          $theme="dark"
+          icon={faPencil}
         />
       );
     }
