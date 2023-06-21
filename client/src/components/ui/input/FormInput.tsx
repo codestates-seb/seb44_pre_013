@@ -1,3 +1,4 @@
+import { forwardRef } from 'react';
 import { styled } from 'styled-components';
 
 interface PropsType {
@@ -5,14 +6,14 @@ interface PropsType {
   type: string;
 }
 
-const FormInput = ({ title, type }: PropsType) => {
+const FormInput = forwardRef<HTMLInputElement, PropsType>(({ title, type }, ref) => {
   return (
     <Container>
       <TitleStyle>{title}</TitleStyle>
-      <InputStyle type={type} />
+      <InputStyle type={type} ref={ref} />
     </Container>
   );
-};
+});
 
 const Container = styled.div`
   font-weight: 100;
