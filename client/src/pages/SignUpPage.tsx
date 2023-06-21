@@ -1,7 +1,7 @@
 import { styled } from 'styled-components';
 import OAuthArea from '../components/ui/OAuthArea';
-import LoginForm from '../components/form/LoginForm';
-import FormInput from '../components/form/FormInput';
+import Form from '../components/form/Form';
+import FormInput from '../components/ui/input/FormInput';
 import { Button } from '../components/ui/buttons/Button';
 import { Numbers } from '../constants/Numbers';
 import OAuthButton from '../components/ui/buttons/OAuthButton';
@@ -86,7 +86,7 @@ const SignUpPage = () => {
                 hoverColor={OAuth.GITHUB.HOVER_COLOR}
               />
             </OAuthArea>
-            <LoginForm>
+            <Form>
               <FormInput title="Display name" type="text" />
               <FormInput title="Email" type="text" />
               <FormInput title="Password" type="password" />
@@ -122,7 +122,7 @@ const SignUpPage = () => {
                 </LinkStyle>
                 .
               </Addition>
-            </LoginForm>
+            </Form>
             <BottomQuestion>
               Already have an account?
               <LinkStyle href="http://localhost:5173/auth/login"> Log in</LinkStyle>
