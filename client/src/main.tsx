@@ -1,11 +1,11 @@
-import React from 'react';
-import ReactDOM from 'react-dom/client';
-import { Provider as ReduxProvider } from 'react-redux';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
-import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
-import { store } from './store/store.ts';
 
 import App from './App.tsx';
+import React from 'react';
+import ReactDOM from 'react-dom/client';
+import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
+import { Provider as ReduxProvider } from 'react-redux';
+import { store } from '../src/pages/store/store.ts';
 
 const queryClient = new QueryClient();
 
