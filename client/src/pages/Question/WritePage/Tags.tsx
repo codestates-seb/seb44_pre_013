@@ -23,7 +23,7 @@ const Tags = ({ onClick }: IProps) => {
       return;
     }
 
-    if ((e.code === 'Space' || e.code === 'Enter') && tags.length <= 4) {
+    if (['Space', 'Enter'].includes(e.code) && inputValue.length && tags.length <= 4) {
       setTags([...tags, inputValue]);
       setInputValue('');
     }
