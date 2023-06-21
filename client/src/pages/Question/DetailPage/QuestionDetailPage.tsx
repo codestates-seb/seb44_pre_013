@@ -2,7 +2,7 @@ import styled from 'styled-components';
 import QuestionHeader from './QuestionHeader';
 import QuestionDetailContainer from './QuestionDetailContainer';
 import AnswerDetailContainer from './AnswerDetailContainer';
-import SideWidget from './SidebarWidget';
+import SideToolTip from '../../../components/ui/tooltip/SideTooltip';
 
 const QuestionDetailPage = () => {
   return (
@@ -14,7 +14,7 @@ const QuestionDetailPage = () => {
           <AnswerDetailContainer />
         </MainQuestionBar>
         <SideQuestionBar>
-          <SideWidget />
+          <SideToolTip />
         </SideQuestionBar>
       </MainContainer>
     </Container>

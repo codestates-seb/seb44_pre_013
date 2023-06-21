@@ -56,25 +56,12 @@ const renderContent = (data: DataType[]) => {
   );
 };
 
-const CustomFiltersTooltipContent = () => {
-  return (
-    <TooltipContentStyle>
-      <div>
-        <p>Create a custom filter</p>
-      </div>
-    </TooltipContentStyle>
-  );
-};
-
-const SideWidget = () => {
+const SideToolTip = () => {
   return (
     <Container>
       <Tooltip title="The Overflow Blog">{renderContent(blogData)}</Tooltip>
       <Tooltip title="The Overflow Blog">{renderContent(featuredOnMetaData)}</Tooltip>
       <Tooltip title="The Overflow Blog">{renderContent(hotMetaPost)}</Tooltip>
-      <Tooltip title="Custom Filters" $theme="dark" $marginTop="20">
-        <CustomFiltersTooltipContent />
-      </Tooltip>
     </Container>
   );
 };
@@ -96,4 +83,4 @@ const TooltipContentStyle = styled.div<{ $theme?: string }>`
   }
 `;
 
-export default SideWidget;
+export default SideToolTip;
