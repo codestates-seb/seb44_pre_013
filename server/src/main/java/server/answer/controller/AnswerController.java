@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.util.UriComponentsBuilder;
 import server.answer.dto.AnswerPatchDto;
 import server.answer.dto.AnswerPostDto;
+import server.answer.dto.AnswerResponseDto;
 import server.answer.entity.Answer;
 import server.answer.mapper.AnswerMapper;
 import server.answer.service.AnswerService;
@@ -15,6 +16,7 @@ import javax.validation.Valid;
 import javax.validation.constraints.Positive;
 import java.net.URI;
 import java.util.List;
+
 
 @RestController
 @RequestMapping("/answers")
@@ -50,12 +52,20 @@ public class AnswerController {
         return new ResponseEntity<>(mapper.answerToAnswerResponseDto(response),HttpStatus.OK);
     }
 
-    /*@GetMapping("/{answer-id}")
+ /*   @GetMapping("/{answer-id}")
     public ResponseEntity getAnswer(@PathVariable("answer-id") @Positive long answerId){
         Answer response = answerService.findAnswer(answerId);
 
-        return new ResponseEntity<>(mapper.answerToAnswerResponseDto(response),HttpStatus.OK);
+        return new ResponseEntity<>(new SingleResponseDto<>(mapper.answerToAnswerResponseDto(response)), HttpStatus.OK);
+    }*/
+    @GetMapping
+    public ResponseEntity getAnswer(){
+        List<Answer> answers = answerService.findAnswers();
+        List<AnswerResponseDto> responses = mapper.answersToAnswerResponseDtos(answers);
+
+        return new ResponseEntity<>(responses, HttpStatus.OK);
     }
+
 
     @DeleteMapping("/{answer-id}")
     public ResponseEntity deleteAnswer(@PathVariable("answer-id") @Positive long answerId) {
@@ -63,5 +73,5 @@ public class AnswerController {
 
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
-*/
+
     }

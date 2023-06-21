@@ -12,7 +12,10 @@ import server.question.entity.Question;
 import javax.persistence.*;
 
 @Entity
-
+@NoArgsConstructor
+@AllArgsConstructor
+@Getter
+@Setter
 public class Answer extends Auditable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -21,20 +24,18 @@ public class Answer extends Auditable {
     private String content;
 
 
-    /*@ManyToOne
+/*    @ManyToOne
     @JoinColumn(name = "MEMBER_ID")
-    private Member member;
+    private Member member;*/
 
-    @ManyToOne
+/*    @ManyToOne
     @JoinColumn(name = "QUESTION_ID")
-    private Question question;
+    private Question question;*/
 
-    public long getMemberId() {
+    /*public long getMemberId() {
         return member.getMemberId();
-    }
-    public long getQuestionId(){
+    }*/
+/*    public long getQuestionId(){
         return question.getQuestionId();
-        }
-        */
-
+        }*/
 }
