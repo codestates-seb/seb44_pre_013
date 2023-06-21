@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 
-import Voting from '../Voting';
-import Answer from '../Answer';
+import Voting from './Vote';
+import Answer from './Answer';
 
 const AnswerDetailContainer = () => {
   return (

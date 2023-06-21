@@ -1,13 +1,13 @@
 import styled from 'styled-components';
 
-import Voting from '../Voting';
-import Post from '../Post';
+import Voting from './Vote';
+import Question from './Question';
 
 const QuestionDetailContainer = () => {
   return (
     <Container>
       <Voting />
-      <Post />
+      <Question />
     </Container>
   );
 };
