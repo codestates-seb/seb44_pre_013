@@ -155,9 +155,8 @@ const TooltipContentStyle = styled.div<{ $theme?: string }>`
   }
   & > div {
     display: flex;
-    flex-direction: column;
   }
-  & > div > p:not(:last-child) {
+  & > div > div > p:not(:last-child) {
     margin-bottom: 0.6rem;
   }
 `;

@@ -7,7 +7,11 @@ import Tooltip from '../../../components/ui/tooltip/Tooltip';
 import { DataType } from '../../../types/question';
 
 const blogData: DataType[] = [
-  { icon: faPencil, size: 'sm', content: 'testdfds' },
+  {
+    icon: faPencil,
+    size: 'sm',
+    content: 'To improve as an engineer, get better at requesting (and receiving) feedback ',
+  },
   { icon: faPencil, size: 'sm', content: 'Stack Exchange Network Outage – June 15, 2023' },
 ];
 
