@@ -5,7 +5,7 @@ import React from 'react';
 import ReactDOM from 'react-dom/client';
 import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
 import { Provider as ReduxProvider } from 'react-redux';
-import { store } from '../src/pages/store/store.ts';
+import { store } from './store/store.ts';
 
 const queryClient = new QueryClient();
 

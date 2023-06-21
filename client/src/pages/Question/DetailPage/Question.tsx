@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-const Post = () => {
+const Question = () => {
   return (
     <Container>
       <ContentWrapper>
@@ -157,4 +157,4 @@ const AddCommentBtn = styled.div`
   }
 `;
 
-export default Post;
+export default Question;
