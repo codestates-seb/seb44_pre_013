@@ -196,10 +196,7 @@ const AfterLoginHeader = () => {
     <HeaderPositioner>
       <HeaderContainer>
         <HeaderLogo>
-          <img
-            src="https://cdn.discordapp.com/attachments/1117095983252246600/1121260627999084634/HeaderLogo-removebg-preview.png"
-            width="166px"
-          ></img>
+          <img src="../../public/HeaderLogo-removebg-preview.png" width="166px"></img>
         </HeaderLogo>
         <HeaderNav>
           <HeaderNavItem>Products</HeaderNavItem>

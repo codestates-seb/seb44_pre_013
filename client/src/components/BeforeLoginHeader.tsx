@@ -13,7 +13,7 @@ const HeaderPositioner = styled.div`
   width: 100%;
   z-index: 5056;
   background-color: hsl(0, 0%, 100%);
-  height: 56px;
+  height: 3.5rem;
   display: flex;
   border-top: 3px solid hsl(27, 90%, 55%);
   border-bottom: 1px solid hsl(210, 8%, 85%);
@@ -41,7 +41,7 @@ const HeaderMenuIcon = styled(GiHamburgerMenu)`
   align-items: center;
   justify-content: center;
   color: hsl(210, 8%, 15%);
-  width: 50px;
+  width: 3.125rem;
   &:hover {
     background-color: lightgray;
   }
@@ -193,10 +193,7 @@ const BeforeLoginHeader = () => {
       <HeaderContainer>
         <HeaderMenuIcon />
         <HeaderLogo>
-          <img
-            src="https://cdn.discordapp.com/attachments/1117095983252246600/1121260627999084634/HeaderLogo-removebg-preview.png"
-            width="166px"
-          ></img>
+          <img src="../../public/HeaderLogo-removebg-preview.png" width="166px"></img>
         </HeaderLogo>
         <HeaderNav>
           <HeaderNavItem>About</HeaderNavItem>

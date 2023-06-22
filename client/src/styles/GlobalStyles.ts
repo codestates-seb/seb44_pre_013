@@ -7,6 +7,7 @@ const GlobalStyles = createGlobalStyle`
     box-sizing: border-box;
   }
   body {
+    margin-top: 3.125rem !important;
     background-color: #F8F9F9;
   }
   a{
