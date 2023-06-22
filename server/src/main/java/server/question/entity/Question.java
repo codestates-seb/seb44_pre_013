@@ -26,6 +26,7 @@ public class Question extends Auditable {
     @Column(length = 2000, nullable = false)
     private String content;
 
+    @Column(nullable = false)
     private int viewCount;
 
     @ManyToOne
@@ -48,6 +49,4 @@ public class Question extends Auditable {
             answer.setQuestion(this);
         }
     }
-
-
 }
