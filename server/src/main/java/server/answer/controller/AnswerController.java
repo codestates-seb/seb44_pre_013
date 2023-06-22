@@ -52,12 +52,12 @@ public class AnswerController {
         return new ResponseEntity<>(mapper.answerToAnswerResponseDto(response),HttpStatus.OK);
     }
 
- /*   @GetMapping("/{answer-id}")
+    @GetMapping("/{answer-id}")
     public ResponseEntity getAnswer(@PathVariable("answer-id") @Positive long answerId){
         Answer response = answerService.findAnswer(answerId);
 
         return new ResponseEntity<>(new SingleResponseDto<>(mapper.answerToAnswerResponseDto(response)), HttpStatus.OK);
-    }*/
+    }
     @GetMapping
     public ResponseEntity getAnswer(){
         List<Answer> answers = answerService.findAnswers();

@@ -1,14 +1,8 @@
 package server.answer.service;
 
-import org.springframework.data.domain.PageRequest;
-import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
-import server.answer.dto.AnswerResponseDto;
 import server.answer.entity.Answer;
 import server.answer.repository.AnswerRepository;
-import server.exception.BusinessLogicException;
-import server.exception.ExceptionCode;
-import server.question.repository.QuestionRepository;
 
 import java.time.LocalDateTime;
 import java.util.List;
@@ -31,9 +25,9 @@ public class AnswerService {
         findAnswer.setModifiedAt(LocalDateTime.now());
         return answerRepository.save(findAnswer);
     }
-  /*  public Answer findAnswer(long answerId){
+    public Answer findAnswer(long answerId){
         return findVerifiedAnswer(answerId);
-    }*/
+    }
     public List<Answer> findAnswers(){
         return answerRepository.findAll();
     }
