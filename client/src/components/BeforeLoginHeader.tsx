@@ -55,10 +55,9 @@ const HeaderLogo = styled.a`
   align-items: center;
   background-color: transparent;
   margin-left: 0;
-  width: 166px;
+  width: 170px;
   height: 100%;
   box-sizing: border-box;
-  background-image: url(https://cdn.sstatic.net/Img/unified/sprites.svg?v=fcc0ea44ba27);
   background-size: cover;
   color: hsl(206, 100%, 40%);
   text-decoration: none;
@@ -193,7 +192,12 @@ const BeforeLoginHeader = () => {
     <HeaderPositioner>
       <HeaderContainer>
         <HeaderMenuIcon />
-        <HeaderLogo />
+        <HeaderLogo>
+          <img
+            src="https://cdn.discordapp.com/attachments/1117095983252246600/1121260627999084634/HeaderLogo-removebg-preview.png"
+            width="166px"
+          ></img>
+        </HeaderLogo>
         <HeaderNav>
           <HeaderNavItem>About</HeaderNavItem>
           <HeaderNavItem>Products</HeaderNavItem>
