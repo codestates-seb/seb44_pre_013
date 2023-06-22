@@ -1,5 +1,7 @@
 package server.answer.mapper;
 
+import java.util.ArrayList;
+import java.util.List;
 import javax.annotation.processing.Generated;
 import org.springframework.stereotype.Component;
 import server.answer.dto.AnswerPatchDto;
@@ -9,7 +11,7 @@ import server.answer.entity.Answer;
 
 @Generated(
     value = "org.mapstruct.ap.MappingProcessor",
-    date = "2023-06-19T21:34:57+0900",
+    date = "2023-06-21T14:55:32+0900",
     comments = "version: 1.5.1.Final, compiler: javac, environment: Java 11 (Oracle Corporation)"
 )
 @Component
@@ -56,5 +58,19 @@ public class AnswerMapperImpl implements AnswerMapper {
         answerResponseDto.setModifiedAt( answer.getModifiedAt() );
 
         return answerResponseDto;
+    }
+
+    @Override
+    public List<AnswerResponseDto> answersToAnswerResponseDtos(List<Answer> answers) {
+        if ( answers == null ) {
+            return null;
+        }
+
+        List<AnswerResponseDto> list = new ArrayList<AnswerResponseDto>( answers.size() );
+        for ( Answer answer : answers ) {
+            list.add( answerToAnswerResponseDto( answer ) );
+        }
+
+        return list;
     }
 }

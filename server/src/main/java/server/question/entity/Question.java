@@ -1,4 +1,9 @@
 package server.question.entity;
+<<<<<<< HEAD
+public class Question {
+}
+
+=======
 
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -50,3 +55,4 @@ public class Question extends Auditable {
         }
     }
 }
+>>>>>>> dev-be
