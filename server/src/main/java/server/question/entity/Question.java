@@ -49,4 +49,3 @@ public class Question extends Auditable {
             answer.setQuestion(this);
         }
     }
-}
