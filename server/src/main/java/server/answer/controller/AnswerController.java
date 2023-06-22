@@ -11,8 +11,7 @@ import server.answer.dto.AnswerResponseDto;
 import server.answer.entity.Answer;
 import server.answer.mapper.AnswerMapper;
 import server.answer.service.AnswerService;
-import server.member.entity.Member;
-import server.member.service.MemberService;
+import server.response.SingleResponseDto;
 
 import javax.validation.Valid;
 import javax.validation.constraints.Positive;
@@ -28,10 +27,11 @@ public class AnswerController {
     private final AnswerService answerService;
     private final AnswerMapper mapper;
 
-    public AnswerController(AnswerService answerService,AnswerMapper mapper){
-        this.answerService=answerService;
-        this.mapper=mapper;
+    public AnswerController(AnswerService answerService, AnswerMapper mapper) {
+        this.answerService = answerService;
+        this.mapper = mapper;
     }
+
     @PostMapping
     public ResponseEntity postAnswer(@Valid @RequestBody AnswerPostDto answerPostDto) {
         Answer answer = answerService.createAnswer(mapper.answerPostDtoToAnswer(answerPostDto));
@@ -47,27 +47,27 @@ public class AnswerController {
 
     @PatchMapping("/{answer-id}")
     public ResponseEntity patchAnswer(@PathVariable("answer-id") @Positive long answerId,
-                                      @Valid @RequestBody AnswerPatchDto answerPatchDto){
+                                      @Valid @RequestBody AnswerPatchDto answerPatchDto) {
         answerPatchDto.setAnswerId(answerId);
         Answer response = answerService.updateAnswer(mapper.answerPatchDtoToAnswer(answerPatchDto));
 
-        return new ResponseEntity<>(mapper.answerToAnswerResponseDto(response),HttpStatus.OK);
+        return new ResponseEntity<>(mapper.answerToAnswerResponseDto(response), HttpStatus.OK);
     }
 
     @GetMapping("/{answer-id}")
-    public ResponseEntity getAnswer(@PathVariable("answer-id") @Positive long answerId){
+    public ResponseEntity getAnswer(@PathVariable("answer-id") @Positive long answerId) {
         Answer response = answerService.findAnswer(answerId);
 
         return new ResponseEntity<>(new SingleResponseDto<>(mapper.answerToAnswerResponseDto(response)), HttpStatus.OK);
     }
+
     @GetMapping
-    public ResponseEntity getAnswer(){
+    public ResponseEntity getAnswer() {
         List<Answer> answers = answerService.findAnswers();
         List<AnswerResponseDto> responses = mapper.answersToAnswerResponseDtos(answers);
 
         return new ResponseEntity<>(responses, HttpStatus.OK);
     }
-
 
     @DeleteMapping("/{answer-id}")
     public ResponseEntity deleteAnswer(@PathVariable("answer-id") @Positive long answerId) {
@@ -76,4 +76,4 @@ public class AnswerController {
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
 
-    }
+}

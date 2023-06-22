@@ -6,6 +6,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.validation.constraints.NotBlank;
+
 @Getter
 @Setter
 @AllArgsConstructor
@@ -13,6 +14,7 @@ import javax.validation.constraints.NotBlank;
 
 public class AnswerPatchDto {
     private long answerId;
+
     @NotBlank
     private String content;
 }
