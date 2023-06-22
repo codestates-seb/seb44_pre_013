@@ -11,6 +11,8 @@ import server.answer.dto.AnswerResponseDto;
 import server.answer.entity.Answer;
 import server.answer.mapper.AnswerMapper;
 import server.answer.service.AnswerService;
+import server.member.entity.Member;
+import server.member.service.MemberService;
 
 import javax.validation.Valid;
 import javax.validation.constraints.Positive;

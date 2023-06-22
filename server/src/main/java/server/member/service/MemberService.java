@@ -9,6 +9,7 @@ import server.member.entity.Member;
 import server.member.mapper.MemberMapper;
 import server.member.repository.MemberRepository;
 
+import java.util.List;
 import java.util.Optional;
 
 @Transactional
@@ -19,8 +20,8 @@ public class MemberService {
     private final PasswordEncoder passwordEncoder;
 
 
-    public MemberService(MemberRepository memberRepository, MemberMapper memberMapper,
-                         PasswordEncoder passwordEncoder) {
+    public MemberService(MemberRepository memberRepository, MemberMapper memberMapper
+                         ,PasswordEncoder passwordEncoder) {
         this.memberRepository = memberRepository;
         this.memberMapper = memberMapper;
         this.passwordEncoder = passwordEncoder;
@@ -45,6 +46,11 @@ public class MemberService {
                 .ifPresent(password -> findMember.setPassword(passwordEncoder.encode(password)));
 
         return memberRepository.save(findMember);
+    }
+
+    public Member findMember(long memberId) {
+        Member member = findVerifiedMember(memberId);
+        return findVerifiedMember(memberId);
     }
 
     public void deleteMember(Member member) {

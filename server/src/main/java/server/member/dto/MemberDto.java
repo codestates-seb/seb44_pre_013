@@ -6,6 +6,9 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.validation.constraints.Email;
+import javax.validation.constraints.Max;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.Pattern;
 import javax.validation.constraints.NotBlank;
 
 public class MemberDto {
@@ -19,9 +22,12 @@ public class MemberDto {
 
         @Email
         @NotBlank
+        @Pattern(regexp = "^[A-Za-z0-9+_.-]+@[A-Za-z0-9.-]+$" ,
+                message = "올바른 이메일 구성이 아닙니다.")
         private String email;
 
         @NotBlank
+        @Max(value = 16, message = "비밀번호는 16자 이하여야합니다.")
         private String password;
     }
 
@@ -31,6 +37,7 @@ public class MemberDto {
         private long memberId;
         private String email;
         private String name;
+        @Max(value = 16, message = "비밀번호는 16자 이하여야합니다.")
         private String password;
 
         public void setMemberId(long memberId) {

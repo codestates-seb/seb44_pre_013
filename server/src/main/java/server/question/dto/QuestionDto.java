@@ -45,4 +45,3 @@ public class QuestionDto {
         private LocalDateTime modifiedAt;
     }
 }
-

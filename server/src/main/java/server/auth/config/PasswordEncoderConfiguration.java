@@ -1,4 +1,4 @@
-//package server.member.config;
+//package server.auth.config;
 //
 //
 //import org.springframework.context.annotation.Bean;
@@ -7,7 +7,7 @@
 //import org.springframework.security.crypto.password.PasswordEncoder;
 //
 //@Configuration
-//public class JavaConfiguration {
+//public class PasswordEncoderConfiguration {
 //
 //    @Bean
 //    public PasswordEncoder passwordEncoder() {
