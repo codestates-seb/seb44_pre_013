@@ -2,9 +2,9 @@ package server.member.dto;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 
 import javax.validation.constraints.Email;
-import javax.validation.constraints.Max;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Pattern;
 
@@ -12,6 +12,7 @@ public class MemberDto {
 
     @Getter
     @AllArgsConstructor
+    @NoArgsConstructor
     public static class Post {
 
         @NotBlank
@@ -24,7 +25,6 @@ public class MemberDto {
         private String email;
 
         @NotBlank
-        @Max(value = 16, message = "비밀번호는 16자 이하여야합니다.")
         private String password;
     }
 
@@ -34,7 +34,6 @@ public class MemberDto {
         private long memberId;
         private String email;
         private String name;
-        @Max(value = 16, message = "비밀번호는 16자 이하여야합니다.")
         private String password;
 
         public void setMemberId(long memberId) {
