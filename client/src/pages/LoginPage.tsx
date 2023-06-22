@@ -20,7 +20,7 @@ const LoginPage = () => {
 
   const checkLogin = async (account: AccountType) => {
     const response = await axios.post<AccountType>(
-      `http://localhost:3001/member?email=${refId.current?.value}&password=${refPw.current?.value}`,
+      `http://localhost:3001/member?email=${account.email}&password=${account.password}`,
       account
     );
     console.log(response);
