@@ -4,8 +4,12 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import server.audit.Auditable;
+import server.member.entity.Member;
+import server.question.entity.Question;
 
 import javax.persistence.*;
+
 
 @Entity
 @NoArgsConstructor
@@ -34,4 +38,5 @@ public class Answer extends Auditable {
 /*    public long getQuestionId(){
         return question.getQuestionId();
         }*/
+
 }

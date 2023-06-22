@@ -5,9 +5,8 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import server.member.entity.Member;
-import server.member.entity.Member;
 import server.question.entity.Question;
-import server.question.entity.Question;
+
 
 import javax.validation.constraints.NotBlank;
 @Getter
@@ -19,8 +18,8 @@ public class AnswerPostDto {
     private long questionId;
     @NotBlank
     private String content;
-    /*
-    public Question getQuestion() {
+
+/*    public Question getQuestion() {
         Question question = new Question();
         question.setQuestionId(questionId);
 
@@ -32,7 +31,6 @@ public class AnswerPostDto {
         member.setMemberId(memberId);
 
         return member;
-    }
-     */
+    }*/
 }
 
