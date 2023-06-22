@@ -4,7 +4,7 @@ import { IconProp, SizeProp } from '@fortawesome/fontawesome-svg-core';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPencil } from '@fortawesome/free-solid-svg-icons';
 
-import { DataType, ContentType } from '../../../types/question';
+import { DataType } from '../../../types/question';
 import Tooltip from '../../../components/ui/tooltip/Tooltip';
 import GoodWritingGuide from './GoodWritingGuide';
 import TitleForm from './TitleForm';
@@ -67,15 +67,16 @@ const QuestionWritePage = () => {
   // 각 폼에서 값들이 잘 입력되었는 지 체크 후 - 4개의 값들이 다 입력되었을 때 -> 서버로 요청 보내기
   // update하는 함수 selectSection 값을 활용하거나 해서 1개로 줄일 수 있을 거 같음
 
-  const handleUpdateTitle = (value: string, type: InstanceType<typeof ContentType>) => {
+  const handleUpdateTitle = (value: string, type: string) => {
     console.log(type);
-    if (type.title) {
+
+    if (type === 'title') {
       console.log(value);
       setTitle(value);
-    } else if (type.problemForm) {
+    } /* else if (type.problemForm) {
     } else if (type.expectingForm) {
     } else if (type.tags) {
-    }
+    } */
   };
 
   const handleUpdateProblemContent = (value: string) => {

@@ -1,5 +1,5 @@
 import { styled } from 'styled-components';
-import { IconProp, SizeProp } from '@fortawesome/fontawesome-svg-core';
+import { icon, IconProp, SizeProp } from '@fortawesome/fontawesome-svg-core';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPencil, faMessage, faLayerGroup } from '@fortawesome/free-solid-svg-icons';
 
@@ -46,8 +46,8 @@ const hotMetaPost: DataType[] = [
 const renderContent = (data: DataType[]) => {
   return (
     <TooltipContentStyle>
-      {data.map((item) => (
-        <div>
+      {data?.map((item, idx) => (
+        <div key={idx}>
           <FontAwesomeIcon icon={item.icon as IconProp} size={item.size as SizeProp} />
           <p>{item.content}</p>
         </div>

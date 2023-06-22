@@ -15,10 +15,3 @@ export interface IQuestion {
   expectContent: string;
   tags: string[];
 }
-
-export const ContentType = {
-  title: 'title',
-  problemForm: 'problemForm',
-  expectingForm: 'expectingForm',
-  tags: 'tags',
-};
