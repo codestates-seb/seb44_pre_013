@@ -1,5 +1,5 @@
 import { styled } from 'styled-components';
-import { icon, IconProp, SizeProp } from '@fortawesome/fontawesome-svg-core';
+import { IconProp, SizeProp } from '@fortawesome/fontawesome-svg-core';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPencil, faMessage, faLayerGroup } from '@fortawesome/free-solid-svg-icons';
 

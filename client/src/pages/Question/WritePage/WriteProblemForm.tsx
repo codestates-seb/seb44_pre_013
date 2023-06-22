@@ -1,4 +1,4 @@
-import { ChangeEvent, MouseEvent } from 'react';
+import { MouseEvent } from 'react';
 import styled from 'styled-components';
 
 import Quill from '../../../components/quill/Quill';
