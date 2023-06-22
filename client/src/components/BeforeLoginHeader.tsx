@@ -97,7 +97,7 @@ const HeaderNavItem = styled.li`
 `;
 
 const HeaderSearchComponent = styled.form`
-  padding: 0 calc(8px * 1);
+  padding: 5px calc(8px * 1);
   display: flex;
   align-items: center;
   position: relative;
@@ -119,12 +119,14 @@ const HeaderSearchbar = styled.input`
   padding: 7px 9px 7px 32px;
   border-color: hsl(210, 8%, 75%);
   background-color: hsl(0%, 0%, 100%);
-  color: hsl(210, 8%, 25%);
+  color: rgb(106, 115, 124);
+  border: 1px solid rgb(159, 166, 173);
   display: block;
   line-height: calc((13 + 2) / 2);
   width: 672px;
   height: 32px;
   box-sizing: border-box;
+  border-radius: 0.188rem;
 `;
 
 const HeaderRightContents = styled.ul`

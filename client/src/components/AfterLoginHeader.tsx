@@ -108,12 +108,14 @@ const HeaderSearchbar = styled.input`
   padding: 7px 9px 7px 32px;
   border-color: hsl(210, 8%, 75%);
   background-color: hsl(0%, 0%, 100%);
-  color: hsl(210, 8%, 25%);
+  color: rgb(106, 115, 124);
+  border: 1px solid rgb(159, 166, 173);
   display: block;
   line-height: calc((13 + 2) / 2);
-  width: 776px;
+  width: 672px;
   height: 32px;
   box-sizing: border-box;
+  border-radius: 0.188rem;
 `;
 
 const HeaderMypageIcon = styled(BsFillPersonFill)`
