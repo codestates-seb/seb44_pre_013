@@ -5,34 +5,23 @@ import Label from '../../../components/ui/label/Label';
 import { Input } from '../../../components/ui/input/Input';
 
 interface IProps {
+  tags: string[];
+  tagValue: string;
   onClick: (e: MouseEvent<HTMLElement>) => void;
+  handleUpdateTagValue: (e: ChangeEvent<HTMLInputElement>) => void;
+  handleAddTag: (e: KeyboardEvent<HTMLInputElement>) => void;
+  handleDeleteTag: (tag: string) => void;
 }
 
-const Tags = ({ onClick }: IProps) => {
-  const [tags, setTags] = useState<string[]>([]);
-  const [inputValue, setInputValue] = useState<string>('');
+const Tags = ({
+  tags,
+  tagValue,
+  onClick,
+  handleUpdateTagValue,
+  handleAddTag,
+  handleDeleteTag,
+}: IProps) => {
   const [focus, setFocus] = useState<boolean>(false);
-
-  const handleUpdateInputValue = (e: ChangeEvent<HTMLInputElement>) => {
-    const { value } = e.target;
-    setInputValue(value.trim());
-  };
-
-  const handleAddTag = (e: KeyboardEvent<HTMLInputElement>) => {
-    if (tags.findIndex((tag) => tag === inputValue) !== -1) {
-      return;
-    }
-
-    if (['Space', 'Enter'].includes(e.code) && inputValue.length && tags.length <= 4) {
-      setTags([...tags, inputValue]);
-      setInputValue('');
-    }
-  };
-
-  const handleDeleteTag = (tag: string) => {
-    const updatedTags = tags.filter((value: string) => value !== tag);
-    setTags(updatedTags);
-  };
 
   const handleFocus = () => {
     setFocus(true);
@@ -61,11 +50,11 @@ const Tags = ({ onClick }: IProps) => {
         ))}
         <Input
           type="text"
-          value={inputValue}
+          value={tagValue}
           width="20%"
           border="none"
           padding="0.7rem"
-          onChange={handleUpdateInputValue}
+          onChange={handleUpdateTagValue}
           onKeyDown={handleAddTag}
           onFocus={handleFocus}
           onBlur={handleBlur}

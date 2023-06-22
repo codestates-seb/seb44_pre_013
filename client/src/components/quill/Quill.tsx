@@ -12,12 +12,21 @@ const modules = {
   toolbar: [...toolbarOptions],
 };
 
-interface TypeProps {
+interface IProps {
   width?: string;
   height?: string;
+  value: string;
+  handleUpdateProblemContent?: (value: string) => void;
+  handleUpdateExpectContent?: (value: string) => void;
 }
 
-const Quill = ({ width, height }: TypeProps) => {
+const Quill = ({
+  width,
+  height,
+  value,
+  handleUpdateProblemContent,
+  handleUpdateExpectContent,
+}: IProps) => {
   return (
     <ReactQuill
       modules={modules}
@@ -26,6 +35,8 @@ const Quill = ({ width, height }: TypeProps) => {
         height: `${height ? height : '13.875rem'}`,
         paddingBottom: '2.5rem',
       }}
+      value={value}
+      onChange={handleUpdateProblemContent ?? handleUpdateExpectContent}
     />
   );
 };

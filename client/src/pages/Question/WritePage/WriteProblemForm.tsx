@@ -1,14 +1,16 @@
-import { MouseEvent } from 'react';
+import { ChangeEvent, MouseEvent } from 'react';
 import styled from 'styled-components';
 
 import Quill from '../../../components/quill/Quill';
 import Label from '../../../components/ui/label/Label';
 
 interface IProps {
+  value: string;
   onClick: (e: MouseEvent<HTMLElement>) => void;
+  handleUpdateProblemContent: (value: string) => void;
 }
 
-const WriteProblemForm = ({ onClick }: IProps) => {
+const WriteProblemForm = ({ value, onClick, handleUpdateProblemContent }: IProps) => {
   return (
     <Container onClick={onClick} data-type="problem-form">
       <Label content="What are the details of your problem?" type="title" />
@@ -16,7 +18,12 @@ const WriteProblemForm = ({ onClick }: IProps) => {
         content="Introduce the problem and expand on what you put in the title. Minimum 20 characters."
         type="description"
       />
-      <Quill width="100%" height="17.875rem" />
+      <Quill
+        width="100%"
+        height="17.875rem"
+        value={value}
+        handleUpdateProblemContent={handleUpdateProblemContent}
+      />
     </Container>
   );
 };

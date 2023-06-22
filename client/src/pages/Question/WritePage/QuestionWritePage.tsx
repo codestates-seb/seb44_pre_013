@@ -1,18 +1,19 @@
-import { MouseEvent, useState } from 'react';
+import { useState, ChangeEvent, MouseEvent, KeyboardEvent } from 'react';
 import styled from 'styled-components';
 import { IconProp, SizeProp } from '@fortawesome/fontawesome-svg-core';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPencil } from '@fortawesome/free-solid-svg-icons';
 
 import Tooltip from '../../../components/ui/tooltip/Tooltip';
-import WriteProblemForm from './WriteProblemForm';
-import NoticeWritingQuestion from './NoticeWritingQuestion';
+import GoodWritingGuide from './GoodWritingGuide';
 import TitleForm from './TitleForm';
+import WriteProblemForm from './WriteProblemForm';
 import WriteExpectForm from './WriteExpectingForm';
 import Tags from './Tags';
 import { DataType } from '../../../types/question';
+import Banner from '../../../../public/question_img.png';
 
-const titleConten: DataType[] = [
+const titleContent: DataType[] = [
   {
     icon: faPencil,
     size: '2xl',
@@ -22,7 +23,7 @@ const titleConten: DataType[] = [
   },
 ];
 
-const problemConten: DataType[] = [
+const problemContents: DataType[] = [
   {
     icon: faPencil,
     size: '2xl',
@@ -54,8 +55,55 @@ const tagContent: DataType[] = [
   },
 ];
 
-const QuestionPage = () => {
+const QuestionWritePage = () => {
   const [selectSection, setSelectSection] = useState<string | undefined>('title-form');
+  // title, problem, expecting, tags 상태값들 담을 변수 선언 - 1개의 state로 둘 것인지? 4개의 state로 둘 것인지 체크
+  const [title, setTitle] = useState('');
+  const [problemContent, setProblemContent] = useState('');
+  const [expectingContent, setExpectingContent] = useState('');
+  const [tagValue, setTagValue] = useState<string>('');
+  const [tags, setTags] = useState<string[]>([]);
+
+  // 각 폼에서 값들이 잘 입력되었는 지 체크 후 - 4개의 값들이 다 입력되었을 때 -> 서버로 요청 보내기
+  // update하는 함수 selectSection 값을 활용하거나 해서 1개로 줄일 수 있을 거 같음
+  const handleUpdateTitle = (value: string) => {
+    setTitle(value);
+  };
+
+  const handleUpdateProblemContent = (value: string) => {
+    setProblemContent(value);
+  };
+
+  const handleUpdateExpectContent = (value: string) => {
+    setExpectingContent(value);
+  };
+
+  const handleUpdateTagValue = (e: ChangeEvent<HTMLInputElement>) => {
+    const { value } = e.target;
+    setTagValue(value.trim());
+  };
+
+  const handleAddTag = (e: KeyboardEvent<HTMLInputElement>) => {
+    if (tags.findIndex((tag) => tag === tagValue) !== -1) {
+      return;
+    }
+    if (tags.length === 5) {
+      setTagValue('');
+      return;
+    }
+    if (['Space', 'Enter'].includes(e.code) && tagValue.length) {
+      setTags([...tags, tagValue]);
+      setTagValue('');
+    }
+  };
+
+  const handleDeleteTag = (tag: string) => {
+    const updatedTags = tags.filter((value: string) => value !== tag);
+    setTags(updatedTags);
+  };
+
+  // data 값 title, content로 묶어서 서버로 요청 보내기,
+  // 서버 응답 결과에 따라 성공/실패 로직 구현하기
 
   const handleChangeSection = (e: MouseEvent<HTMLElement>) => {
     const { type } = e.currentTarget.dataset;
@@ -83,13 +131,13 @@ const QuestionPage = () => {
     if (selectSection === 'title-form') {
       return (
         <Tooltip title="Writing a good title" $marginTop="398" $theme="dark">
-          {renderContent(titleConten)}
+          {renderContent(titleContent)}
         </Tooltip>
       );
     } else if (selectSection === 'problem-form') {
       return (
         <Tooltip title="Introduce the problem" $marginTop="550" $theme="dark">
-          {renderContent(problemConten)}
+          {renderContent(problemContents)}
         </Tooltip>
       );
     } else if (selectSection === 'expect-form') {
@@ -109,14 +157,33 @@ const QuestionPage = () => {
 
   return (
     <Container>
-      <Img src="../../../public/question_img.png" alt="robot img" />
+      <Img src={Banner} alt="robot img" />
       <MainContainer>
         <Title>Ask a public question</Title>
-        <NoticeWritingQuestion />
-        <TitleForm onClick={handleChangeSection} />
-        <WriteProblemForm onClick={handleChangeSection} />
-        <WriteExpectForm onClick={handleChangeSection} />
-        <Tags onClick={handleChangeSection} />
+        <GoodWritingGuide />
+        <TitleForm
+          value={title}
+          onClick={handleChangeSection}
+          handleUpdateTitle={handleUpdateTitle}
+        />
+        <WriteProblemForm
+          value={problemContent}
+          onClick={handleChangeSection}
+          handleUpdateProblemContent={handleUpdateProblemContent}
+        />
+        <WriteExpectForm
+          value={expectingContent}
+          onClick={handleChangeSection}
+          handleUpdateExpectContent={handleUpdateExpectContent}
+        />
+        <Tags
+          tags={tags}
+          tagValue={tagValue}
+          onClick={handleChangeSection}
+          handleUpdateTagValue={handleUpdateTagValue}
+          handleAddTag={handleAddTag}
+          handleDeleteTag={handleDeleteTag}
+        />
       </MainContainer>
       <SideContainer>{renderSideContainer()}</SideContainer>
     </Container>
@@ -175,4 +242,4 @@ const Img = styled.img`
   right: 0;
 `;
 
-export default QuestionPage;
+export default QuestionWritePage;

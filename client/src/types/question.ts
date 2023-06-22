@@ -8,3 +8,10 @@ export interface DataType {
   content?: string;
   subContent?: string;
 }
+
+export interface IQuestion {
+  title: string;
+  problemContent: string;
+  expectContent: string;
+  tags: string[];
+}

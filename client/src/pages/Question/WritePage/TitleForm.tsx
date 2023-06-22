@@ -1,14 +1,16 @@
-import { MouseEvent } from 'react';
+import { ChangeEvent, MouseEvent } from 'react';
 import styled from 'styled-components';
 
 import Label from '../../../components/ui/label/Label';
 import { Input } from '../../../components/ui/input/Input';
 
 interface IProps {
+  value: string;
   onClick: (e: MouseEvent<HTMLElement>) => void;
+  handleUpdateTitle: (value: string) => void;
 }
 
-const TitleForm = ({ onClick }: IProps) => {
+const TitleForm = ({ value, onClick, handleUpdateTitle }: IProps) => {
   return (
     <Container onClick={onClick} data-type="title-form">
       <Label type="title" content="Title" htmlFor="title" />
@@ -22,6 +24,8 @@ const TitleForm = ({ onClick }: IProps) => {
         placeholder="e.g. Is there an R function for finding the index of an element in a vector?"
         padding="0.563rem"
         focusmode="true"
+        value={value}
+        onChange={(e: ChangeEvent<HTMLInputElement>) => handleUpdateTitle(e.target.value)}
       />
     </Container>
   );
