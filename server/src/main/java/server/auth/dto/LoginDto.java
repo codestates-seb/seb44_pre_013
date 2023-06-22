@@ -1,9 +1,9 @@
-package server.auth;
+package server.auth.dto;
 
 import lombok.Getter;
 
 @Getter
-public class Dto {
+public class LoginDto {
     private String email;
     private String password;
 }
