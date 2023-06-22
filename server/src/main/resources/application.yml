@@ -11,10 +11,18 @@ spring:
     show-sql: true      # (2) SQL 쿼리 출력
     properties:
       hibernate:
-        format_sql: true  # (3) SQL pretty print
+        format_sql: true
   sql:
     init:
       data-locations: classpath*:db/h2/data.sql
+  security:
+    oauth2:
+      client:
+        registration:
+          google:
+            clientId: ${GOOGLE_CLIENTID}
+            clientSecret: ${GOOGLE_CLIENTSECRET}
+            scope: profile,email
 logging:
   level:
     org:
@@ -25,3 +33,10 @@ server:
   servlet:
     encoding:
       force-response: true
+jwt:
+  key: ${JWT_SECRET_KEY}
+  access-token-expiration-minutes: 30
+  refresh-token-expiration-minutes: 420
+mail:
+  address:
+    admin: arubu3667@gmail.com
