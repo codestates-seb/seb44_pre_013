@@ -2,9 +2,7 @@ package server.member.entity;
 
 import lombok.Getter;
 import lombok.NoArgsConstructor;
-import lombok.NonNull;
 import lombok.Setter;
-import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 import server.answer.entity.Answer;
 import server.audit.Auditable;
 import server.question.entity.Question;
@@ -28,7 +26,7 @@ public class Member extends Auditable {
     @Column(length = 20, updatable = false, unique = true)
     private String email;
 
-    @Column(length = 16, nullable = false)
+    @Column(length = 100, nullable = false)
     private String password;
 
     @Enumerated(value = EnumType.STRING)
@@ -46,7 +44,7 @@ public class Member extends Auditable {
         MEMBER_DELETED("탈퇴 회원");
 
         @Getter
-        private String status;
+        private final String status;
 
         Status(String status) {
             this.status = status;
