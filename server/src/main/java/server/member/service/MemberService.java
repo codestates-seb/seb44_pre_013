@@ -53,6 +53,10 @@ public class MemberService {
         return findVerifiedMember(memberId);
     }
 
+    public Member findMember(String email) {
+        return memberRepository.findByEmail(email).get();
+    }
+
     public void deleteMember(Member member) {
         Member findMember = findVerifiedMember(member.getMemberId());
         member.setStatus(Member.Status.MEMBER_DELETED);
