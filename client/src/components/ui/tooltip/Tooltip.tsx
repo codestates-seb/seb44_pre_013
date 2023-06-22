@@ -1,58 +1,18 @@
+import { PropsWithChildren } from 'react';
 import { styled, css } from 'styled-components';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { IconDefinition } from '@fortawesome/free-solid-svg-icons';
-import { SizeProp } from '@fortawesome/fontawesome-svg-core';
-
-import { DataType } from '../../../pages/Question/DetailPage/SidebarWidget';
-import { typeGuard } from '../../../util/typeGuard';
-
 interface IProps {
   title: string;
-  subtitle?: string;
-  content?: string | DataType[];
   $marginTop?: string;
-  $theme: string;
-  icon?: IconDefinition | DataType[];
-  size?: SizeProp;
+  $theme?: string;
 }
 
-const Tooltip = ({ title, subtitle, content, $marginTop, $theme, icon, size }: IProps) => {
-  const renderContent = () => {
-    if (typeGuard<DataType[]>(content)) {
-      return (
-        <ContentBox $theme={$theme} $marginBottom={false} $list={true}>
-          {content?.map((item: DataType, idx: number) => {
-            return (
-              <Item key={idx} $postId={item.postId}>
-                {item.icon && <FontAwesomeIcon icon={item.icon} size={size} />}
-                <span>{item.postId}</span>
-                <div>
-                  <p>{item.content}</p>
-                </div>
-              </Item>
-            );
-          })}
-        </ContentBox>
-      );
-    } else {
-      return (
-        <ContentBox $theme={$theme} $marginBottom={true} $list={false}>
-          <FontAwesomeIcon icon={icon as IconDefinition} size={size} />
-          <div>
-            <p>{subtitle}</p>
-            <p>{content}</p>
-          </div>
-        </ContentBox>
-      );
-    }
-  };
-
+const Tooltip = ({ title, $marginTop, $theme, children }: PropsWithChildren<IProps>) => {
   return (
     <Container $marginTop={$marginTop} $theme={$theme}>
       <TitleBox $theme={$theme}>
         <p>{title}</p>
       </TitleBox>
-      {renderContent()}
+      <ContentBox $theme={$theme}>{children}</ContentBox>
     </Container>
   );
 };
@@ -89,8 +49,12 @@ const TitleBox = styled.div<{ $theme?: string }>`
         `}
 `;
 
-const ContentBox = styled.div<{ $theme?: string; $marginBottom: boolean; $list: boolean }>`
+const ContentBox = styled.div<{
+  $theme?: string;
+  $marginBottom?: boolean;
+}>`
   display: flex;
+  flex-direction: column;
   font-size: 0.9rem;
   box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
   ${(props) =>
@@ -105,33 +69,6 @@ const ContentBox = styled.div<{ $theme?: string; $marginBottom: boolean; $list: 
           background-color: #fdf7e2;
           border: 0.075rem solid #f1e5bc;
         `}
-  ${(props) =>
-    props.$list &&
-    css`
-      display: flex;
-      flex-direction: column;
-      & > div > div {
-        margin-left: 0.5rem;
-      }
-    `}
-  & > :first-child {
-    margin-right: 1rem;
-  }
-  & > :last-child > :first-child {
-    margin-bottom: ${(props) => props.$theme === 'dark' && props.$marginBottom && '0.5rem'};
-  }
-`;
-
-const Item = styled.div<{ $postId?: number }>`
-  display: flex;
-  ${(props) =>
-    props.$postId &&
-    css`
-      & > span {
-        min-width: 1rem;
-      }
-      margin: 0.35rem 0;
-    `}
 `;
 
 export default Tooltip;

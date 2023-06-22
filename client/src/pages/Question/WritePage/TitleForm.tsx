@@ -1,8 +1,8 @@
 import { MouseEvent } from 'react';
 import styled from 'styled-components';
 
-import Label from '../../../../components/ui/label/Label';
-import { Input } from '../../../../components/ui/input/Input';
+import Label from '../../../components/ui/label/Label';
+import { Input } from '../../../components/ui/input/Input';
 
 interface IProps {
   onClick: (e: MouseEvent<HTMLElement>) => void;
