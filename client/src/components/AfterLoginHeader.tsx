@@ -112,7 +112,7 @@ const HeaderSearchbar = styled.input`
   border: 1px solid rgb(159, 166, 173);
   display: block;
   line-height: calc((13 + 2) / 2);
-  width: 672px;
+  width: 776px;
   height: 32px;
   box-sizing: border-box;
   border-radius: 0.188rem;
