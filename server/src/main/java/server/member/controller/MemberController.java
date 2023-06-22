@@ -5,11 +5,11 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.util.UriComponentsBuilder;
 import server.member.dto.MemberDto;
 import server.member.entity.Member;
 import server.member.mapper.MemberMapper;
 import server.member.service.MemberService;
+import server.utils.UriCreator;
 
 import javax.validation.Valid;
 import javax.validation.constraints.Positive;
@@ -19,7 +19,7 @@ import java.net.URI;
 @RequestMapping("/members")
 @Validated
 public class MemberController {
-
+    private final static String MEMBER_DEFAULT_URL = "/members";
     private final MemberService memberService;
     private final MemberMapper mapper;
 
@@ -33,11 +33,8 @@ public class MemberController {
     public ResponseEntity postMember(@Valid @RequestBody MemberDto.Post requestBody) {
         Member createdMember = memberService.createMember(mapper.memberPostToMember(requestBody));
 
-        URI location = UriComponentsBuilder
-                .newInstance()
-                .path("/{member-id}")
-                .buildAndExpand(createdMember.getMemberId())
-                .toUri();
+        URI location = UriCreator.createUri(MEMBER_DEFAULT_URL, createdMember.getMemberId());
+
         return ResponseEntity.created(location).build();
     }
 

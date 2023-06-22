@@ -11,7 +11,7 @@ spring:
     show-sql: true      # (2) SQL 쿼리 출력
     properties:
       hibernate:
-        format_sql: true  # (3) SQL pretty print
+        format_sql: true
   sql:
     init:
       data-locations: classpath*:db/h2/data.sql
