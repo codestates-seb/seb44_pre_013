@@ -1,9 +1,5 @@
 package server.member.entity;
 
-<<<<<<< HEAD
-public class Member extends Auditable {
-
-=======
 import lombok.Getter;
 import lombok.NonNull;
 import lombok.Setter;
@@ -59,5 +55,4 @@ public class Member {
             this.status = status;
         }
     }
->>>>>>> dev-be
 }
