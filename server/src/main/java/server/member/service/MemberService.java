@@ -9,6 +9,7 @@ import server.member.entity.Member;
 import server.member.mapper.MemberMapper;
 import server.member.repository.MemberRepository;
 
+import java.util.List;
 import java.util.Optional;
 
 @Transactional
@@ -48,6 +49,7 @@ public class MemberService {
     }
 
     public Member findMember(long memberId) {
+        Member member = findVerifiedMember(memberId);
         return findVerifiedMember(memberId);
     }
 
