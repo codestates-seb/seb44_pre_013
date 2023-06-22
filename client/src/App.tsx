@@ -17,8 +17,8 @@ function App() {
         <Route path="/questions" element={<QuestionWritePage />} />
         <Route path="/questions/:id" element={<QuestionDetailPage />} />
         <Route path="/" element={<MainPage />} />
-        <Route path="/auth/login" element={<LoginPage />} />
-        <Route path="/members/signup" element={<SignUpPage />} />
+        <Route path="/login" element={<LoginPage />} />
+        <Route path="/signup" element={<SignUpPage />} />
       </Routes>
     </BrowserRouter>
   );
