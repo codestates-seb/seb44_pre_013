@@ -1,15 +1,14 @@
 package server.member.mapper;
 
+import org.mapstruct.Mapper;
 import org.springframework.stereotype.Component;
 import server.member.dto.MemberDto;
 import server.member.entity.Member;
 
-import java.time.temporal.Temporal;
+@Mapper(componentModel = "spring")
+public interface MemberMapper {
 
-@Component
-public class MemberMapper {
-
-    public Member memberPostToMember(MemberDto.Post requestBody) {
+    default Member memberPostToMember(MemberDto.Post requestBody) {
         if (requestBody == null) {
             return null;
         }
@@ -23,7 +22,7 @@ public class MemberMapper {
         return member;
     }
 
-    public Member memberPatchToMember(MemberDto.Patch requestBody) {
+    default Member memberPatchToMember(MemberDto.Patch requestBody) {
         if (requestBody == null) {
             return null;
         }
@@ -38,7 +37,7 @@ public class MemberMapper {
         return member;
     }
 
-    public Member memberDeleteToMember(MemberDto.Delete requestBody) {
+    default Member memberDeleteToMember(MemberDto.Delete requestBody) {
         if (requestBody == null) {
             return null;
         }
@@ -51,8 +50,8 @@ public class MemberMapper {
         return member;
     }
 
-    public MemberDto.Response memberToMemberResponse(Member member) {
-        if(member == null) {
+    default MemberDto.Response memberToMemberResponse(Member member) {
+        if (member == null) {
             return null;
         }
 
@@ -69,9 +68,8 @@ public class MemberMapper {
         email = member.getEmail();
         password = member.getPassword();
 
-        MemberDto.Response response = new MemberDto.Response(memberId, email, name, password) ;
+        MemberDto.Response response = new MemberDto.Response(memberId, email, name, password);
 
         return response;
-
     }
 }

@@ -23,12 +23,4 @@ public abstract class Auditable {
     @LastModifiedDate
     @Column(name = "modified_at")
     private LocalDateTime modifiedAt;
-
-    // @CreatedDate
-    // @Column(name = "created_at")
-    // private LocalDateTime createdAt;
-
-    // @LastModifiedDate
-    // @Column(name = "modified_at")
-    // private LocalDateTime modifiedAt;
 }
