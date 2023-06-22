@@ -47,15 +47,15 @@ public class MemberController {
         requestBody.setMemberId(memberId);
         Member updateMember = memberService.updateMember(mapper.memberPatchToMember(requestBody));
 
-        return new ResponseEntity(mapper.memberToMemberResponse(updateMember), HttpStatus.OK);
+        return new ResponseEntity<>(mapper.memberToMemberResponse(updateMember), HttpStatus.OK);
     }
 
-    @DeleteMapping("/{user-id}")
-    public ResponseEntity deleteMember(@PathVariable("user-id") @Positive long memberId,
+    @DeleteMapping("/{member-id}")
+    public ResponseEntity deleteMember(@PathVariable("member-id") @Positive long memberId,
                                        @Valid @RequestBody MemberDto.Delete requestBody) {
         requestBody.setMemberId(memberId);
         memberService.deleteMember(mapper.memberDeleteToMember(requestBody));
 
-        return new ResponseEntity(HttpStatus.OK);
+        return new ResponseEntity<>(HttpStatus.OK);
     }
 }
