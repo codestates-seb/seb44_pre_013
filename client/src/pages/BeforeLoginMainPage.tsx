@@ -258,7 +258,7 @@ interface active {
   active?: boolean;
 }
 
-interface dummyData {
+interface IDummyData {
   userId: number;
   userName: string;
   title: string;
@@ -270,7 +270,7 @@ interface dummyData {
 }
 
 const BeforeLoginMainPage = () => {
-  const [allQuestion, setAllQuestion] = useState<dummyData[]>([]);
+  const [allQuestion, setAllQuestion] = useState<IDummyData[]>([]);
   const [pageNationData] = useState({ totalElements: 120 });
   const [activePage, setActivePage] = useState(1);
   const [activePageItemButton, setActivePageItemButton] = useState(15);

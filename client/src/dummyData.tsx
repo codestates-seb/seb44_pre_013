@@ -1,6 +1,6 @@
-const dummyData: dummyData[] = [];
+const dummyData: IDummyData[] = [];
 
-interface dummyData {
+interface IDummyData {
   userId: number;
   userName: string;
   title: string;
