@@ -1,13 +1,14 @@
 import { ChangeEvent, MouseEvent } from 'react';
 import styled from 'styled-components';
 
+import { ContentType } from '../../../types/question';
 import Label from '../../../components/ui/label/Label';
 import { Input } from '../../../components/ui/input/Input';
 
 interface IProps {
   value: string;
   onClick: (e: MouseEvent<HTMLElement>) => void;
-  handleUpdateTitle: (value: string) => void;
+  handleUpdateTitle: (value: string, type: string) => void;
 }
 
 const TitleForm = ({ value, onClick, handleUpdateTitle }: IProps) => {
@@ -25,7 +26,9 @@ const TitleForm = ({ value, onClick, handleUpdateTitle }: IProps) => {
         padding="0.563rem"
         focusmode="true"
         value={value}
-        onChange={(e: ChangeEvent<HTMLInputElement>) => handleUpdateTitle(e.target.value)}
+        onChange={(e: ChangeEvent<HTMLInputElement>) =>
+          handleUpdateTitle(e.target.value, ContentType.title)
+        }
       />
     </Container>
   );
