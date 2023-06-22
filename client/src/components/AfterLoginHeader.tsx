@@ -44,10 +44,9 @@ const HeaderLogo = styled.a`
   align-items: center;
   background-color: transparent;
   margin-left: 0;
-  width: 166px;
+  width: 170px;
   height: 100%;
   box-sizing: border-box;
-  background-image: url(https://cdn.sstatic.net/Img/unified/sprites.svg?v=fcc0ea44ba27);
   background-size: cover;
   color: hsl(206, 100%, 40%);
   text-decoration: none;
@@ -109,12 +108,14 @@ const HeaderSearchbar = styled.input`
   padding: 7px 9px 7px 32px;
   border-color: hsl(210, 8%, 75%);
   background-color: hsl(0%, 0%, 100%);
-  color: hsl(210, 8%, 25%);
+  color: rgb(106, 115, 124);
+  border: 1px solid rgb(159, 166, 173);
   display: block;
   line-height: calc((13 + 2) / 2);
   width: 776px;
   height: 32px;
   box-sizing: border-box;
+  border-radius: 0.188rem;
 `;
 
 const HeaderMypageIcon = styled(BsFillPersonFill)`
@@ -196,7 +197,9 @@ const AfterLoginHeader = () => {
   return (
     <HeaderPositioner>
       <HeaderContainer>
-        <HeaderLogo />
+        <HeaderLogo>
+          <img src="../../public/HeaderLogo-removebg-preview.png" width="166px"></img>
+        </HeaderLogo>
         <HeaderNav>
           <HeaderNavItem>Products</HeaderNavItem>
         </HeaderNav>
