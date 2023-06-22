@@ -1,7 +1,7 @@
 import { createGlobalStyle } from 'styled-components';
 
 const GlobalStyles = createGlobalStyle` 
-  *{
+  * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
@@ -10,7 +10,7 @@ const GlobalStyles = createGlobalStyle`
   body {
     background-color: #F8F9F9;
   }
-  a{
+  a {
     text-decoration: none;
     color: inherit;
   }
