@@ -63,7 +63,7 @@ public class SecurityConfiguration implements WebMvcConfigurer {
                 .and()
                 .apply(new CustomFilterConfigurer())
                 .and()
-                .authorizeRequests(authorize -> authorize
+                .authorizeHttpRequests(authorize -> authorize
                         .antMatchers(HttpMethod.POST, "/**").permitAll()
                         .antMatchers(HttpMethod.PATCH, "/**").permitAll()
                         .antMatchers(HttpMethod.GET, "/**").permitAll()
@@ -130,7 +130,6 @@ public class SecurityConfiguration implements WebMvcConfigurer {
 
     @Override
     public void addCorsMappings(CorsRegistry registry) {
-        // 모든 경로에 대해
         registry.addMapping("/**")
                 .allowedOrigins("*")
                 .allowedOrigins("http://localhost:3000")
