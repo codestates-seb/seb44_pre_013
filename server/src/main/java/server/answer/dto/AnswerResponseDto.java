@@ -1,14 +1,12 @@
 package server.answer.dto;
 
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
 import java.time.LocalDateTime;
 
 @Getter
 @Setter
+@Builder
 @AllArgsConstructor
 @NoArgsConstructor
 public class AnswerResponseDto {
@@ -18,4 +16,13 @@ public class AnswerResponseDto {
     private String content;
     private LocalDateTime createdAt;
     private LocalDateTime modifiedAt;
+
+    @Getter
+    @Builder
+    @AllArgsConstructor
+    public static class AnswerMemberResponseForList {
+        private long questionId;
+        private long answerId;
+        private String content;
+    }
 }

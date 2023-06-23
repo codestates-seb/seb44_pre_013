@@ -1,12 +1,15 @@
 package server.member.dto;
 
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
+import lombok.*;
+import server.answer.dto.AnswerResponseDto;
+import server.question.dto.QuestionDto;
 
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Pattern;
+import java.time.LocalDateTime;
+
+import java.util.List;
 
 public class MemberDto {
 
@@ -59,5 +62,25 @@ public class MemberDto {
         private String name;
         private String email;
         private String password;
+    }
+
+    @Getter
+    @Builder
+    public  static class ResponseForList {
+        private Long memberId;
+        private String name;
+    }
+
+    @Getter
+    @Builder
+    public static class ResponseMyPage {
+        private Long memberId;
+        private String name;
+        private String myPageTitle;
+        private String aboutMe;
+        private LocalDateTime createAt;
+        private LocalDateTime modifiedAt;
+        private List<QuestionDto.Response> questions;
+        private List<AnswerResponseDto> answers;
     }
 }
