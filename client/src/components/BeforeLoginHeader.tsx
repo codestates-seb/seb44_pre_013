@@ -215,10 +215,10 @@ const BeforeLoginHeader = () => {
           <HeaderSearchbar aria-label="Search" placeholder="Search..." />
         </HeaderSearchComponent>
         <HeaderRightContents>
-          <Link to="/auth/login">
+          <Link to="/login">
             <HeaderLogin>Log in</HeaderLogin>
           </Link>
-          <Link to="/members/signup">
+          <Link to="/signup">
             <HeaderSignUp>Sign up</HeaderSignUp>
           </Link>
         </HeaderRightContents>
