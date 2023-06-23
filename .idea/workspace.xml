@@ -4,11 +4,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="865023aa-08ce-42cf-b572-03fd6193f788" name="Changes" comment="feat: aws parameter 설정">
+    <list default="true" id="865023aa-08ce-42cf-b572-03fd6193f788" name="Changes" comment="fix: 환경변수들 직접 입력">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/server/build.gradle" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/src/main/resources/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/main/resources/application.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/src/main/resources/bootstrap.yml" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -292,7 +289,7 @@
       <workItem from="1687427747378" duration="194000" />
       <workItem from="1687427959358" duration="969000" />
       <workItem from="1687478840428" duration="6328000" />
-      <workItem from="1687486625884" duration="4310000" />
+      <workItem from="1687486625884" duration="5157000" />
     </task>
     <task id="LOCAL-00001" summary="feat: 수정중">
       <created>1687229751382</created>
@@ -350,7 +347,14 @@
       <option name="project" value="LOCAL" />
       <updated>1687486870675</updated>
     </task>
-    <option name="localTasksCounter" value="9" />
+    <task id="LOCAL-00009" summary="fix: 환경변수들 직접 입력">
+      <created>1687493304266</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1687493304266</updated>
+    </task>
+    <option name="localTasksCounter" value="10" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -366,6 +370,7 @@
     <MESSAGE value="fix: cors 수정" />
     <MESSAGE value="fix: cors 수정2" />
     <MESSAGE value="feat: aws parameter 설정" />
-    <option name="LAST_COMMIT_MESSAGE" value="feat: aws parameter 설정" />
+    <MESSAGE value="fix: 환경변수들 직접 입력" />
+    <option name="LAST_COMMIT_MESSAGE" value="fix: 환경변수들 직접 입력" />
   </component>
 </project>
