@@ -146,9 +146,9 @@ public class SecurityConfiguration implements WebMvcConfigurer {
     public void addCorsMappings(CorsRegistry registry) {
         // 모든 경로에 대해
         registry.addMapping("/**")
-                // Origin이 http:localhost:3000에 대해
                 .allowedOrigins("http:localhost:3000")
                 .allowedOrigins("http:localhost:3001")
+                .allowedOrigins("http:localhost:5173")
                 .allowedOrigins("ec2-13-125-95-163.ap-northeast-2.compute.amazonaws.com")
                 .allowedMethods("GET", "POST", "PUT", "PATCH", "DELETE", "OPTIONS")
                 .allowedHeaders("*")
