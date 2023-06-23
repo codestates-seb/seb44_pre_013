@@ -11,7 +11,6 @@ import TitleForm from './TitleForm';
 import WriteProblemForm from './WriteProblemForm';
 import WriteExpectForm from './WriteExpectingForm';
 import Tags from './Tags';
-import Banner from '../../../../public/question_img.png';
 
 const titleContent: IDataType[] = [
   {
@@ -168,7 +167,10 @@ const QuestionWritePage = () => {
 
   return (
     <Container>
-      <Img src={Banner} alt="robot img" />
+      <Img
+        src="https://fe-img-uploads.s3.ap-northeast-2.amazonaws.com/question_img.png"
+        alt="robot img"
+      />
       <MainContainer>
         <Title>Ask a public question</Title>
         <GoodWritingGuide />

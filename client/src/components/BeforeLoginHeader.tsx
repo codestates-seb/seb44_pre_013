@@ -1,4 +1,4 @@
-// import React from 'react';
+import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 import { GiHamburgerMenu } from 'react-icons/gi';
 import { AiOutlineSearch } from 'react-icons/ai';
@@ -195,20 +195,35 @@ const BeforeLoginHeader = () => {
       <HeaderContainer>
         <HeaderMenuIcon />
         <HeaderLogo>
-          <img src="../../public/HeaderLogo-removebg-preview.png" width="166px"></img>
+          <Link to="/">
+            <img
+              src="https://fe-img-uploads.s3.ap-northeast-2.amazonaws.com/HeaderLogo-removebg-preview.png"
+              width="166px"
+            ></img>
+          </Link>
         </HeaderLogo>
         <HeaderNav>
-          <HeaderNavItem>About</HeaderNavItem>
-          <HeaderNavItem>Products</HeaderNavItem>
-          <HeaderNavItem>For Teams</HeaderNavItem>
+          <Link to="/">
+            <HeaderNavItem>About</HeaderNavItem>{' '}
+          </Link>
+          <Link to="/">
+            <HeaderNavItem>Products</HeaderNavItem>{' '}
+          </Link>
+          <Link to="/">
+            <HeaderNavItem>For Teams</HeaderNavItem>{' '}
+          </Link>
         </HeaderNav>
         <HeaderSearchComponent>
           <HeaderSearchIcon />
           <HeaderSearchbar aria-label="Search" placeholder="Search..." />
         </HeaderSearchComponent>
         <HeaderRightContents>
-          <HeaderLogin>Log in</HeaderLogin>
-          <HeaderSignUp>Sign up</HeaderSignUp>
+          <Link to="/auth/login">
+            <HeaderLogin>Log in</HeaderLogin>
+          </Link>
+          <Link to="/members/signup">
+            <HeaderSignUp>Sign up</HeaderSignUp>
+          </Link>
         </HeaderRightContents>
       </HeaderContainer>
     </HeaderPositioner>
