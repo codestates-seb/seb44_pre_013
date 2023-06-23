@@ -1,5 +1,6 @@
 package server.question.dto;
 
+import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.Setter;
@@ -34,6 +35,7 @@ public class QuestionDto {
 
     @Getter
     @Builder
+    @AllArgsConstructor
     public static class Response {
         private long questionId;
         private long memberId;
