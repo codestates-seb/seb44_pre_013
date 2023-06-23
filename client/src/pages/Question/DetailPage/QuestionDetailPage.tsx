@@ -2,7 +2,7 @@ import styled from 'styled-components';
 import QuestionHeader from './QuestionHeader';
 import QuestionDetailContainer from './QuestionDetailContainer';
 import AnswerDetailContainer from './AnswerDetailContainer';
-import SideToolTip from '../../../components/ui/tooltip/SideTooltip';
+import SideToolTip from '../../../components/ui/tooltip/SideToolTip';
 
 const QuestionDetailPage = () => {
   return (
