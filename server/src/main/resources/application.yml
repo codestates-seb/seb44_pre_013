@@ -15,14 +15,14 @@ spring:
   sql:
     init:
       data-locations: classpath*:db/h2/data.sql
-#  security:
-#    oauth2:
-#      client:
-#        registration:
-#          google:
-#            clientId: ${GOOGLE_CLIENTID}
-#            clientSecret: ${GOOGLE_CLIENTSECRET}
-#            scope: profile,email
+  security:
+    oauth2:
+      client:
+        registration:
+          google:
+            clientId: 991088085016-3udvngkchprg1opii9jvhbagp64bpqhh.apps.googleusercontent.com
+            clientSecret: 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
+            scope: profile,email
 logging:
   level:
     org:
@@ -34,7 +34,7 @@ server:
     encoding:
       force-response: true
 jwt:
-#  key: ${JWT_SECRET_KEY}
+  key: kevin12341234123412341234123412341111111111111111111111111111111111111111111111111111111111
   access-token-expiration-minutes: 30
   refresh-token-expiration-minutes: 420
 mail:
