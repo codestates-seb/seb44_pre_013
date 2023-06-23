@@ -1,6 +1,7 @@
 package server.answer.mapper;
 
 import org.mapstruct.Mapper;
+import org.mapstruct.ReportingPolicy;
 import server.answer.dto.AnswerPatchDto;
 import server.answer.dto.AnswerPostDto;
 import server.answer.dto.AnswerResponseDto;

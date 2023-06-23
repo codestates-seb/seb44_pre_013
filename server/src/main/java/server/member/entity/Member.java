@@ -1,5 +1,6 @@
 package server.member.entity;
 
+import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -15,6 +16,7 @@ import java.util.List;
 @Getter
 @Setter
 @NoArgsConstructor
+@AllArgsConstructor
 public class Member extends Auditable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -28,6 +30,10 @@ public class Member extends Auditable {
 
     @Column(length = 100, nullable = false)
     private String password;
+
+    private String myPageTitle;
+
+    private String aboutMe;
 
     @Enumerated(value = EnumType.STRING)
     @Column
