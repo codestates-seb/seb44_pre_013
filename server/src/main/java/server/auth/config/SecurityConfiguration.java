@@ -149,9 +149,7 @@ public class SecurityConfiguration implements WebMvcConfigurer {
                 // Origin이 http:localhost:3000에 대해
                 .allowedOrigins("http:localhost:3000")
                 .allowedOrigins("http:localhost:3001")
-                .allowedOrigins("https://2e9b-61-254-8-200.ngrok-free.app")
-                .allowedOrigins("http://ec2-13-125-39-247.ap-northeast-2.compute.amazonaws.com:3000")
-                // GET, POST, PUT, PATCH, DELETE, OPTIONS 메서드를 허용합니다.
+                .allowedOrigins("ec2-13-125-95-163.ap-northeast-2.compute.amazonaws.com")
                 .allowedMethods("GET", "POST", "PUT", "PATCH", "DELETE", "OPTIONS")
                 .allowedHeaders("*")
                 .allowCredentials(true)
