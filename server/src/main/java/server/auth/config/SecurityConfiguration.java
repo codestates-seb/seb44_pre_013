@@ -63,7 +63,7 @@ public class SecurityConfiguration implements WebMvcConfigurer {
                 .and()
                 .apply(new CustomFilterConfigurer())
                 .and()
-                .authorizeHttpRequests(authorize -> authorize
+                .authorizeRequests(authorize -> authorize
                         .antMatchers(HttpMethod.POST, "/**").permitAll()
                         .antMatchers(HttpMethod.PATCH, "/**").permitAll()
                         .antMatchers(HttpMethod.GET, "/**").permitAll()
@@ -146,10 +146,11 @@ public class SecurityConfiguration implements WebMvcConfigurer {
     public void addCorsMappings(CorsRegistry registry) {
         // 모든 경로에 대해
         registry.addMapping("/**")
-                .allowedOrigins("http:localhost:3000")
-                .allowedOrigins("http:localhost:3001")
-                .allowedOrigins("http:localhost:5173")
-                .allowedOrigins("ec2-13-125-95-163.ap-northeast-2.compute.amazonaws.com")
+                .allowedOrigins("*")
+                .allowedOrigins("http://localhost:3000")
+                .allowedOrigins("http://localhost:3001")
+                .allowedOrigins("http://localhost:5173")
+                .allowedOrigins("ec2-43-200-171-206.ap-northeast-2.compute.amazonaws.com")
                 .allowedMethods("GET", "POST", "PUT", "PATCH", "DELETE", "OPTIONS")
                 .allowedHeaders("*")
                 .allowCredentials(true)

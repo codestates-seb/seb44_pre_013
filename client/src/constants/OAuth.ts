@@ -1,6 +1,6 @@
 export const OAuth = {
   GOOGLE: {
-    ICONURL: '/google_Icon.png',
+    ICONURL: 'https://fe-img-uploads.s3.ap-northeast-2.amazonaws.com/google_Icon.png',
     LOGIN: 'Log in with Google',
     SIGNUP: 'Sign Up with Google',
     COLOR: 'rgba(248, 249, 249, 1)',
@@ -8,7 +8,7 @@ export const OAuth = {
     FONT_COLOR: 'rgba(0, 0, 0, 1)',
   },
   GITHUB: {
-    ICONURL: '/github_Icon.png',
+    ICONURL: 'https://fe-img-uploads.s3.ap-northeast-2.amazonaws.com/github_Icon.png',
     LOGIN: 'Log in with GitHub',
     SIGNUP: 'Sign Up with GitHub',
     COLOR: 'rgba(35, 38,42, 1)',

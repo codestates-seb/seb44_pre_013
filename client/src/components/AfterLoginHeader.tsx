@@ -198,7 +198,10 @@ const AfterLoginHeader = () => {
     <HeaderPositioner>
       <HeaderContainer>
         <HeaderLogo>
-          <img src="../../public/HeaderLogo-removebg-preview.png" width="166px"></img>
+          <img
+            src="https://fe-img-uploads.s3.ap-northeast-2.amazonaws.com/HeaderLogo-removebg-preview.png"
+            width="166px"
+          ></img>
         </HeaderLogo>
         <HeaderNav>
           <HeaderNavItem>Products</HeaderNavItem>

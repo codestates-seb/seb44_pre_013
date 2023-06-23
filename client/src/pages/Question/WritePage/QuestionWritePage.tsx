@@ -109,7 +109,10 @@ const QuestionPage = () => {
 
   return (
     <Container>
-      <Img src="../../../public/question_img.png" alt="robot img" />
+      <Img
+        src="https://fe-img-uploads.s3.ap-northeast-2.amazonaws.com/question_img.png"
+        alt="robot img"
+      />
       <MainContainer>
         <Title>Ask a public question</Title>
         <NoticeWritingQuestion />
