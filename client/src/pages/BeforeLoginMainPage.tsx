@@ -310,7 +310,6 @@ const BeforeLoginMainPage = () => {
 
   return (
     <PageContainer>
-      {/* <BeforeLoginHeader /> */}
       <MainPageContainer>
         <MainTopTitle>
           <h1>All Questions</h1>
