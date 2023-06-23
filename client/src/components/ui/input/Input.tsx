@@ -10,11 +10,17 @@ interface InputProps {
   display?: string;
   border?: string;
   focusmode?: string;
+  isValid?: boolean;
 }
 
 export const Input = styled.input<InputProps>`
   width: ${(props) => (props.width ? props.width : '100%')};
-  border: ${(props) => (props.border ? props.border : '1px solid #c1c3c3')};
+  border: ${(props) =>
+    props.isValid === false
+      ? '1px solid #dd5054'
+      : props.border
+      ? props.border
+      : '1px solid #c1c3c3'};
   border-radius: 3px;
   color: ${(props) => !props.color && '#000'};
   padding-left: 0.5rem;

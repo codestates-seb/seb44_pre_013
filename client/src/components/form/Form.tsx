@@ -2,13 +2,14 @@ import { styled } from 'styled-components';
 
 interface Props {
   children: JSX.Element[];
+  onSubmit?: React.FormEventHandler<HTMLFormElement>;
 }
 
-const LoginForm = ({ children }: Props) => {
-  return <FormContainer>{children}</FormContainer>;
+const Form = ({ children, onSubmit }: Props) => {
+  return <FormStyle onSubmit={onSubmit}>{children}</FormStyle>;
 };
 
-const FormContainer = styled.div`
+const FormStyle = styled.form`
   background-color: #ffffff;
   border-radius: 8px;
   gap: 1rem;
@@ -21,4 +22,4 @@ const FormContainer = styled.div`
   align-items: center;
 `;
 
-export default LoginForm;
+export default Form;

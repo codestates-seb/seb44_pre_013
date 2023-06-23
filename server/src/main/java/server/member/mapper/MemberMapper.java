@@ -1,9 +1,15 @@
 package server.member.mapper;
 
 import org.mapstruct.Mapper;
-import org.springframework.stereotype.Component;
+import server.answer.dto.AnswerResponseDto;
+import server.answer.entity.Answer;
 import server.member.dto.MemberDto;
 import server.member.entity.Member;
+import server.question.dto.QuestionDto;
+import server.question.entity.Question;
+
+import java.util.List;
+import java.util.stream.Collectors;
 
 @Mapper(componentModel = "spring")
 public interface MemberMapper {
@@ -72,4 +78,55 @@ public interface MemberMapper {
 
         return response;
     }
+
+    default MemberDto.ResponseForList memberToMemberResponseForList(Member member) {
+        return MemberDto.ResponseForList.builder()
+                .memberId(member.getMemberId())
+                .name(member.getName())
+                .build();
+
+    }
+
+    default List<MemberDto.ResponseForList> membersToMemberResponses(List<Member> members) {
+        return members.stream()
+                .map(member -> memberToMemberResponseForList(member))
+                .collect(Collectors.toList());
+    }
+
+    default MemberDto.ResponseMyPage memberToMyPage(Member member) {
+        return MemberDto.ResponseMyPage.builder()
+                .memberId(member.getMemberId())
+                .answers(getAnswerToMember(member.getAnswers()))
+                .questions(getQuestionToMember(member.getQuestions()))
+                .myPageTitle(member.getMyPageTitle())
+                .aboutMe(member.getAboutMe())
+                .modifiedAt(member.getModifiedAt())
+                .name(member.getName())
+                .createAt(member.getCreatedAt())
+                .build();
+    }
+
+    default List<QuestionDto.Response> getQuestionToMember(List<Question> question) {
+        return question.stream()
+                .map(questionList -> QuestionDto.Response.builder()
+                        .questionId(questionList.getQuestionId())
+                        .title(questionList.getTitle())
+                        .build())
+                .collect(Collectors.toList());
+
+    }
+
+    default List<AnswerResponseDto> getAnswerToMember(List<Answer> answer) {
+        return answer.stream()
+                .map(answerList -> AnswerResponseDto.builder()
+                        .questionId(answerList.getQuestion().getQuestionId())
+                        .answerId(answerList.getAnswerId())
+                        .content(answerList.getContent())
+                        .build())
+                .collect(Collectors.toList());
+    }
+
 }
+
+
+
