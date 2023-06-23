@@ -4,7 +4,7 @@ import { IconProp, SizeProp } from '@fortawesome/fontawesome-svg-core';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPencil } from '@fortawesome/free-solid-svg-icons';
 
-import { DataType } from '../../../types/question';
+import { IDataType } from '../../../types/question';
 import Tooltip from '../../../components/ui/tooltip/Tooltip';
 import GoodWritingGuide from './GoodWritingGuide';
 import TitleForm from './TitleForm';
@@ -13,7 +13,7 @@ import WriteExpectForm from './WriteExpectingForm';
 import Tags from './Tags';
 import Banner from '../../../../public/question_img.png';
 
-const titleContent: DataType[] = [
+const titleContent: IDataType[] = [
   {
     icon: faPencil,
     size: '2xl',
@@ -23,7 +23,7 @@ const titleContent: DataType[] = [
   },
 ];
 
-const problemContents: DataType[] = [
+const problemContents: IDataType[] = [
   {
     icon: faPencil,
     size: '2xl',
@@ -32,7 +32,7 @@ const problemContents: DataType[] = [
   },
 ];
 
-const expandContent: DataType[] = [
+const expandContent: IDataType[] = [
   {
     icon: faPencil,
     size: '2xl',
@@ -44,7 +44,7 @@ const expandContent: DataType[] = [
   },
 ];
 
-const tagContent: DataType[] = [
+const tagContent: IDataType[] = [
   {
     icon: faPencil,
     size: '2xl',
@@ -121,7 +121,7 @@ const QuestionWritePage = () => {
     setSelectSection(type);
   };
 
-  const renderContent = (data: DataType[]) => {
+  const renderContent = (data: IDataType[]) => {
     return (
       <TooltipContentStyle>
         {data.map((item, idx) => (
