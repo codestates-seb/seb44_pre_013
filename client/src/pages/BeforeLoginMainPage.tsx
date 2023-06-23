@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
+import { Link } from 'react-router-dom';
 
-import BeforeLoginHeader from '../components/BeforeLoginHeader';
 import { Button } from '../components/ui/buttons/Button';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import Pagination from 'react-js-pagination';
@@ -310,12 +310,14 @@ const BeforeLoginMainPage = () => {
 
   return (
     <PageContainer>
-      <BeforeLoginHeader />
+      {/* <BeforeLoginHeader /> */}
       <MainPageContainer>
         <MainTopTitle>
           <h1>All Questions</h1>
           <MainRightContainer>
-            <Button>Ask Question</Button>
+            <Link to="/questions">
+              <Button>Ask Question</Button>
+            </Link>
           </MainRightContainer>
         </MainTopTitle>
 
