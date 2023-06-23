@@ -1,13 +1,13 @@
 import RouteProvider from './Routes';
 import GlobalStyles from './styles/GlobalStyles';
-import AfterLoginHeader from './components/AfterLoginHeader';
+import BeforeLoginHeader from './components/BeforeLoginHeader';
 
 function App() {
   return (
     <>
       <GlobalStyles />
       <RouteProvider>
-        <AfterLoginHeader />
+        <BeforeLoginHeader />
       </RouteProvider>
     </>
   );
