@@ -40,7 +40,10 @@ const LoginPage = () => {
   return (
     <Container>
       <CenterWrapper>
-        <Icon src="/stackoverflow_Icon.svg" alt="아이콘" />
+        <Icon
+          src="https://fe-img-uploads.s3.ap-northeast-2.amazonaws.com/stackoverflow_Icon.svg"
+          alt="아이콘"
+        />
         <OAuthArea>
           <OAuthButton
             iconUrl={OAuth.GOOGLE.ICONURL}
