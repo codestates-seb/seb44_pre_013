@@ -4,11 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="865023aa-08ce-42cf-b572-03fd6193f788" name="Changes" comment="fix: cors 진짜 수정">
+    <list default="true" id="865023aa-08ce-42cf-b572-03fd6193f788" name="Changes" comment="fix: cors 진짜진짜 수정">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/src/main/generated/server/answer/mapper/AnswerMapperImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/main/generated/server/answer/mapper/AnswerMapperImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/src/main/generated/server/member/mapper/MemberMapperImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/main/generated/server/member/mapper/MemberMapperImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/src/main/java/server/auth/config/SecurityConfiguration.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/main/java/server/auth/config/SecurityConfiguration.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/src/main/resources/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/main/resources/application.yml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -296,7 +294,8 @@
       <workItem from="1687496953751" duration="251000" />
       <workItem from="1687499288147" duration="1554000" />
       <workItem from="1687501360265" duration="776000" />
-      <workItem from="1687513589084" duration="2140000" />
+      <workItem from="1687513589084" duration="2816000" />
+      <workItem from="1687574710636" duration="614000" />
     </task>
     <task id="LOCAL-00001" summary="feat: 수정중">
       <created>1687229751382</created>
@@ -403,7 +402,14 @@
       <option name="project" value="LOCAL" />
       <updated>1687516855773</updated>
     </task>
-    <option name="localTasksCounter" value="16" />
+    <task id="LOCAL-00016" summary="fix: cors 진짜진짜 수정">
+      <created>1687517548108</created>
+      <option name="number" value="00016" />
+      <option name="presentableId" value="LOCAL-00016" />
+      <option name="project" value="LOCAL" />
+      <updated>1687517548108</updated>
+    </task>
+    <option name="localTasksCounter" value="17" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -426,6 +432,7 @@
     <MESSAGE value="feat: 파이프라인 구축" />
     <MESSAGE value="fix: yml 파일 오타 수정" />
     <MESSAGE value="fix: cors 진짜 수정" />
-    <option name="LAST_COMMIT_MESSAGE" value="fix: cors 진짜 수정" />
+    <MESSAGE value="fix: cors 진짜진짜 수정" />
+    <option name="LAST_COMMIT_MESSAGE" value="fix: cors 진짜진짜 수정" />
   </component>
 </project>

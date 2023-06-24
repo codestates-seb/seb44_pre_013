@@ -10,7 +10,7 @@ spring:
     database-platform: org.hibernate.dialect.MySQL5InnoDBDialect
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
-    password: 12345678
+    password: ${RDS_PASSWORD}
     url: jdbc:mysql://database.czloyqya09hy.ap-northeast-2.rds.amazonaws.com/mydb?useSSL=false&characterEncoding=UTF-8&serverTimezone=UTC
     username: admin
   security:
@@ -18,8 +18,8 @@ spring:
       client:
         registration:
           google:
-            clientId: 991088085016-3udvngkchprg1opii9jvhbagp64bpqhh.apps.googleusercontent.com
-            clientSecret: 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
+            clientId: ${GOOGLE_CLIENT_ID}
+            clientSecret: ${GOOGLE_CLIENT_SECRET}
             scope: profile,email
 logging:
   level:
@@ -32,7 +32,7 @@ server:
     encoding:
       force-response: true
 jwt:
-  key: kevin12341234123412341234123412341111111111111111111111111111111111111111111111111111111111
+  key: ${JWT_SECRET_KEY}
   access-token-expiration-minutes: 30
   refresh-token-expiration-minutes: 420
 mail:
