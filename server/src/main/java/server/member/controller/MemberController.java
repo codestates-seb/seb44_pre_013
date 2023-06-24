@@ -1,19 +1,23 @@
 package server.member.controller;
 
 
+import org.springframework.data.domain.Page;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
+import server.auth.interceptor.JwtParseInterceptor;
 import server.member.dto.MemberDto;
 import server.member.entity.Member;
 import server.member.mapper.MemberMapper;
 import server.member.service.MemberService;
+import server.response.MultiResponseDto;
 import server.utils.UriCreator;
 
 import javax.validation.Valid;
 import javax.validation.constraints.Positive;
 import java.net.URI;
+import java.util.List;
 
 @RestController
 @RequestMapping("/members")
@@ -47,12 +51,30 @@ public class MemberController {
         return new ResponseEntity<>(mapper.memberToMemberResponse(updateMember), HttpStatus.OK);
     }
 
-    @DeleteMapping("/{member-id}")
-    public ResponseEntity deleteMember(@PathVariable("member-id") @Positive long memberId,
-                                       @Valid @RequestBody MemberDto.Delete requestBody) {
-        requestBody.setMemberId(memberId);
-        memberService.deleteMember(mapper.memberDeleteToMember(requestBody));
+    @GetMapping("/{member-id}")
+    public ResponseEntity getMember(@Positive @RequestParam int page, @RequestParam int size) {
 
-        return new ResponseEntity<>(HttpStatus.OK);
+        Page<Member> pageMembers = memberService.findMembers(page -1, size);
+        List<Member> members = pageMembers.getContent();
+
+        return new ResponseEntity<>(
+                new MultiResponseDto<>(mapper.membersToMemberResponses(members), pageMembers),
+                HttpStatus.OK);
+    }
+
+    @DeleteMapping("/{member-id}")
+    public ResponseEntity deleteMember(@Positive @PathVariable("member-id") long memberId) {
+        long authenticationMemberId = JwtParseInterceptor.getAuthenticatedMemberId();
+
+        memberService.deleteMember(memberId, authenticationMemberId);
+
+        return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+    }
+
+    @GetMapping("/mypage/{member-id}")
+    public ResponseEntity getMemberMyPage(@Positive @PathVariable("member-id") long memberId) {
+
+        return new ResponseEntity<>(mapper.memberToMyPage
+                (memberService.findMember(memberId)), HttpStatus.OK);
     }
 }

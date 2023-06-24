@@ -7,9 +7,18 @@ import { Numbers } from '../constants/Numbers';
 import OAuthButton from '../components/ui/buttons/OAuthButton';
 import { OAuth } from '../constants/OAuth';
 import { useRef, useState } from 'react';
-import checkValid from '../hooks/checkValid';
+import checkValid from '../utils/checkValid';
+import { useMutation } from '@tanstack/react-query';
+import axios from 'axios';
+
+interface IAccountType {
+  name: string;
+  email: string;
+  password: string;
+}
 
 const SignUpPage = () => {
+  const refName = useRef<HTMLInputElement>(null);
   const refEmail = useRef<HTMLInputElement>(null);
   const refPw = useRef<HTMLInputElement>(null);
 
@@ -22,6 +31,12 @@ const SignUpPage = () => {
 
   const { validate: validateEmail } = checkValid();
   const { validate: validatePassword } = checkValid();
+
+  const checkSignup = async (account: IAccountType) => {
+    const response = axios.post('url', account);
+  };
+
+  const signupMutation = useMutation((account: IAccountType) => checkSignup(account));
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -37,6 +52,8 @@ const SignUpPage = () => {
         });
       }
     }
+
+    console.log(validObj.isValidEmail, validObj.isValidPassword);
   };
 
   return (
@@ -117,7 +134,7 @@ const SignUpPage = () => {
             />
           </OAuthArea>
           <Form onSubmit={handleSubmit}>
-            <FormInput title="Display name" type="text" />
+            <FormInput title="Display name" type="text" ref={refName} />
             <FormInput
               title="Email"
               type="text"

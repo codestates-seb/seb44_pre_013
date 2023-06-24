@@ -63,7 +63,7 @@ public class SecurityConfiguration implements WebMvcConfigurer {
                 .and()
                 .apply(new CustomFilterConfigurer())
                 .and()
-                .authorizeRequests(authorize -> authorize
+                .authorizeHttpRequests(authorize -> authorize
                         .antMatchers(HttpMethod.POST, "/**").permitAll()
                         .antMatchers(HttpMethod.PATCH, "/**").permitAll()
                         .antMatchers(HttpMethod.GET, "/**").permitAll()
@@ -79,34 +79,20 @@ public class SecurityConfiguration implements WebMvcConfigurer {
         return http.build();
     }
 
-//    @Bean
-//    public CorsConfigurationSource corsConfigurationSource() {
-//        CorsConfiguration configuration = new CorsConfiguration();
-//
-//        configuration.setAllowCredentials(true);
-//        configuration.setAllowedOrigins(Arrays.asList("http://localhost:3000", "http://localhost:3001", "http://ec2-13-125-39-247.ap-northeast-2.compute.amazonaws.com:3000"));
-//        configuration.setAllowedMethods(Arrays.asList("GET", "POST", "PATCH", "DELETE"));
-//        configuration.setAllowedHeaders(Arrays.asList("*"));
-//        configuration.addExposedHeader("MemberId");
-//        configuration.addExposedHeader("Authorization");
-//
-//        UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
-//        source.registerCorsConfiguration("/**", configuration);
-//
-//        return source;
-//    }
-
     @Bean
     public CorsConfigurationSource corsConfigurationSource() {
         CorsConfiguration configuration = new CorsConfiguration();
 
-        configuration.addAllowedOrigin("*");
-        configuration.addAllowedHeader("*");
-        configuration.addAllowedMethod("*");
         configuration.setAllowCredentials(true);
+        configuration.setAllowedOrigins(Arrays.asList("*", "http://localhost:5173", "http://localhost:3000", "http://localhost:3001", "http://ec2-3-36-132-102.ap-northeast-2.compute.amazonaws.com:8080"));
+        configuration.setAllowedMethods(Arrays.asList("GET", "POST", "PATCH", "DELETE"));
+        configuration.setAllowedHeaders(Arrays.asList("*"));
+        configuration.addExposedHeader("MemberId");
+        configuration.addExposedHeader("Authorization");
 
         UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
         source.registerCorsConfiguration("/**", configuration);
+
         return source;
     }
 
@@ -144,12 +130,12 @@ public class SecurityConfiguration implements WebMvcConfigurer {
 
     @Override
     public void addCorsMappings(CorsRegistry registry) {
-        // 모든 경로에 대해
         registry.addMapping("/**")
-                .allowedOrigins("http:localhost:3000")
-                .allowedOrigins("http:localhost:3001")
-                .allowedOrigins("http:localhost:5173")
-                .allowedOrigins("ec2-13-125-95-163.ap-northeast-2.compute.amazonaws.com")
+                .allowedOrigins("*")
+                .allowedOrigins("http://localhost:3000")
+                .allowedOrigins("http://localhost:3001")
+                .allowedOrigins("http://localhost:5173")
+                .allowedOrigins("ec2-3-36-132-102.ap-northeast-2.compute.amazonaws.com:8080")
                 .allowedMethods("GET", "POST", "PUT", "PATCH", "DELETE", "OPTIONS")
                 .allowedHeaders("*")
                 .allowCredentials(true)
