@@ -14,6 +14,7 @@ public interface QuestionMapper {
 
     Question questionPatchDtoToQuestion(QuestionDto.Patch requestBody);
 
+    @Mapping(source = "member.memberId", target = "memberId")
     QuestionDto.Response questionToQuestionResponseDto(Question question);
 
     @Mapping(source = "answers", target = "answers", ignore = true)

@@ -4,15 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="865023aa-08ce-42cf-b572-03fd6193f788" name="Changes" comment="fix: parameter store 수정2">
+    <list default="true" id="865023aa-08ce-42cf-b572-03fd6193f788" name="Changes" comment="fix: 페이지네이션 size 수정, QuestionMapper 수정">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/scripts/server_start.sh" beforeDir="false" afterPath="$PROJECT_DIR$/server/scripts/server_start.sh" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/src/main/generated/server/answer/mapper/AnswerMapperImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/main/generated/server/answer/mapper/AnswerMapperImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/src/main/generated/server/member/mapper/MemberMapperImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/main/generated/server/member/mapper/MemberMapperImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/src/main/java/server/auth/config/SecurityConfiguration.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/main/java/server/auth/config/SecurityConfiguration.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/src/main/java/server/question/controller/QuestionController.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/main/java/server/question/controller/QuestionController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/src/main/java/server/auth/interceptor/JwtParseInterceptor.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/main/java/server/auth/interceptor/JwtParseInterceptor.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/server/src/main/java/server/question/mapper/QuestionMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/main/java/server/question/mapper/QuestionMapper.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/src/main/resources/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/main/resources/application.yml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -305,7 +300,8 @@
       <workItem from="1687501360265" duration="776000" />
       <workItem from="1687513589084" duration="2816000" />
       <workItem from="1687574710636" duration="15148000" />
-      <workItem from="1687621407785" duration="2655000" />
+      <workItem from="1687621407785" duration="4829000" />
+      <workItem from="1687628419403" duration="276000" />
     </task>
     <task id="LOCAL-00001" summary="feat: 수정중">
       <created>1687229751382</created>
@@ -447,7 +443,14 @@
       <option name="project" value="LOCAL" />
       <updated>1687589980913</updated>
     </task>
-    <option name="localTasksCounter" value="21" />
+    <task id="LOCAL-00021" summary="fix: 페이지네이션 size 수정, QuestionMapper 수정">
+      <created>1687624231514</created>
+      <option name="number" value="00021" />
+      <option name="presentableId" value="LOCAL-00021" />
+      <option name="project" value="LOCAL" />
+      <updated>1687624231514</updated>
+    </task>
+    <option name="localTasksCounter" value="22" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -475,6 +478,7 @@
     <MESSAGE value="fix: parameter store 사용" />
     <MESSAGE value="fix: parameter store 수정" />
     <MESSAGE value="fix: parameter store 수정2" />
-    <option name="LAST_COMMIT_MESSAGE" value="fix: parameter store 수정2" />
+    <MESSAGE value="fix: 페이지네이션 size 수정, QuestionMapper 수정" />
+    <option name="LAST_COMMIT_MESSAGE" value="fix: 페이지네이션 size 수정, QuestionMapper 수정" />
   </component>
 </project>
