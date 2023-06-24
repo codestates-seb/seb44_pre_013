@@ -8,9 +8,13 @@ spring:
         format_sql: true
     database: mysql
     database-platform: org.hibernate.dialect.MySQL5InnoDBDialect
+  config:
+    activate:
+      on-profile: production
+    import: 'aws-parameterstore:'
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
-#    password: ${RDS_PASSWORD}
+    password: ${RDS_PASSWORD}
     url: jdbc:mysql://database.czloyqya09hy.ap-northeast-2.rds.amazonaws.com/mydb?useSSL=false&characterEncoding=UTF-8&serverTimezone=UTC
     username: admin
   security:
@@ -18,9 +22,9 @@ spring:
       client:
         registration:
           google:
-#            clientId: ${GOOGLE_CLIENT_ID}
-#            clientSecret: ${GOOGLE_CLIENT_SECRET}
-#            scope: profile,email
+            clientId: ${GOOGLE_CLIENT_ID}
+            clientSecret: ${GOOGLE_CLIENT_SECRET}
+            scope: profile,email
 logging:
   level:
     org:
@@ -32,7 +36,7 @@ server:
     encoding:
       force-response: true
 jwt:
-#  key: ${JWT_SECRET_KEY}
+  key: ${JWT_SECRET_KEY}
   access-token-expiration-minutes: 30
   refresh-token-expiration-minutes: 420
 mail:
@@ -40,3 +44,9 @@ mail:
     admin: arubu3667@gmail.com
 config:
   domain: http://fe-pre013.s3-website.ap-northeast-2.amazonaws.com
+aws:
+  paramstore:
+    enabled: true
+    prefix: /spring-boot-aws
+    profile-separator: _
+    name: seb44-pre013
