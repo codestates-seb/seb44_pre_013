@@ -4,10 +4,14 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="865023aa-08ce-42cf-b572-03fd6193f788" name="Changes" comment="fix: parameter store 수정">
+    <list default="true" id="865023aa-08ce-42cf-b572-03fd6193f788" name="Changes" comment="fix: parameter store 수정2">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/server/build.gradle" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/server/scripts/server_start.sh" beforeDir="false" afterPath="$PROJECT_DIR$/server/scripts/server_start.sh" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/src/main/generated/server/answer/mapper/AnswerMapperImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/main/generated/server/answer/mapper/AnswerMapperImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/src/main/generated/server/member/mapper/MemberMapperImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/main/generated/server/member/mapper/MemberMapperImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/src/main/java/server/auth/config/SecurityConfiguration.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/main/java/server/auth/config/SecurityConfiguration.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/src/main/java/server/question/controller/QuestionController.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/main/java/server/question/controller/QuestionController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/src/main/java/server/question/mapper/QuestionMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/main/java/server/question/mapper/QuestionMapper.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/server/src/main/resources/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/main/resources/application.yml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -232,7 +236,7 @@
       <recent name="C:\Users\HJ\Desktop\seb44_pre_013\server\src\main\resources" />
     </key>
   </component>
-  <component name="RunManager" selected="Gradle.server [build]">
+  <component name="RunManager" selected="Spring Boot.ServerApplication">
     <configuration name="server [build]" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
       <ExternalSystemSettings>
         <option name="executionName" />
@@ -300,7 +304,8 @@
       <workItem from="1687499288147" duration="1554000" />
       <workItem from="1687501360265" duration="776000" />
       <workItem from="1687513589084" duration="2816000" />
-      <workItem from="1687574710636" duration="8917000" />
+      <workItem from="1687574710636" duration="15148000" />
+      <workItem from="1687621407785" duration="2655000" />
     </task>
     <task id="LOCAL-00001" summary="feat: 수정중">
       <created>1687229751382</created>
@@ -435,7 +440,14 @@
       <option name="project" value="LOCAL" />
       <updated>1687587428290</updated>
     </task>
-    <option name="localTasksCounter" value="20" />
+    <task id="LOCAL-00020" summary="fix: parameter store 수정2">
+      <created>1687589980913</created>
+      <option name="number" value="00020" />
+      <option name="presentableId" value="LOCAL-00020" />
+      <option name="project" value="LOCAL" />
+      <updated>1687589980913</updated>
+    </task>
+    <option name="localTasksCounter" value="21" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -462,6 +474,7 @@
     <MESSAGE value="fix: CodeBuild 시에 환경변수 설정" />
     <MESSAGE value="fix: parameter store 사용" />
     <MESSAGE value="fix: parameter store 수정" />
-    <option name="LAST_COMMIT_MESSAGE" value="fix: parameter store 수정" />
+    <MESSAGE value="fix: parameter store 수정2" />
+    <option name="LAST_COMMIT_MESSAGE" value="fix: parameter store 수정2" />
   </component>
 </project>

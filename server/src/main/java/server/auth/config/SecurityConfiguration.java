@@ -63,7 +63,7 @@ public class SecurityConfiguration implements WebMvcConfigurer {
                 .and()
                 .apply(new CustomFilterConfigurer())
                 .and()
-                .authorizeHttpRequests(authorize -> authorize
+                .authorizeRequests(authorize -> authorize
                         .antMatchers(HttpMethod.POST, "/**").permitAll()
                         .antMatchers(HttpMethod.PATCH, "/**").permitAll()
                         .antMatchers(HttpMethod.GET, "/**").permitAll()
