@@ -4,13 +4,14 @@ import { IconProp, SizeProp } from '@fortawesome/fontawesome-svg-core';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPencil } from '@fortawesome/free-solid-svg-icons';
 
-import { IDataType } from '../../../types/question';
+import { IDataType, IRequestData } from '../../../types/question';
 import Tooltip from '../../../components/ui/tooltip/Tooltip';
 import GoodWritingGuide from './GoodWritingGuide';
 import TitleForm from './TitleForm';
 import WriteProblemForm from './WriteProblemForm';
 import WriteExpectForm from './WriteExpectingForm';
 import Tags from './Tags';
+import { Button } from '../DetailPage/QuestionHeader';
 
 const titleContent: IDataType[] = [
   {
@@ -56,35 +57,24 @@ const tagContent: IDataType[] = [
 
 const QuestionWritePage = () => {
   const [selectSection, setSelectSection] = useState<string | undefined>('title-form');
-  // title, problem, expecting, tags 상태값들 담을 변수 선언 - 1개의 state로 둘 것인지? 4개의 state로 둘 것인지 체크
   const [title, setTitle] = useState('');
   const [problemContent, setProblemContent] = useState('');
   const [expectingContent, setExpectingContent] = useState('');
   const [tagValue, setTagValue] = useState<string>('');
   const [tags, setTags] = useState<string[]>([]);
+  const [data, setData] = useState({});
 
-  // 각 폼에서 값들이 잘 입력되었는 지 체크 후 - 4개의 값들이 다 입력되었을 때 -> 서버로 요청 보내기
-  // update하는 함수 selectSection 값을 활용하거나 해서 1개로 줄일 수 있을 거 같음
-
-  const handleUpdateTitle = (value: string, type: string) => {
-    console.log(type);
-
-    if (type === 'title') {
-      console.log(value);
-      setTitle(value);
-    } /* else if (type.problemForm) {
-    } else if (type.expectingForm) {
-    } else if (type.tags) {
-    } */
+  /** state 값 변경 함수들 */
+  const handleUpdateTitle = (e: ChangeEvent<HTMLInputElement>) => {
+    const { value } = e.target;
+    setTitle(value);
   };
 
   const handleUpdateProblemContent = (value: string) => {
-    console.log(selectSection);
     setProblemContent(value);
   };
 
   const handleUpdateExpectContent = (value: string) => {
-    console.log(selectSection);
     setExpectingContent(value);
   };
 
@@ -112,9 +102,7 @@ const QuestionWritePage = () => {
     setTags(updatedTags);
   };
 
-  // data 값 title, content로 묶어서 서버로 요청 보내기,
-  // 서버 응답 결과에 따라 성공/실패 로직 구현하기
-
+  /** render 부분 함수들 */
   const handleChangeSection = (e: MouseEvent<HTMLElement>) => {
     const { type } = e.currentTarget.dataset;
     setSelectSection(type);
@@ -198,6 +186,7 @@ const QuestionWritePage = () => {
           handleDeleteTag={handleDeleteTag}
         />
       </MainContainer>
+
       <SideContainer>{renderSideContainer()}</SideContainer>
     </Container>
   );

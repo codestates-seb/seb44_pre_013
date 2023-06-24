@@ -55,7 +55,7 @@ const Title = styled.h1`
   font-weight: 400;
 `;
 
-const Button = styled.button`
+export const Button = styled.button`
   width: 6.5rem;
   border: 1px solid #d6d9dc;
   border-radius: 6px;

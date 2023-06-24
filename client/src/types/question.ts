@@ -15,3 +15,9 @@ export interface IQuestion {
   expectContent: string;
   tags: string[];
 }
+
+export interface IRequestData {
+  title: string;
+  content: string;
+  tags: string;
+}

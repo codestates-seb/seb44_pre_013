@@ -7,7 +7,7 @@ import { Input } from '../../../components/ui/input/Input';
 interface IProps {
   value: string;
   onClick: (e: MouseEvent<HTMLElement>) => void;
-  handleUpdateTitle: (value: string, type: string) => void;
+  handleUpdateTitle: (e: ChangeEvent<HTMLInputElement>) => void;
 }
 
 const TitleForm = ({ value, onClick, handleUpdateTitle }: IProps) => {
@@ -25,7 +25,7 @@ const TitleForm = ({ value, onClick, handleUpdateTitle }: IProps) => {
         padding="0.563rem"
         focusmode="true"
         value={value}
-        onChange={(e: ChangeEvent<HTMLInputElement>) => handleUpdateTitle(e.target.value, 'title')}
+        onChange={handleUpdateTitle}
       />
     </Container>
   );
