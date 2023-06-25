@@ -13,12 +13,12 @@ phases:
   post_build:
     commands:
       - echo $(basename ./server/build/libs/*.jar)
-      - sed -i 's/${JWT_SECRET_KEY}/$JWT_SECRET_KEY/' server/src/main/resources/application.yml
-      - sed -i 's/${RDS_PASSWORD}/$RDS_PASSWORD/' server/src/main/resources/application.yml
-      - sed -i 's/${RDS_URL}/$RDS_URL/' server/src/main/resources/application.yml
-      - sed -i 's/${GOOGLE_CLIENT_SECRET}/$GOOGLE_CLIENT_SECRET/' server/src/main/resources/application.yml
-      - sed -i 's/${CONFIG_DOMAIN}/$CONFIG_DOMAIN/' server/src/main/resources/application.yml
-      - sed -i 's/${ADDRESS_ADMIN}/$ADDRESS_ADMIN/' server/src/main/resources/application.yml
+      - sed -i 's/${JWT_SECRET_KEY}/$JWT_SECRET_KEY/' /path/to/server/src/main/resources/application.yml
+      - sed -i 's/${RDS_PASSWORD}/$RDS_PASSWORD/' /path/to/server/src/main/resources/application.yml
+      - sed -i 's/${RDS_URL}/$RDS_URL/' /path/to/server/src/main/resources/application.yml
+      - sed -i 's/${GOOGLE_CLIENT_SECRET}/$GOOGLE_CLIENT_SECRET/' /path/to/server/src/main/resources/application.yml
+      - sed -i 's/${CONFIG_DOMAIN}/$CONFIG_DOMAIN/' /path/to/server/src/main/resources/application.yml
+      - sed -i 's/${ADDRESS_ADMIN}/$ADDRESS_ADMIN/' /path/to/server/src/main/resources/application.yml
 artifacts:
   files:
     - server/build/libs/*.jar
