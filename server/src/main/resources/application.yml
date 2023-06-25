@@ -11,7 +11,7 @@ spring:
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
     password: ${RDS_PASSWORD}
-    url: jdbc:mysql://${RDS_URL}/mydb?useSSL=false&characterEncoding=UTF-8&serverTimezone=UTC
+    url: jdbc:mysql://database.czloyqya09hy.ap-northeast-2.rds.amazonaws.com:3306/mydb?useSSL=false&characterEncoding=UTF-8&serverTimezone=UTC
     username: admin
   security:
     oauth2:
