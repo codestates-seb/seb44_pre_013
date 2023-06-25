@@ -4,7 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="865023aa-08ce-42cf-b572-03fd6193f788" name="Changes" comment="fix: buildspec.yml 수정4" />
+    <list default="true" id="865023aa-08ce-42cf-b572-03fd6193f788" name="Changes" comment="fix: buildspec.yml 수정5">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -298,7 +300,7 @@
       <workItem from="1687574710636" duration="15148000" />
       <workItem from="1687621407785" duration="4829000" />
       <workItem from="1687628419403" duration="475000" />
-      <workItem from="1687661586722" duration="6379000" />
+      <workItem from="1687661586722" duration="7951000" />
     </task>
     <task id="LOCAL-00001" summary="feat: 수정중">
       <created>1687229751382</created>
@@ -482,7 +484,14 @@
       <option name="project" value="LOCAL" />
       <updated>1687667448362</updated>
     </task>
-    <option name="localTasksCounter" value="27" />
+    <task id="LOCAL-00027" summary="fix: buildspec.yml 수정5">
+      <created>1687668309981</created>
+      <option name="number" value="00027" />
+      <option name="presentableId" value="LOCAL-00027" />
+      <option name="project" value="LOCAL" />
+      <updated>1687668309981</updated>
+    </task>
+    <option name="localTasksCounter" value="28" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -490,7 +499,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="feat: member 수정" />
     <MESSAGE value="feat: OAuth 2.0 구현" />
     <MESSAGE value="fix: 오타 수정" />
     <MESSAGE value="fix: password 길이 수정" />
@@ -515,6 +523,7 @@
     <MESSAGE value="fix: buildspec.yml 수정2" />
     <MESSAGE value="fix: buildspec.yml 수정3" />
     <MESSAGE value="fix: buildspec.yml 수정4" />
-    <option name="LAST_COMMIT_MESSAGE" value="fix: buildspec.yml 수정4" />
+    <MESSAGE value="fix: buildspec.yml 수정5" />
+    <option name="LAST_COMMIT_MESSAGE" value="fix: buildspec.yml 수정5" />
   </component>
 </project>
