@@ -13,16 +13,16 @@ phases:
   post_build:
     commands:
       - echo $(basename ./server/build/libs/*.jar)
-      - sed -i 's/${JWT_SECRET_KEY}/$JWT_SECRET_KEY/' src/main/resources/application.yml
-      - sed -i 's/${RDS_PASSWORD}/$RDS_PASSWORD/' src/main/resources/application.yml
-      - sed -i 's/${RDS_URL}/$RDS_URL/' src/main/resources/application.yml
-      - sed -i 's/${GOOGLE_CLIENT_SECRET}/$GOOGLE_CLIENT_SECRET/' src/main/resources/application.yml
-      - sed -i 's/${CONFIG_DOMAIN}/$CONFIG_DOMAIN/' src/main/resources/application.yml
-      - sed -i 's/${ADDRESS_ADMIN}/$ADDRESS_ADMIN/' src/main/resources/application.yml
+      - sed -i "s/\${JWT_SECRET_KEY}/$JWT_SECRET_KEY/" src/main/resources/application.yml
+      - sed -i "s/\${RDS_PASSWORD}/$RDS_PASSWORD/" src/main/resources/application.yml
+      - sed -i "s/\${RDS_URL}/$RDS_URL/" src/main/resources/application.yml
+      - sed -i "s/\${GOOGLE_CLIENT_SECRET}/$GOOGLE_CLIENT_SECRET/" src/main/resources/application.yml
+      - sed -i "s/\${CONFIG_DOMAIN}/$CONFIG_DOMAIN/" src/main/resources/application.yml
+      - sed -i "s/\${ADDRESS_ADMIN}/$ADDRESS_ADMIN/" src/main/resources/application.yml
 artifacts:
   files:
-    - build/libs/*.jar
-    - scripts/**
+    - server/build/libs/*.jar
+    - server/scripts/**
     - server/appspec.yml
     - server/src/main/resources/application.yml
   discard-paths: yes

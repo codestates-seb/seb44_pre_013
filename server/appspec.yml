@@ -10,39 +10,15 @@ hooks:
     - location: server_clear.sh
       timeout: 3000
       runas: root
-      permissions:
-        - object: server_clear.sh
-          pattern: "**"
-          mode: 0755
-          type:
-            - file
   AfterInstall:
     - location: initialize.sh
       timeout: 3000
       runas: root
-      permissions:
-        - object: initialize.sh
-          pattern: "**"
-          mode: 0755
-          type:
-            - file
   ApplicationStart:
     - location: server_start.sh
       timeout: 3000
       runas: root
-      permissions:
-        - object: server_start.sh
-          pattern: "**"
-          mode: 0755
-          type:
-            - file
   ApplicationStop:
     - location: server_stop.sh
       timeout: 3000
       runas: root
-      permissions:
-        - object: server_stop.sh
-          pattern: "**"
-          mode: 0755
-          type:
-            - file
