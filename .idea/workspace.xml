@@ -4,10 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="865023aa-08ce-42cf-b572-03fd6193f788" name="Changes" comment="fix: 페이지네이션 size 수정, QuestionMapper 수정">
+    <list default="true" id="865023aa-08ce-42cf-b572-03fd6193f788" name="Changes" comment="fix: QuestionMapper Mapping 수정">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/src/main/java/server/auth/interceptor/JwtParseInterceptor.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/main/java/server/auth/interceptor/JwtParseInterceptor.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/src/main/java/server/question/mapper/QuestionMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/main/java/server/question/mapper/QuestionMapper.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/buildspec.yml" beforeDir="false" afterPath="$PROJECT_DIR$/server/buildspec.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/src/main/resources/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/main/resources/application.yml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -301,7 +301,8 @@
       <workItem from="1687513589084" duration="2816000" />
       <workItem from="1687574710636" duration="15148000" />
       <workItem from="1687621407785" duration="4829000" />
-      <workItem from="1687628419403" duration="276000" />
+      <workItem from="1687628419403" duration="475000" />
+      <workItem from="1687661586722" duration="3217000" />
     </task>
     <task id="LOCAL-00001" summary="feat: 수정중">
       <created>1687229751382</created>
@@ -450,7 +451,14 @@
       <option name="project" value="LOCAL" />
       <updated>1687624231514</updated>
     </task>
-    <option name="localTasksCounter" value="22" />
+    <task id="LOCAL-00022" summary="fix: QuestionMapper Mapping 수정">
+      <created>1687628884669</created>
+      <option name="number" value="00022" />
+      <option name="presentableId" value="LOCAL-00022" />
+      <option name="project" value="LOCAL" />
+      <updated>1687628884669</updated>
+    </task>
+    <option name="localTasksCounter" value="23" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -479,6 +487,7 @@
     <MESSAGE value="fix: parameter store 수정" />
     <MESSAGE value="fix: parameter store 수정2" />
     <MESSAGE value="fix: 페이지네이션 size 수정, QuestionMapper 수정" />
-    <option name="LAST_COMMIT_MESSAGE" value="fix: 페이지네이션 size 수정, QuestionMapper 수정" />
+    <MESSAGE value="fix: QuestionMapper Mapping 수정" />
+    <option name="LAST_COMMIT_MESSAGE" value="fix: QuestionMapper Mapping 수정" />
   </component>
 </project>
