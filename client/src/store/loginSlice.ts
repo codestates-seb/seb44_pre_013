@@ -7,12 +7,12 @@ export interface ILogin {
   refreshToken?: string;
 }
 
-interface IInitialState extends ILogin {
+export interface IStorage extends ILogin {
   isLogin: boolean;
   isValid?: boolean;
 }
 
-const initialState: IInitialState = getLocalStorage('token', {
+const initialState: IStorage = getLocalStorage('token', {
   isLogin: false,
   isValid: true,
   accessToken: '',

@@ -31,15 +31,12 @@ const useLoginMutation = () => {
         dispatch(setValid(false));
         return;
       }
-      console.log(data.header);
-
       dispatch(setValid(true));
       dispatch(
         setLogin({
           accessToken: data?.header,
         })
       );
-
       navigate('/');
     },
   });
