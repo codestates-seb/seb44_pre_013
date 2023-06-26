@@ -1,10 +1,9 @@
 import { useMutation } from '@tanstack/react-query';
-import axios from 'axios';
 import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { getHeader, isStatusOK } from '../utils';
 import { setLogin, setValid } from '../store/loginSlice';
-import { CONFIG } from '../constants/config';
+import authInstance from '../apis/ApiController';
 
 interface IAccountType {
   id: string;
@@ -13,7 +12,7 @@ interface IAccountType {
 
 const checkLogin = async (account: IAccountType) => {
   try {
-    const response: Response = await axios.post(`${CONFIG.BASE_URL}/auth/login`, account);
+    const response: Response = await authInstance.post(`/auth/login`, account);
     const header = getHeader(response, 'Authorization');
     const status = isStatusOK(response);
 
@@ -32,6 +31,7 @@ const useLoginMutation = () => {
         dispatch(setValid(false));
         return;
       }
+      console.log(data.header);
 
       dispatch(setValid(true));
       dispatch(

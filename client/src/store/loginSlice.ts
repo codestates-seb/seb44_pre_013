@@ -12,7 +12,7 @@ interface IInitialState extends ILogin {
   isValid?: boolean;
 }
 
-const initialState: IInitialState = getLocalStorage('login', {
+const initialState: IInitialState = getLocalStorage('token', {
   isLogin: false,
   isValid: true,
   accessToken: '',
@@ -24,7 +24,7 @@ export const loginSlice = createSlice({
   reducers: {
     setLogin: (state, action: PayloadAction<ILogin>) => {
       const loginData = { ...state, isLogin: true, accessToken: action.payload.accessToken };
-      setLocalStorage('login', loginData);
+      setLocalStorage('token', loginData);
       return loginData;
     },
     setLogout: (state) => {
