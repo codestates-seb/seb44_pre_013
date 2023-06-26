@@ -39,6 +39,14 @@ const checkValid = () => {
           };
         else return { isValid: true, content: '' };
 
+      case 'name':
+        if (input.text.length === 0)
+          return {
+            isValid: false,
+            content: 'display name is empty',
+          };
+        else return { isValid: true, content: '' };
+
       default:
         break;
     }
