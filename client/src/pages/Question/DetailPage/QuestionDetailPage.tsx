@@ -15,7 +15,7 @@ const QuestionDetailPage = () => {
       <MainContainer>
         <MainQuestionBar>
           <QuestionDetailContainer questionId={questionId} />
-          <AnswerDetailContainer />
+          <AnswerDetailContainer questionId={questionId} />
         </MainQuestionBar>
         <SideQuestionBar>
           <SideToolTip />

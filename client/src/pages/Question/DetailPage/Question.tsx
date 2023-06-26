@@ -24,6 +24,7 @@ const Question = ({ questionId }: IProps) => {
   };
 
   useEffect(() => {
+    console.log(`${import.meta.env.VITE_SERVER_URL}/questions/${questionId}`);
     axios.get(`${import.meta.env.VITE_SERVER_URL}/questions/${questionId}`).then((response) => {
       if (response) {
         setQuestion(response.data);

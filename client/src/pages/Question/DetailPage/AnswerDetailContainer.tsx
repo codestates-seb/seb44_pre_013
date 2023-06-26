@@ -5,8 +5,13 @@ import styled from 'styled-components';
 import Voting from './Vote';
 import Answer from './Answer';
 import { IAnswer } from '../../../types/answer';
+import AnswerWrite from './AnswerWrite';
 
-const AnswerDetailContainer = () => {
+interface IProps {
+  questionId: string;
+}
+
+const AnswerDetailContainer = ({ questionId }: IProps) => {
   /**
    * 답변 가져오는 함수 useEffect 실행
    * 답변 가져와서 상태값 저장하고, render하기 (map 돌리기)
@@ -26,7 +31,7 @@ const AnswerDetailContainer = () => {
   };
 
   useEffect(() => {
-    axios.get(`${import.meta.env.VITE_SERVER_URL}/answers`).then((response) => {
+    axios.get(`${import.meta.env.VITE_SERVER_URL}/answers/${questionId}`).then((response) => {
       const { data } = response;
       setAnswers(data.data);
     });
@@ -36,6 +41,7 @@ const AnswerDetailContainer = () => {
     <Container>
       <Title>5 Answers</Title>
       {handleAnswerRender()}
+      <AnswerWrite />
     </Container>
   );
 };

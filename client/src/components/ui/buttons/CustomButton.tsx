@@ -5,7 +5,7 @@ interface ButtonProps {
   content?: string;
   $backgroundcolor?: string;
   $color?: string;
-  padding: string;
+  padding?: string;
   onClick?: () => void;
 }
 

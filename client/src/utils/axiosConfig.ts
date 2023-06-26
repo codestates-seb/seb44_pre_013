@@ -1,6 +1,6 @@
 export const config = {
   headers: {
     Authorization:
-      'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJtZW1iZXJJZCI6MSwibmFtZSI6InVzZXIxIiwiZW1haWwiOiJ0ZXN0QGdtYWlsLmNvbSIsInN0YXR1cyI6Iu2ZnOuPmSDtmozsm5AiLCJjcmVhdGVkQXQiOiIyMDIzLTA2LTIyVDEzOjE3OjMwLjAyMloiLCJtb2RpZmllZEF0IjoiMjAyMy0wNi0yMlQxMzoxNzozMC4wMjJaIiwiaWF0IjoxNjg3NjE1MTkzfQ.DnKCYfPawi_mSaoytEZmsn8IUJ0eqztpcc0vAnPscug',
+      'Bearer eyJhbGciOiJIUzUxMiJ9.eyJyb2xlcyI6WyJVU0VSIl0sImlkIjoicXdlQGdtYWlsLmNvbSIsIm1lbWJlcklkIjoxLCJzdWIiOiJxd2VAZ21haWwuY29tIiwiaWF0IjoxNjg3NzYzMzYwLCJleHAiOjE2ODc3NjUxNjB9._82FwG3Z-d3uFt3RtFaEP0A-qKgrKJ78bWRKSqG5sOvEDX55bWAzLAD3vAAxs0p3jVIR8n0kldQ_Az4n1tym7Q',
   },
 };
