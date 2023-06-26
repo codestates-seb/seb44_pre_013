@@ -1,17 +1,22 @@
 import { useState, ChangeEvent, MouseEvent, KeyboardEvent } from 'react';
+import { useNavigate } from 'react-router-dom';
+import { useSelector } from 'react-redux';
+import axios from 'axios';
 import styled from 'styled-components';
 import { IconProp, SizeProp } from '@fortawesome/fontawesome-svg-core';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPencil } from '@fortawesome/free-solid-svg-icons';
 
-import { IDataType, IRequestData } from '../../../types/question';
+import { IDataType } from '../../../types/question';
 import Tooltip from '../../../components/ui/tooltip/Tooltip';
 import GoodWritingGuide from './GoodWritingGuide';
 import TitleForm from './TitleForm';
 import WriteProblemForm from './WriteProblemForm';
 import WriteExpectForm from './WriteExpectingForm';
 import Tags from './Tags';
-import { Button } from '../DetailPage/QuestionHeader';
+import CustomButton from '../../../components/ui/buttons/CustomButton';
+import { RootState } from '../../../store/store';
+import { config } from '../../../utils/axiosConfig';
 
 const titleContent: IDataType[] = [
   {
@@ -63,6 +68,8 @@ const QuestionWritePage = () => {
   const [tagValue, setTagValue] = useState<string>('');
   const [tags, setTags] = useState<string[]>([]);
   const [data, setData] = useState({});
+  const { isLogin } = useSelector((state: RootState) => state.login);
+  const navigate = useNavigate();
 
   /** state 값 변경 함수들 */
   const handleUpdateTitle = (e: ChangeEvent<HTMLInputElement>) => {
@@ -106,6 +113,25 @@ const QuestionWritePage = () => {
   const handleChangeSection = (e: MouseEvent<HTMLElement>) => {
     const { type } = e.currentTarget.dataset;
     setSelectSection(type);
+  };
+
+  const handleCreateQuestionSubmit = () => {
+    if (title && problemContent && expectingContent && tags) {
+      const data = {
+        title,
+        content: `${problemContent}${expectingContent}myQuestionsTags:${tags}`,
+      };
+
+      axios
+        .post(`${import.meta.env.VITE_SERVER_URL}/questions/ask`, data, config)
+        .then((response) => {
+          if (response) {
+            const questionId = response.headers.location.split('/')[1];
+            navigate(`/questions/${questionId}`);
+          }
+        })
+        .catch((error) => alert(error));
+    }
   };
 
   const renderContent = (data: IDataType[]) => {
@@ -185,8 +211,8 @@ const QuestionWritePage = () => {
           handleAddTag={handleAddTag}
           handleDeleteTag={handleDeleteTag}
         />
+        <CustomButton onClick={handleCreateQuestionSubmit} content="질문 등록하기" />
       </MainContainer>
-
       <SideContainer>{renderSideContainer()}</SideContainer>
     </Container>
   );

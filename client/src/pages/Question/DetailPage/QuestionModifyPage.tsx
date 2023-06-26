@@ -1,0 +1,117 @@
+import { ChangeEvent, useEffect, useState } from 'react';
+import { useNavigate, useParams } from 'react-router-dom';
+import axios from 'axios';
+import styled from 'styled-components';
+
+import Quill from '../../../components/quill/Quill';
+import { IResponseQuestionsData } from '../../../types/question';
+import { Input } from '../../../components/ui/input/Input';
+import Label from '../../../components/ui/label/Label';
+import CustomButton from '../../../components/ui/buttons/CustomButton';
+import { config } from '../../../utils/axiosConfig';
+
+const QuestionModifyPage = () => {
+  const { questionId } = useParams();
+  const navigate = useNavigate();
+  const [question, setQuestion] = useState<IResponseQuestionsData | null>(null);
+  const [title, setTitle] = useState<string>('');
+  const [content, setContent] = useState<string>('');
+  const [tags, setTags] = useState<string>('');
+
+  const handleUpdateTitle = (e: ChangeEvent<HTMLInputElement>) => {
+    setTitle(e.target.value);
+  };
+
+  const handleUpdateContent = (value: string) => {
+    setContent(value);
+  };
+
+  const handleUpdateTags = (e: ChangeEvent<HTMLInputElement>) => {
+    setTags(e.target.value);
+  };
+
+  const handleModifyQuestionSubmit = () => {
+    const data = {
+      title,
+      content: `${content}myQuestionsTags:${tags}`,
+    };
+
+    axios
+      .patch(`${import.meta.env.VITE_SERVER_URL}/questions/edit/${questionId}`, data, config)
+      .then((response) => {
+        if (response) {
+          navigate(`/questions/${questionId}`);
+        }
+      })
+      .catch((error) => alert(error));
+  };
+
+  useEffect(() => {
+    axios.get(`${import.meta.env.VITE_SERVER_URL}/questions/${questionId}`).then((response) => {
+      if (response) {
+        const { data } = response;
+        setQuestion(data);
+        setTitle(data.title);
+        setContent(data.content.split('myQuestionsTags:')[0]);
+        setTags(data.content.split('myQuestionsTags:')[1]);
+      }
+    });
+  }, [questionId]);
+
+  return (
+    <Container>
+      <FormWrapper>
+        <Label htmlFor="title" content="Title" type="title" />
+        <Input
+          id="title"
+          padding="0.563rem"
+          focusmode="true"
+          value={title}
+          onChange={handleUpdateTitle}
+        />
+      </FormWrapper>
+      <FormWrapper>
+        <Label htmlFor="content" content="Body" type="title" />
+        <Quill width="100%" height="50vh" value={content} onChange={handleUpdateContent} />
+      </FormWrapper>
+      <FormWrapper>
+        <Label htmlFor="tags" content="Tags" type="title" />
+        <Input
+          id="tags"
+          padding="0.563rem"
+          focusmode="true"
+          value={tags}
+          onChange={handleUpdateTags}
+        />
+      </FormWrapper>
+      <ButtonWrapper>
+        <CustomButton content="save edits" onClick={handleModifyQuestionSubmit} />
+        <CustomButton
+          content="Cancel"
+          $backgroundcolor="#F8F9F9"
+          $color="#0b95ff"
+          onClick={() => navigate(`/questions/${questionId}`)}
+        />
+      </ButtonWrapper>
+    </Container>
+  );
+};
+
+const Container = styled.div`
+  padding: 2rem;
+  & > div:nth-child(2) > div {
+    margin-top: 0.7rem;
+  }
+`;
+
+const FormWrapper = styled.div`
+  margin-bottom: 1.5rem;
+  & > input {
+    margin-top: 0.7rem;
+  }
+`;
+
+const ButtonWrapper = styled.div`
+  display: flex;
+`;
+export default QuestionModifyPage;

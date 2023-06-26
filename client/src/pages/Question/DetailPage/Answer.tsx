@@ -1,41 +1,35 @@
 import styled from 'styled-components';
+import { IAnswer } from '../../../types/answer';
+import { useSelector } from 'react-redux';
+import { RootState } from '../../../store/store';
 
-const Answer = () => {
+interface IProps {
+  answer: IAnswer;
+}
+
+const Answer = ({ answer }: IProps) => {
+  const { isLogin } = useSelector((state: RootState) => state.login);
+  console.log(answer);
+  const { content, createdAt, modifiedAt } = answer;
+
   return (
     <Container>
       <ContentWrapper>
-        <div>
-          <p>
-            I randomly started getting this in my project right around the time you made this post
-            which was odd.
-          </p>
-          <p>
-            Do you have Metamask installed as a browser extension? I disabled the extension and the
-            warnings went away.
-          </p>
-
-          <p>
-            I found this post:{' '}
-            <span>https://github.com/MetaMask/eth-phishing-detect/issues/11900</span> Which
-            potentially suggests that something in our projects are triggering metamasks
-            anti-phishing feature somehow? Not quite sure, but disabling the extension removed the
-            warnings and confirmed it wasn't something in my app directly.
-          </p>
-        </div>
+        <div>{content}</div>
       </ContentWrapper>
       <ProfileWrapper>
         <PostMenuWrapper>
           <button>Share</button>
-          <button>Edit</button>
+          {isLogin && <button>Edit</button>}
           <button>Follow</button>
         </PostMenuWrapper>
-        <Time>answered Jun 2 at 10:07</Time>
+        {/* <Time>answered Jun 2 at 10:07</Time> */}
         <PostSignatureWrapper>
+          <Time>answered {createdAt.split('T')[0]}</Time>
           <div>
             <img src="https://source.unsplash.com/random/32x32/?person" alt="profile img" />
             <UserDetailWrapper>
               <UserName>nickname</UserName>
-              <EditCommentBtn>edited Jun 8 at 17:53</EditCommentBtn>
               <div>
                 <span>
                   <strong>701</strong>
@@ -61,6 +55,7 @@ const Answer = () => {
 const Container = styled.div`
   display: flex;
   flex-direction: column;
+  width: 100%;
   padding: 1rem 0;
 `;
 

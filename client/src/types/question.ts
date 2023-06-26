@@ -21,3 +21,20 @@ export interface IRequestData {
   content: string;
   tags: string;
 }
+
+export interface IUserInfo {
+  memberId: number;
+  name: string;
+  email: string;
+  status: string;
+  createdAt: string;
+  modifiedAt: string;
+}
+export interface IResponseQuestionsData {
+  title: string;
+  content: string;
+  member: IUserInfo;
+  questionId: number;
+  viewCount: string;
+  modifiedAt: string;
+}
