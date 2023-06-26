@@ -1,6 +1,10 @@
 package server.member.dto;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.*;
+import net.bytebuddy.asm.Advice;
+import org.w3c.dom.NameList;
 import server.answer.dto.AnswerResponseDto;
 import server.question.dto.QuestionDto;
 
@@ -33,11 +37,23 @@ public class MemberDto {
 
     @Getter
     @AllArgsConstructor
-    public static class Patch {
+    public static class Patch{
         private long memberId;
         private String email;
         private String name;
         private String password;
+
+        @JsonCreator
+        public Patch(@JsonProperty("name") String name,
+                     @JsonProperty("email") String email,
+                     @JsonProperty("memberId") long memberId,
+                     @JsonProperty("password") String password) {
+
+            this.memberId = memberId;
+            this.email = email;
+            this.name = name;
+            this.password = password;
+        }
 
         public void setMemberId(long memberId) {
             this.memberId = memberId;

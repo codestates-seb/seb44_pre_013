@@ -36,10 +36,11 @@ public class MemberController {
     @PostMapping("/signup")
     public ResponseEntity postMember(@Valid @RequestBody MemberDto.Post requestBody) {
         Member createdMember = memberService.createMember(mapper.memberPostToMember(requestBody));
+        MemberResponse memberResponse = new MemberResponse(createdMember.getMemberId(), createdMember.getEmail());
 
         URI location = UriCreator.createUri(MEMBER_DEFAULT_URL, createdMember.getMemberId());
 
-        return ResponseEntity.created(location).build();
+        return ResponseEntity.created(location).body(memberResponse);
     }
 
     @PatchMapping("/{member-id}")
@@ -52,7 +53,16 @@ public class MemberController {
     }
 
     @GetMapping("/{member-id}")
-    public ResponseEntity getMember(@Positive @RequestParam int page, @RequestParam int size) {
+    public ResponseEntity getMember(@Positive @RequestParam(required = false) Integer page,
+                                    @RequestParam(required = false) Integer size) {
+
+        if (page == null) {
+            page = 1;
+        }
+
+        if (size == null) {
+            size = 10;
+        }
 
         Page<Member> pageMembers = memberService.findMembers(page -1, size);
         List<Member> members = pageMembers.getContent();
