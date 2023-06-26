@@ -10,12 +10,6 @@ import { useRef, useState } from 'react';
 import checkValid from '../utils/checkValid';
 import useSignupMutation from '../queries/useSignupMutation';
 
-interface IAccountType {
-  name: string;
-  email: string;
-  password: string;
-}
-
 const SignUpPage = () => {
   const refName = useRef<HTMLInputElement>(null);
   const refEmail = useRef<HTMLInputElement>(null);
@@ -54,7 +48,7 @@ const SignUpPage = () => {
         });
       }
 
-      if (isEmailValid?.isValid && isPasswordValid?.isValid)
+      if (isNameValid?.isValid && isEmailValid?.isValid && isPasswordValid?.isValid)
         signupMutation.mutate({
           name: refName.current.value,
           email: refEmail.current.value,
@@ -127,17 +121,17 @@ const SignUpPage = () => {
         <RightSection>
           <OAuthArea>
             <OAuthButton
-              iconUrl={OAuth.GOOGLE.ICONURL}
+              IconUrl={OAuth.GOOGLE.ICONURL}
               title={OAuth.GOOGLE.SIGNUP}
               color={OAuth.GOOGLE.COLOR}
-              hoverColor={OAuth.GOOGLE.HOVER_COLOR}
-              fontColor={OAuth.GOOGLE.FONT_COLOR}
+              hovercolor={OAuth.GOOGLE.HOVER_COLOR}
+              fontcolor={OAuth.GOOGLE.FONT_COLOR}
             />
             <OAuthButton
-              iconUrl={OAuth.GITHUB.ICONURL}
+              IconUrl={OAuth.GITHUB.ICONURL}
               title={OAuth.GITHUB.SIGNUP}
               color={OAuth.GITHUB.COLOR}
-              hoverColor={OAuth.GITHUB.HOVER_COLOR}
+              hovercolor={OAuth.GITHUB.HOVER_COLOR}
             />
           </OAuthArea>
           <Form onSubmit={handleSubmit}>

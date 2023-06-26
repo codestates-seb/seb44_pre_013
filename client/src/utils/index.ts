@@ -1,3 +1,5 @@
+import { IStorage } from '../store/loginSlice';
+
 const getHeader = (response: Response, str: string) => {
   return response ? response.headers.get(str) : '';
 };
@@ -7,7 +9,7 @@ const isStatusOK = (response: Response) => {
   return isOK === '2' ? true : false;
 };
 
-const setLocalStorage = (key: string, token: any) => {
+const setLocalStorage = (key: string, token: IStorage) => {
   localStorage.setItem(key, JSON.stringify(token));
 };
 
