@@ -1,11 +1,11 @@
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 
-import BeforeLoginMainPage from './pages/BeforeLoginMainPage';
-import SignUpPage from './pages/SignUpPage';
 import LoginPage from './pages/LoginPage';
-import QuestionWritePage from './pages/Question/WritePage/QuestionWritePage';
+import MainPage from './pages/MainPage';
 import QuestionDetailPage from './pages/Question/DetailPage/QuestionDetailPage';
 import QuestionModifyPage from './pages/Question/DetailPage/QuestionModifyPage';
+import QuestionWritePage from './pages/Question/WritePage/QuestionWritePage';
+import SignUpPage from './pages/SignUpPage';
 
 const RouteProvider = ({ children }: { children: React.ReactNode }) => {
   return (
@@ -14,7 +14,7 @@ const RouteProvider = ({ children }: { children: React.ReactNode }) => {
       <Routes>
         <Route path="/login" element={<LoginPage />} />
         <Route path="/signup" element={<SignUpPage />} />
-        <Route path="/" element={<BeforeLoginMainPage />} />
+        <Route path="/" element={<MainPage />} />
         <Route path="/questions" element={<QuestionWritePage />} />
         <Route path="/questions/:questionId" element={<QuestionDetailPage />} />
         <Route path="/questions/modify/:questionId" element={<QuestionModifyPage />} />
