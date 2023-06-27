@@ -8,14 +8,7 @@ import OAuthButton from '../components/ui/buttons/OAuthButton';
 import { OAuth } from '../constants/OAuth';
 import { useRef, useState } from 'react';
 import checkValid from '../utils/checkValid';
-import { useMutation } from '@tanstack/react-query';
-import axios from 'axios';
-
-interface IAccountType {
-  name: string;
-  email: string;
-  password: string;
-}
+import useSignupMutation from '../queries/useSignupMutation';
 
 const SignUpPage = () => {
   const refName = useRef<HTMLInputElement>(null);
@@ -23,37 +16,45 @@ const SignUpPage = () => {
   const refPw = useRef<HTMLInputElement>(null);
 
   const [validObj, setValidObj] = useState({
+    isValidName: true,
     isValidEmail: true,
     isValidPassword: true,
+    validNameText: '',
     validEmailText: '',
     validPasswordText: '',
   });
 
+  const { validate: validateName } = checkValid();
   const { validate: validateEmail } = checkValid();
   const { validate: validatePassword } = checkValid();
 
-  const checkSignup = async (account: IAccountType) => {
-    const response = axios.post('url', account);
-  };
-
-  const signupMutation = useMutation((account: IAccountType) => checkSignup(account));
+  const signupMutation = useSignupMutation();
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    if (refEmail.current && refPw.current) {
+    if (refName.current && refEmail.current && refPw.current) {
+      const isNameValid = validateName({ type: 'name', text: refName.current.value });
       const isEmailValid = validateEmail({ type: 'email', text: refEmail.current.value });
       const isPasswordValid = validatePassword({ type: 'password', text: refPw.current.value });
-      if (isEmailValid && isPasswordValid) {
+
+      if (isNameValid && isEmailValid && isPasswordValid) {
         setValidObj({
+          isValidName: isNameValid?.isValid,
           isValidEmail: isEmailValid?.isValid,
           isValidPassword: isPasswordValid?.isValid,
+          validNameText: isNameValid?.content,
           validEmailText: isEmailValid?.content,
           validPasswordText: isPasswordValid?.content,
         });
       }
-    }
 
-    console.log(validObj.isValidEmail, validObj.isValidPassword);
+      if (isNameValid?.isValid && isEmailValid?.isValid && isPasswordValid?.isValid)
+        signupMutation.mutate({
+          name: refName.current.value,
+          email: refEmail.current.value,
+          password: refPw.current.value,
+        });
+    }
   };
 
   return (
@@ -120,21 +121,27 @@ const SignUpPage = () => {
         <RightSection>
           <OAuthArea>
             <OAuthButton
-              iconUrl={OAuth.GOOGLE.ICONURL}
+              IconUrl={OAuth.GOOGLE.ICONURL}
               title={OAuth.GOOGLE.SIGNUP}
               color={OAuth.GOOGLE.COLOR}
-              hoverColor={OAuth.GOOGLE.HOVER_COLOR}
-              fontColor={OAuth.GOOGLE.FONT_COLOR}
+              hovercolor={OAuth.GOOGLE.HOVER_COLOR}
+              fontcolor={OAuth.GOOGLE.FONT_COLOR}
             />
             <OAuthButton
-              iconUrl={OAuth.GITHUB.ICONURL}
+              IconUrl={OAuth.GITHUB.ICONURL}
               title={OAuth.GITHUB.SIGNUP}
               color={OAuth.GITHUB.COLOR}
-              hoverColor={OAuth.GITHUB.HOVER_COLOR}
+              hovercolor={OAuth.GITHUB.HOVER_COLOR}
             />
           </OAuthArea>
           <Form onSubmit={handleSubmit}>
-            <FormInput title="Display name" type="text" ref={refName} />
+            <FormInput
+              title="Display name"
+              type="text"
+              ref={refName}
+              isValid={validObj.isValidName}
+              warningText={validObj.validNameText}
+            />
             <FormInput
               title="Email"
               type="text"

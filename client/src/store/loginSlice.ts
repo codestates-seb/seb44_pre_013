@@ -8,12 +8,12 @@ export interface ILogin {
   memberId?: string | null;
 }
 
-interface IInitialState extends ILogin {
+export interface IStorage extends ILogin {
   isLogin: boolean;
   isValid?: boolean;
 }
 
-const initialState: IInitialState = getLocalStorage('login', {
+const initialState: IStorage = getLocalStorage('token', {
   isLogin: false,
   isValid: true,
   accessToken: '',
@@ -31,9 +31,10 @@ export const loginSlice = createSlice({
         accessToken: action.payload.accessToken,
         memberId: action.payload.memberId,
       };
-      setLocalStorage('login', loginData);
+      setLocalStorage('token', loginData);
       return loginData;
     },
+
     setLogout: (state) => {
       const logoutData = { ...state, isLogin: false };
       return logoutData;

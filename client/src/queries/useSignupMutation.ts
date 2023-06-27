@@ -6,44 +6,49 @@ import { setLogin, setValid } from '../store/loginSlice';
 import authInstance from '../apis/ApiController';
 
 interface IAccountType {
-  id: string;
+  name: string;
+  email: string;
   password: string;
 }
 
-const checkLogin = async (account: IAccountType) => {
+const checkSignup = async (account: IAccountType) => {
   try {
-    const response: Response = await authInstance.post(`/auth/login`, account);
+    const response: Response = await authInstance.post(`/members/signup`, account);
     const header = getHeader(response, 'Authorization');
-    const memberId = getHeader(response, 'MemberId');
     const status = isStatusOK(response);
 
-    return { header, status, memberId };
+    return { header, status };
   } catch (error) {
     console.log(error);
   }
 };
 
-const useLoginMutation = () => {
+const useSignupMutation = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
-  const loginMutation = useMutation(checkLogin, {
+  const signupMutation = useMutation(checkSignup, {
     onSuccess: (data) => {
       if (!data?.status) {
         dispatch(setValid(false));
+        alert('닉네임 또는 이메일이 중복되었습니다.');
         return;
       }
+      // 헤더로 토큰이 올 경우
+      // dispatch(setValid(true));
+      // dispatch(
+      //   setLogin({
+      //     accessToken: data?.header,
+      //   })
+      // );
+      // navigate('/');
+
+      // 헤더로 토큰이 안올 경우
       dispatch(setValid(true));
-      dispatch(
-        setLogin({
-          accessToken: data?.header,
-          memberId: data?.memberId,
-        })
-      );
-      navigate('/');
+      navigate('/login');
     },
   });
 
-  return loginMutation;
+  return signupMutation;
 };
 
-export default useLoginMutation;
+export default useSignupMutation;

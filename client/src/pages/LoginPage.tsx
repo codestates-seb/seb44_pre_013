@@ -33,17 +33,17 @@ const LoginPage = () => {
         />
         <OAuthArea>
           <OAuthButton
-            iconUrl={OAuth.GOOGLE.ICONURL}
+            IconUrl={OAuth.GOOGLE.ICONURL}
             title={OAuth.GOOGLE.LOGIN}
             color={OAuth.GOOGLE.COLOR}
-            hoverColor={OAuth.GOOGLE.HOVER_COLOR}
-            fontColor={OAuth.GOOGLE.FONT_COLOR}
+            hovercolor={OAuth.GOOGLE.HOVER_COLOR}
+            fontcolor={OAuth.GOOGLE.FONT_COLOR}
           />
           <OAuthButton
-            iconUrl={OAuth.GITHUB.ICONURL}
+            IconUrl={OAuth.GITHUB.ICONURL}
             title={OAuth.GITHUB.LOGIN}
             color={OAuth.GITHUB.COLOR}
-            hoverColor={OAuth.GITHUB.HOVER_COLOR}
+            hovercolor={OAuth.GITHUB.HOVER_COLOR}
           />
         </OAuthArea>
         <Form onSubmit={handleSubmit}>
