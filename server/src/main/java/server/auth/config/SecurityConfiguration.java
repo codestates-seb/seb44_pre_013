@@ -63,7 +63,7 @@ public class SecurityConfiguration implements WebMvcConfigurer {
                 .and()
                 .apply(new CustomFilterConfigurer())
                 .and()
-                .authorizeHttpRequests(authorize -> authorize
+                .authorizeRequests(authorize -> authorize
                         .antMatchers(HttpMethod.POST, "/**").permitAll()
                         .antMatchers(HttpMethod.PATCH, "/**").permitAll()
                         .antMatchers(HttpMethod.GET, "/**").permitAll()
@@ -84,9 +84,10 @@ public class SecurityConfiguration implements WebMvcConfigurer {
         CorsConfiguration configuration = new CorsConfiguration();
 
         configuration.setAllowCredentials(true);
-        configuration.setAllowedOrigins(Arrays.asList("*", "http://localhost:5173", "http://localhost:3000", "http://localhost:3001", "http://ec2-3-36-132-102.ap-northeast-2.compute.amazonaws.com:8080"));
+        configuration.setAllowedOrigins(Arrays.asList("http://localhost:5173", "http://ec2-13-125-254-51.ap-northeast-2.compute.amazonaws.com:8080"));
         configuration.setAllowedMethods(Arrays.asList("GET", "POST", "PATCH", "DELETE"));
         configuration.setAllowedHeaders(Arrays.asList("*"));
+        configuration.addExposedHeader("Location");
         configuration.addExposedHeader("MemberId");
         configuration.addExposedHeader("Authorization");
 
@@ -131,15 +132,11 @@ public class SecurityConfiguration implements WebMvcConfigurer {
     @Override
     public void addCorsMappings(CorsRegistry registry) {
         registry.addMapping("/**")
-                .allowedOrigins("*")
-                .allowedOrigins("http://localhost:3000")
-                .allowedOrigins("http://localhost:3001")
-                .allowedOrigins("http://localhost:5173")
-                .allowedOrigins("ec2-3-36-132-102.ap-northeast-2.compute.amazonaws.com:8080")
+                .allowedOrigins("http://localhost:5173", "http://ec2-13-125-254-51.ap-northeast-2.compute.amazonaws.com:8080")
                 .allowedMethods("GET", "POST", "PUT", "PATCH", "DELETE", "OPTIONS")
                 .allowedHeaders("*")
                 .allowCredentials(true)
-                .exposedHeaders("Authorization")
+                .exposedHeaders("Authorization", "Location", "MemberId")
                 .maxAge(MAX_AGE_SECS);
     }
 
