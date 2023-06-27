@@ -27,10 +27,7 @@ const LoginPage = () => {
   return (
     <Container>
       <CenterWrapper>
-        <Icon
-          src="https://fe-img-uploads.s3.ap-northeast-2.amazonaws.com/stackoverflow_Icon.svg"
-          alt="아이콘"
-        />
+        <Icon src="https://i.ibb.co/Qb5bWgL/stackoverflow-Icon.png" alt="아이콘" />
         <OAuthArea>
           <OAuthButton
             IconUrl={OAuth.GOOGLE.ICONURL}
