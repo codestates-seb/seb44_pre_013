@@ -1,25 +1,23 @@
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
+import { useParams } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
 import axios from 'axios';
 import styled from 'styled-components';
 
+import { IAnswer } from '../../../types/answer';
+import { getAllAnswer } from '../../../store/answerSlice';
+import { RootState } from '../../../store/store';
 import Voting from './Vote';
 import Answer from './Answer';
-import { IAnswer } from '../../../types/answer';
 import AnswerWrite from './AnswerWrite';
 
-interface IProps {
-  questionId: string;
-}
-
-const AnswerDetailContainer = ({ questionId }: IProps) => {
-  /**
-   * 답변 가져오는 함수 useEffect 실행
-   * 답변 가져와서 상태값 저장하고, render하기 (map 돌리기)
-   */
-  const [answers, setAnswers] = useState<IAnswer[] | null>(null);
+const AnswerDetailContainer = () => {
+  const dispatch = useDispatch();
+  const { questionId } = useParams();
+  const { data } = useSelector((state: RootState) => state.answers);
 
   const handleAnswerRender = () => {
-    return answers?.map((answer: IAnswer, idx: number) => (
+    return data?.map((answer: IAnswer, idx: number) => (
       <div key={idx}>
         <AnswerWrapper key={idx}>
           <Voting />
@@ -31,17 +29,17 @@ const AnswerDetailContainer = ({ questionId }: IProps) => {
   };
 
   useEffect(() => {
-    axios.get(`${import.meta.env.VITE_SERVER_URL}/answers/${questionId}`).then((response) => {
+    axios.get(`${import.meta.env.VITE_SERVER_URL}/answers`).then((response) => {
       const { data } = response;
-      setAnswers(data.data);
+      dispatch(getAllAnswer({ data }));
     });
   }, []);
 
   return (
     <Container>
-      <Title>5 Answers</Title>
+      <Title>{data.length} Answers</Title>
       {handleAnswerRender()}
-      <AnswerWrite />
+      <AnswerWrite questionId={questionId} />
     </Container>
   );
 };

@@ -4,18 +4,22 @@ import { useSelector } from 'react-redux';
 import axios from 'axios';
 import styled from 'styled-components';
 
-import { IResponseQuestionsData } from '../../../types/question';
+import { IQuestionsData } from '../../../types/question';
 import { RootState } from '../../../store/store';
 import { config } from '../../../utils/axiosConfig';
+import { getQuestionAPI } from '../../../apis/questionApi';
 interface IProps {
   questionId: string | undefined;
 }
 
 const Question = ({ questionId }: IProps) => {
   const navigate = useNavigate();
-  const [question, setQuestion] = useState<IResponseQuestionsData | null>(null);
-  const [renderedHTML, tags] = question ? question.content.split('myQuestionsTags:') : [];
-  const { isLogin } = useSelector((state: RootState) => state.login);
+  const [question, setQuestion] = useState<IQuestionsData | null>(null);
+  const [renderedHTML, tags] = question?.content
+    ? question?.content?.split('myQuestionsTags:')
+    : [];
+  const { memberId } = useSelector((state: RootState) => state.login);
+  const [writeMemberId, setWriteMemberId] = useState('');
 
   const handleQuestionDelete = () => {
     axios.delete(`${import.meta.env.VITE_SERVER_URL}/questions/${questionId}`, config).then(() => {
@@ -24,12 +28,14 @@ const Question = ({ questionId }: IProps) => {
   };
 
   useEffect(() => {
-    console.log(`${import.meta.env.VITE_SERVER_URL}/questions/${questionId}`);
-    axios.get(`${import.meta.env.VITE_SERVER_URL}/questions/${questionId}`).then((response) => {
-      if (response) {
-        setQuestion(response.data);
-      }
-    });
+    getQuestionAPI(questionId)
+      .then((response) => {
+        if (response) {
+          setQuestion(response.data);
+          setWriteMemberId(response.data.memberId);
+        }
+      })
+      .catch((error) => alert(error));
   }, [questionId]);
 
   return (
@@ -37,15 +43,17 @@ const Question = ({ questionId }: IProps) => {
       <title style={{ marginTop: '3rem' }}>{question?.title}</title>
       <ContentWrapper>{<div dangerouslySetInnerHTML={{ __html: renderedHTML }} />}</ContentWrapper>
       <TagWrapper>
-        {tags?.split(',').map((tag, idx) => (
+        {tags?.split(',').map((tag: string, idx: number) => (
           <Tag key={idx}>{tag}</Tag>
         ))}
       </TagWrapper>
       <ProfileWrapper>
         <PostMenuWrapper>
           <button>Share</button>
-          <button onClick={() => navigate(`/questions/modify/${questionId}`)}>Edit</button>
-          {isLogin && <button onClick={handleQuestionDelete}>Delete</button>}
+          {memberId === writeMemberId && (
+            <button onClick={() => navigate(`/questions/modify/${questionId}`)}>Edit</button>
+          )}
+          {memberId === writeMemberId && <button onClick={handleQuestionDelete}>Delete</button>}
           <button>Follow</button>
         </PostMenuWrapper>
         <PostSignatureWrapper>

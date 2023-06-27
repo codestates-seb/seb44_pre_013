@@ -15,7 +15,7 @@ const QuestionDetailPage = () => {
       <MainContainer>
         <MainQuestionBar>
           <QuestionDetailContainer questionId={questionId} />
-          <AnswerDetailContainer questionId={questionId} />
+          <AnswerDetailContainer />
         </MainQuestionBar>
         <SideQuestionBar>
           <SideToolTip />
@@ -24,6 +24,7 @@ const QuestionDetailPage = () => {
     </Container>
   );
 };
+
 const Container = styled.div`
   padding: 1.5rem;
 `;

@@ -4,16 +4,16 @@ import axios from 'axios';
 import styled from 'styled-components';
 
 import Quill from '../../../components/quill/Quill';
-import { IResponseQuestionsData } from '../../../types/question';
+import { IQuestionsData } from '../../../types/question';
 import { Input } from '../../../components/ui/input/Input';
 import Label from '../../../components/ui/label/Label';
 import CustomButton from '../../../components/ui/buttons/CustomButton';
-import { config } from '../../../utils/axiosConfig';
+import { modifyQuestionAPI } from '../../../apis/questionApi';
 
 const QuestionModifyPage = () => {
   const { questionId } = useParams();
   const navigate = useNavigate();
-  const [question, setQuestion] = useState<IResponseQuestionsData | null>(null);
+  const [question, setQuestion] = useState<IQuestionsData | null>(null);
   const [title, setTitle] = useState<string>('');
   const [content, setContent] = useState<string>('');
   const [tags, setTags] = useState<string>('');
@@ -36,8 +36,8 @@ const QuestionModifyPage = () => {
       content: `${content}myQuestionsTags:${tags}`,
     };
 
-    axios
-      .patch(`${import.meta.env.VITE_SERVER_URL}/questions/edit/${questionId}`, data, config)
+    console.log(data);
+    modifyQuestionAPI(questionId, data)
       .then((response) => {
         if (response) {
           navigate(`/questions/${questionId}`);
@@ -47,15 +47,18 @@ const QuestionModifyPage = () => {
   };
 
   useEffect(() => {
-    axios.get(`${import.meta.env.VITE_SERVER_URL}/questions/${questionId}`).then((response) => {
-      if (response) {
-        const { data } = response;
-        setQuestion(data);
-        setTitle(data.title);
-        setContent(data.content.split('myQuestionsTags:')[0]);
-        setTags(data.content.split('myQuestionsTags:')[1]);
-      }
-    });
+    axios
+      .get(`${import.meta.env.VITE_SERVER_URL}/questions/${questionId}`)
+      .then((response) => {
+        if (response) {
+          const { data } = response.data;
+          setQuestion(data);
+          setTitle(data.title);
+          setContent(data.content.split('myQuestionsTags:')[0]);
+          setTags(data.content.split('myQuestionsTags:')[1]);
+        }
+      })
+      .catch((error) => alert(error));
   }, [questionId]);
 
   return (

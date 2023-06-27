@@ -1,14 +1,21 @@
 import { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
+import axios from 'axios';
 import { styled } from 'styled-components';
 
 import Quill from '../../../components/quill/Quill';
 import CustomButton from '../../../components/ui/buttons/CustomButton';
-import axios from 'axios';
 import { config } from '../../../utils/axiosConfig';
+import { RootState } from '../../../store/store';
+import { getAllAnswer } from '../../../store/answerSlice';
 
-const AnswerWrite = () => {
-  const navigate = useNavigate();
+interface IProps {
+  questionId: string | undefined;
+}
+
+const AnswerWrite = ({ questionId }: IProps) => {
+  const dispatch = useDispatch();
+  const { memberId } = useSelector((state: RootState) => state.login);
   const [content, setContent] = useState('');
 
   const handleUpdateContent = (value: string) => {
@@ -16,15 +23,25 @@ const AnswerWrite = () => {
   };
 
   const handleCreateAnswerSubmit = () => {
-    console.log(content);
+    const data = {
+      memberId,
+      questionId,
+      content,
+    };
     // 댓글 추가 로직 작성하기
     axios
-      .post(`${import.meta.env.VITE_SERVER_URL}/questions/ask`, { data: content }, config)
+      .post(`${import.meta.env.VITE_SERVER_URL}/answers`, data, config)
       .then((response) => {
         if (response) {
-          console.log(response);
-          navigate('/questions');
+          axios.get(`${import.meta.env.VITE_SERVER_URL}/answers`).then((response) => {
+            const { data } = response;
+            dispatch(getAllAnswer({ data }));
+          });
+          setContent('');
         }
+      })
+      .catch((error) => {
+        alert(error);
       });
   };
 

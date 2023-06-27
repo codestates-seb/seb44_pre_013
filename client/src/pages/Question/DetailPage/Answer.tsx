@@ -1,29 +1,80 @@
+import { useState } from 'react';
+import { useDispatch } from 'react-redux';
+import axios from 'axios';
 import styled from 'styled-components';
+
 import { IAnswer } from '../../../types/answer';
-import { useSelector } from 'react-redux';
-import { RootState } from '../../../store/store';
+import { deleteAnswer, modifyAnswer } from '../../../store/answerSlice';
+import Quill from '../../../components/quill/Quill';
 
 interface IProps {
   answer: IAnswer;
 }
 
 const Answer = ({ answer }: IProps) => {
-  const { isLogin } = useSelector((state: RootState) => state.login);
-  console.log(answer);
+  const dispatch = useDispatch();
+  const [isUpdate, setIsUpdate] = useState(false);
+  const [updateAnswerId, setUpdateAnswerId] = useState('');
+  const [writeContent, setContent] = useState(answer.content);
+
   const { content, createdAt, modifiedAt } = answer;
+
+  const handleUpdate = (answerId: string) => {
+    setUpdateAnswerId(answerId);
+    setIsUpdate(!isUpdate);
+  };
+
+  const handleContentUpdate = (value: string) => {
+    setContent(value);
+  };
+  const handleDeleteAnswer = () => {
+    axios
+      .delete(`${import.meta.env.VITE_SERVER_URL}/answers/${answer.answerId}`)
+      .then((response) => {
+        dispatch(deleteAnswer(answer.answerId));
+      })
+      .catch((error) => alert(error));
+  };
+
+  const handleUpdateAnswer = () => {
+    const data = {
+      content: writeContent,
+    };
+    axios
+      .patch(`${import.meta.env.VITE_SERVER_URL}/answers/${answer.answerId}`, data)
+      .then((response) => {
+        if (response) {
+          dispatch(modifyAnswer(response.data));
+          handleUpdate(`${answer.answerId}`);
+        }
+      })
+      .catch((error) => alert(error));
+  };
 
   return (
     <Container>
       <ContentWrapper>
-        <div>{content}</div>
+        {!isUpdate && <div dangerouslySetInnerHTML={{ __html: `${content}` }} />}
       </ContentWrapper>
       <ProfileWrapper>
         <PostMenuWrapper>
           <button>Share</button>
-          {isLogin && <button>Edit</button>}
-          <button>Follow</button>
+          <button onClick={() => handleUpdate(`${answer.answerId}`)}>
+            {isUpdate ? 'Cancel' : 'Edit'}
+          </button>
+          <button onClick={handleDeleteAnswer}>Delete</button>
+          {+updateAnswerId === answer.answerId && isUpdate && (
+            <Quill
+              value={writeContent}
+              onChange={handleContentUpdate}
+              width="100%"
+              height="10rem"
+            />
+          )}
+          {isUpdate && (
+            <AnswerModifySubmit onClick={handleUpdateAnswer}>수정 등록하기</AnswerModifySubmit>
+          )}
         </PostMenuWrapper>
-        {/* <Time>answered Jun 2 at 10:07</Time> */}
         <PostSignatureWrapper>
           <Time>answered {createdAt.split('T')[0]}</Time>
           <div>
@@ -136,4 +187,12 @@ const EditCommentBtn = styled.div`
     cursor: pointer;
   }
 `;
+
+const AnswerModifySubmit = styled.button`
+  margin-top: 2.4rem;
+  &:hover {
+    color: #0a95ff;
+  }
+`;
+
 export default Answer;
