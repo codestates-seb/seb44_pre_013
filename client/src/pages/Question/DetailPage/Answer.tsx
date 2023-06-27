@@ -27,6 +27,7 @@ const Answer = ({ answer }: IProps) => {
   const handleContentUpdate = (value: string) => {
     setContent(value);
   };
+
   const handleDeleteAnswer = () => {
     axios
       .delete(`${import.meta.env.VITE_SERVER_URL}/answers/${answer.answerId}`)

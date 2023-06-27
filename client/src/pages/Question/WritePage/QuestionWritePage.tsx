@@ -7,7 +7,7 @@ import { IconProp, SizeProp } from '@fortawesome/fontawesome-svg-core';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPencil } from '@fortawesome/free-solid-svg-icons';
 
-import { IDataType } from '../../../types/question';
+import { IDataType } from '../../../types/types';
 import Tooltip from '../../../components/ui/tooltip/Tooltip';
 import GoodWritingGuide from './GoodWritingGuide';
 import TitleForm from './TitleForm';
@@ -127,7 +127,7 @@ const QuestionWritePage = () => {
         .then((response) => {
           if (response) {
             console.log(response);
-            const questionId = response?.headers.location.split('/')[1];
+            const questionId = response?.headers.location.split('/questions/')[1];
             navigate(`/questions/${questionId}`);
           }
         })

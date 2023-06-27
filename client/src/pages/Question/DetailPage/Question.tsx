@@ -18,7 +18,7 @@ const Question = ({ questionId }: IProps) => {
   const [renderedHTML, tags] = question?.content
     ? question?.content?.split('myQuestionsTags:')
     : [];
-  const { memberId } = useSelector((state: RootState) => state.login);
+  const { memberId: loginMemberId } = useSelector((state: RootState) => state.login);
   const [writeMemberId, setWriteMemberId] = useState('');
 
   const handleQuestionDelete = () => {
@@ -50,10 +50,12 @@ const Question = ({ questionId }: IProps) => {
       <ProfileWrapper>
         <PostMenuWrapper>
           <button>Share</button>
-          {memberId === writeMemberId && (
+          {loginMemberId === writeMemberId && (
             <button onClick={() => navigate(`/questions/modify/${questionId}`)}>Edit</button>
           )}
-          {memberId === writeMemberId && <button onClick={handleQuestionDelete}>Delete</button>}
+          {loginMemberId === writeMemberId && (
+            <button onClick={handleQuestionDelete}>Delete</button>
+          )}
           <button>Follow</button>
         </PostMenuWrapper>
         <PostSignatureWrapper>

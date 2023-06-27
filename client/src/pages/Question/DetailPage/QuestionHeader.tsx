@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 
 import CustomButton from '../../../components/ui/buttons/CustomButton';
@@ -9,7 +10,9 @@ const QuestionHeader = () => {
         <Title>
           What is causing the warning 'Removing intrinsics.ArrayPrototype.toReversed' in React?
         </Title>
-        <CustomButton content="Ask Question" width="6.439rem" padding="0.65" />
+        <Link to="/questions">
+          <CustomButton content="Ask Question" />
+        </Link>
       </TitleBox>
       <TimeInfoBox>
         <SpanBox>
@@ -48,10 +51,13 @@ const TitleBox = styled.div`
   & > h1 {
     flex: 1;
   }
-
   & > button {
     height: 2.375rem;
     line-height: 2.375rem;
+  }
+  & > a {
+    width: 6.439rem;
+    padding: 0.65rem;
   }
 `;
 

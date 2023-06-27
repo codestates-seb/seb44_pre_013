@@ -5,5 +5,5 @@ export interface IAnswer {
   content: string;
   createdAt: string;
   modifiedAt: string;
-  member: IUserInfo;
+  member?: IUserInfo;
 }

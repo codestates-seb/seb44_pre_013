@@ -5,12 +5,10 @@ import { IAnswer } from '../types/answer';
 
 type stateType = {
   data: IAnswer[];
-  memberId: string;
 };
 
 const initialState: stateType = {
   data: [],
-  memberId: '',
 };
 
 export const answerSlice = createSlice({
