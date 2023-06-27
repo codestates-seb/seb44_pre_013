@@ -1,12 +1,20 @@
 import { styled } from 'styled-components';
-import { IconProp, SizeProp } from '@fortawesome/fontawesome-svg-core';
+import { SizeProp } from '@fortawesome/fontawesome-svg-core';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPencil, faMessage, faLayerGroup } from '@fortawesome/free-solid-svg-icons';
+import { IconDefinition } from '@fortawesome/fontawesome-svg-core';
 
 import Tooltip from '../../../components/ui/tooltip/Tooltip';
-import { DataType } from '../../../types/question';
+export interface IToolTipDataType {
+  icon?: IconDefinition;
+  size?: string;
+  postId?: number;
+  subtitle?: string;
+  content?: string;
+  subContent?: string;
+}
 
-const blogData: DataType[] = [
+const blogData: IToolTipDataType[] = [
   {
     icon: faPencil,
     size: 'sm',
@@ -15,7 +23,7 @@ const blogData: DataType[] = [
   { icon: faPencil, size: 'sm', content: 'Stack Exchange Network Outage – June 15, 2023' },
 ];
 
-const featuredOnMetaData: DataType[] = [
+const featuredOnMetaData: IToolTipDataType[] = [
   { icon: faMessage, size: 'sm', content: 'Statement from SO: June 5, 2023 Moderator Action' },
   { icon: faMessage, size: 'sm', content: 'Stack Exchange Network Outage – June 15, 2023' },
   {
@@ -30,7 +38,7 @@ const featuredOnMetaData: DataType[] = [
   },
 ];
 
-const hotMetaPost: DataType[] = [
+const hotMetaPost: IToolTipDataType[] = [
   {
     postId: 3,
     content: 'How should non-English answers with code be handled in the Low Quality...',
@@ -43,12 +51,12 @@ const hotMetaPost: DataType[] = [
   { postId: 27, content: 'Temporary policy: Generative AI (e.g., ChatGPT) is banned' },
 ];
 
-const renderContent = (data: DataType[]) => {
+const renderContent = (data: IToolTipDataType[]) => {
   return (
     <TooltipContentStyle>
-      {data.map((item) => (
-        <div>
-          <FontAwesomeIcon icon={item.icon as IconProp} size={item.size as SizeProp} />
+      {data?.map((item, idx) => (
+        <div key={idx}>
+          {item.icon && <FontAwesomeIcon icon={item.icon} size={item.size as SizeProp} />}
           <p>{item.content}</p>
         </div>
       ))}

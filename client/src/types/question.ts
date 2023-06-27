@@ -1,10 +1,29 @@
-import { IconDefinition } from '@fortawesome/fontawesome-svg-core';
+export interface IQuestion {
+  title: string;
+  problemContent: string;
+  expectContent: string;
+  tags: string[];
+}
 
-export interface DataType {
-  icon?: IconDefinition;
-  size?: string;
-  postId?: number;
-  subtitle?: string;
+export interface IRequestData {
+  title: string;
+  content: string;
+  tags: string;
+}
+
+export interface IUserInfo {
+  memberId: number;
+  name: string;
+  email: string;
+  status: string;
+  createdAt: string;
+  modifiedAt: string;
+}
+export interface IQuestionsData {
+  title?: string;
   content?: string;
-  subContent?: string;
+  member?: IUserInfo;
+  questionId?: string;
+  viewCount?: string;
+  modifiedAt?: string;
 }
