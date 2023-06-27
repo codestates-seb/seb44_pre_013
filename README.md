@@ -19,20 +19,20 @@
 
 ## 💼 Team
 
-|                                                                 최연수<br>(FE, 팀장)                                                                  |                                 김영웅<br>(FE)                                 |                   유지예<br>(FE)                   |                   조성원<br>(FE)                   |               이보미<br>(BE, 부팀장)               |                   서승아<br>(BE)                   |                  안형준<br> (BE)                   |
-| :---------------------------------------------------------------------------------------------------------------------------------------------------: | :----------------------------------------------------------------------------: | :------------------------------------------------: | :------------------------------------------------: | :------------------------------------------------: | :------------------------------------------------: | :------------------------------------------------: | -------------------------------------------------- |
-| <img alt="최연수" src="[![최연수](https://cdn.discordapp.com/attachments/1122914475549413456/1122914584689377350/Ella.png)" height="100" width="100"> |               <img alt="김영웅" src="" height="100" width="100">               | <img alt="유지예" src="" height="100" width="100"> | <img alt="조성원" src="" height="100" width="100"> | <img alt="이보미" src="" height="100" width="100"> | <img alt="서승아" src="" height="100" width="100"> | <img alt="안형준" src="" height="100" width="100"> | <img alt="이보미" src="" height="100" width="100"> |
-|         <p align="left">**Pages**<br/> - Before Login Main Page<br/> - After Login Main Page<br/><br/>**Features**<br/>- Pagination <br/></p>         | <p align="left">**Pages**<br/>- <br/>- <br/>- <br/>**Components**<br/>- <br/>- |
+|                     최연수<br>(FE, 팀장)                     |                        김영웅<br>(FE)                        |                        유지예<br>(FE)                        |                    조성원<br>(FE)                     |                        이보미<br>(BE, 부팀장)                        |                       서승아<br>(BE)                        | 안형준<br> (BE) |
+| :----------------------------------------------------------: | :----------------------------------------------------------: | :----------------------------------------------------------: | :----------------------------------------------------------: | :----------------------------------------------------------: | :----------------------------------------------------------: | :-----: |
+| <img alt="최연수" src="[![최연수](https://cdn.discordapp.com/attachments/1122914475549413456/1122914584689377350/Ella.png)" height="100" width="100"> | <img alt="김영웅" src="" height="100" width="100"> | <img alt="유지예" src="" height="100" width="100"> | <img alt="조성원" src="" height="100" width="100"> | <img alt="이보미" src="" height="100" width="100"> | <img alt="서승아" src="" height="100" width="100"> |   <img alt="안형준" src="" height="100" width="100"> | <img alt="이보미" src="" height="100" width="100">  |
+|<p align="left">**Pages**<br/> - Before Login Main Page<br/> - After Login Main Page<br/><br/>**Features**<br/>- Pagination <br/></p> | <p align="left">**Pages**<br/>-  <br/>- <br/>- <br/>**Components**<br/>-   <br/>-
 
-|  Name  | Github ID                                      |
-| :----: | :--------------------------------------------- |
-| 최연수 | [@ella-yschoi](https://github.com/ella-yschoi) |
+|  Name  | Github ID                                        |
+| :----: | :----------------------------------------------- |
+| 최연수 | [@ella-yschoi](https://github.com/ella-yschoi)   |
 | 김영웅 | [@novice-hero](https://github.com/novice-hero) |
-| 유지예 | [@jiye-7](https://github.com/jiye-7)           |
-| 조성원 | [@thejsw](https://github.com/thejsw)           |
-| 이보미 | [@spring333](https://github.com/spring333)     |
-| 서승아 | [@tjtmddk720](https://github.com/tjtmddk720)   |
-| 안형준 | [@JERE-GIM](https://github.com/JERE-GIM)       |
+| 유지예 | [@jiye-7](https://github.com/jiye-7)         |
+| 조성원 | [@thejsw](https://github.com/thejsw) |
+| 이보미 | [@spring333](https://github.com/spring333)   |
+| 서승아 | [@tjtmddk720](https://github.com/tjtmddk720)         |
+| 안형준 | [@JERE-GIM](https://github.com/JERE-GIM)         |
 
 <br/>
 
