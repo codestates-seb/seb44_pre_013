@@ -1,18 +1,24 @@
-import { MouseEvent, useState } from 'react';
+import { useState, ChangeEvent, MouseEvent, KeyboardEvent } from 'react';
+import { useNavigate } from 'react-router-dom';
+import { useSelector } from 'react-redux';
+import axios from 'axios';
 import styled from 'styled-components';
 import { IconProp, SizeProp } from '@fortawesome/fontawesome-svg-core';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPencil } from '@fortawesome/free-solid-svg-icons';
 
+import { IDataType } from '../../../types/types';
 import Tooltip from '../../../components/ui/tooltip/Tooltip';
-import WriteProblemForm from './WriteProblemForm';
-import NoticeWritingQuestion from './NoticeWritingQuestion';
+import GoodWritingGuide from './GoodWritingGuide';
 import TitleForm from './TitleForm';
+import WriteProblemForm from './WriteProblemForm';
 import WriteExpectForm from './WriteExpectingForm';
 import Tags from './Tags';
-import { DataType } from '../../../types/question';
+import CustomButton from '../../../components/ui/buttons/CustomButton';
+import { RootState } from '../../../store/store';
+import { config } from '../../../utils/axiosConfig';
 
-const titleConten: DataType[] = [
+const titleContent: IDataType[] = [
   {
     icon: faPencil,
     size: '2xl',
@@ -22,7 +28,7 @@ const titleConten: DataType[] = [
   },
 ];
 
-const problemConten: DataType[] = [
+const problemContents: IDataType[] = [
   {
     icon: faPencil,
     size: '2xl',
@@ -31,7 +37,7 @@ const problemConten: DataType[] = [
   },
 ];
 
-const expandContent: DataType[] = [
+const expandContent: IDataType[] = [
   {
     icon: faPencil,
     size: '2xl',
@@ -43,7 +49,7 @@ const expandContent: DataType[] = [
   },
 ];
 
-const tagContent: DataType[] = [
+const tagContent: IDataType[] = [
   {
     icon: faPencil,
     size: '2xl',
@@ -54,15 +60,81 @@ const tagContent: DataType[] = [
   },
 ];
 
-const QuestionPage = () => {
+const QuestionWritePage = () => {
   const [selectSection, setSelectSection] = useState<string | undefined>('title-form');
+  const [title, setTitle] = useState('');
+  const [problemContent, setProblemContent] = useState('');
+  const [expectingContent, setExpectingContent] = useState('');
+  const [tagValue, setTagValue] = useState<string>('');
+  const [tags, setTags] = useState<string[]>([]);
+  const [data, setData] = useState({});
+  const { isLogin } = useSelector((state: RootState) => state.login);
+  const navigate = useNavigate();
 
+  /** state 값 변경 함수들 */
+  const handleUpdateTitle = (e: ChangeEvent<HTMLInputElement>) => {
+    const { value } = e.target;
+    setTitle(value);
+  };
+
+  const handleUpdateProblemContent = (value: string) => {
+    setProblemContent(value);
+  };
+
+  const handleUpdateExpectContent = (value: string) => {
+    setExpectingContent(value);
+  };
+
+  const handleUpdateTagValue = (e: ChangeEvent<HTMLInputElement>) => {
+    const { value } = e.target;
+    setTagValue(value.trim());
+  };
+
+  const handleAddTag = (e: KeyboardEvent<HTMLInputElement>) => {
+    if (tags.findIndex((tag) => tag === tagValue) !== -1) {
+      return;
+    }
+    if (tags.length === 5) {
+      setTagValue('');
+      return;
+    }
+    if (['Space', 'Enter'].includes(e.code) && tagValue.length) {
+      setTags([...tags, tagValue]);
+      setTagValue('');
+    }
+  };
+
+  const handleDeleteTag = (tag: string) => {
+    const updatedTags = tags.filter((value: string) => value !== tag);
+    setTags(updatedTags);
+  };
+
+  /** render 부분 함수들 */
   const handleChangeSection = (e: MouseEvent<HTMLElement>) => {
     const { type } = e.currentTarget.dataset;
     setSelectSection(type);
   };
 
-  const renderContent = (data: DataType[]) => {
+  const handleCreateQuestionSubmit = () => {
+    if (title && problemContent && expectingContent && tags) {
+      const data = {
+        title,
+        content: `${problemContent}${expectingContent}myQuestionsTags:${tags}`,
+      };
+
+      axios
+        .post(`${import.meta.env.VITE_SERVER_URL}/questions/ask`, data, config)
+        .then((response) => {
+          if (response) {
+            const questionId = response?.headers.location.split('/questions/')[1];
+            navigate(`/questions/${questionId}`);
+          }
+        })
+        .catch((error) => alert(error));
+    }
+  };
+
+  const renderContent = (data: IDataType[]) => {
     return (
       <TooltipContentStyle>
         {data.map((item, idx) => (
@@ -83,13 +155,13 @@ const QuestionPage = () => {
     if (selectSection === 'title-form') {
       return (
         <Tooltip title="Writing a good title" $marginTop="398" $theme="dark">
-          {renderContent(titleConten)}
+          {renderContent(titleContent)}
         </Tooltip>
       );
     } else if (selectSection === 'problem-form') {
       return (
         <Tooltip title="Introduce the problem" $marginTop="550" $theme="dark">
-          {renderContent(problemConten)}
+          {renderContent(problemContents)}
         </Tooltip>
       );
     } else if (selectSection === 'expect-form') {
@@ -115,11 +187,31 @@ const QuestionPage = () => {
       />
       <MainContainer>
         <Title>Ask a public question</Title>
-        <NoticeWritingQuestion />
-        <TitleForm onClick={handleChangeSection} />
-        <WriteProblemForm onClick={handleChangeSection} />
-        <WriteExpectForm onClick={handleChangeSection} />
-        <Tags onClick={handleChangeSection} />
+        <GoodWritingGuide />
+        <TitleForm
+          value={title}
+          onClick={handleChangeSection}
+          handleUpdateTitle={handleUpdateTitle}
+        />
+        <WriteProblemForm
+          value={problemContent}
+          onClick={handleChangeSection}
+          handleUpdateProblemContent={handleUpdateProblemContent}
+        />
+        <WriteExpectForm
+          value={expectingContent}
+          onClick={handleChangeSection}
+          handleUpdateExpectContent={handleUpdateExpectContent}
+        />
+        <Tags
+          tags={tags}
+          tagValue={tagValue}
+          onClick={handleChangeSection}
+          handleUpdateTagValue={handleUpdateTagValue}
+          handleAddTag={handleAddTag}
+          handleDeleteTag={handleDeleteTag}
+        />
+        <CustomButton onClick={handleCreateQuestionSubmit} content="질문 등록하기" />
       </MainContainer>
       <SideContainer>{renderSideContainer()}</SideContainer>
     </Container>
@@ -178,4 +270,4 @@ const Img = styled.img`
   right: 0;
 `;
 
-export default QuestionPage;
+export default QuestionWritePage;

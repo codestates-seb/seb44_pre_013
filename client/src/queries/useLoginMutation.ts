@@ -14,9 +14,10 @@ const checkLogin = async (account: IAccountType) => {
   try {
     const response: Response = await authInstance.post(`/auth/login`, account);
     const header = getHeader(response, 'Authorization');
+    const memberId = getHeader(response, 'MemberId');
     const status = isStatusOK(response);
 
-    return { header, status };
+    return { header, status, memberId };
   } catch (error) {
     console.log(error);
   }
@@ -35,6 +36,7 @@ const useLoginMutation = () => {
       dispatch(
         setLogin({
           accessToken: data?.header,
+          memberId: data?.memberId,
         })
       );
       navigate('/');

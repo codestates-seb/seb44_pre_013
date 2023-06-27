@@ -1,9 +1,10 @@
 import { configureStore } from '@reduxjs/toolkit';
-import postReducer from './post/postSlice';
+
 import loginReducer from './loginSlice';
+import answerReducer from './answerSlice';
 
 export const store = configureStore({
-  reducer: { post: postReducer, login: loginReducer },
+  reducer: { answers: answerReducer, login: loginReducer },
 });
 
 export type RootState = ReturnType<typeof store.getState>;

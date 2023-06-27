@@ -7,6 +7,7 @@ import AfterLoginHeader from './components/AfterLoginHeader';
 
 function App() {
   const isLogin = useSelector((state: RootState) => state.login.isLogin);
+
   return (
     <>
       <GlobalStyles />

@@ -5,10 +5,12 @@ import Quill from '../../../components/quill/Quill';
 import Label from '../../../components/ui/label/Label';
 
 interface IProps {
+  value: string;
   onClick: (e: MouseEvent<HTMLElement>) => void;
+  handleUpdateExpectContent: (value: string) => void;
 }
 
-const WriteExpectForm = ({ onClick }: IProps) => {
+const WriteExpectForm = ({ value, onClick, handleUpdateExpectContent }: IProps) => {
   return (
     <Container onClick={onClick} data-type="expect-form">
       <Label content="What did you try and what were you expecting?" type="title" />
@@ -16,7 +18,12 @@ const WriteExpectForm = ({ onClick }: IProps) => {
         content="Describe what you tried, what you expected to happen, and what actually resulted. Minimum 20 characters."
         type="description"
       />
-      <Quill width="100%" height="17.875rem" />
+      <Quill
+        width="100%"
+        height="17.875rem"
+        value={value}
+        handleUpdateExpectContent={handleUpdateExpectContent}
+      />
     </Container>
   );
 };
