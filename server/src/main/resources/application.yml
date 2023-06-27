@@ -11,7 +11,7 @@ spring:
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
     password: ${RDS_PASSWORD}
-    url: jdbc:mysql://database.czloyqya09hy.ap-northeast-2.rds.amazonaws.com:3306/mydb?useSSL=false&characterEncoding=UTF-8&serverTimezone=UTC
+    url: ${RDS_URL}
     username: admin
   security:
     oauth2:
@@ -37,6 +37,6 @@ jwt:
   refresh-token-expiration-minutes: 420
 mail:
   address:
-    admin: ${ADDRESS_ADMIN}
+    admin: ${ADMIN_ADDRESS}
 config:
   domain: http://${CONFIG_DOMAIN}

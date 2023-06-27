@@ -87,6 +87,7 @@ public class SecurityConfiguration implements WebMvcConfigurer {
         configuration.setAllowedOrigins(Arrays.asList("http://localhost:5173", "http://ec2-13-125-254-51.ap-northeast-2.compute.amazonaws.com:8080"));
         configuration.setAllowedMethods(Arrays.asList("GET", "POST", "PATCH", "DELETE"));
         configuration.setAllowedHeaders(Arrays.asList("*"));
+        configuration.addExposedHeader("Location");
         configuration.addExposedHeader("MemberId");
         configuration.addExposedHeader("Authorization");
 
@@ -135,7 +136,7 @@ public class SecurityConfiguration implements WebMvcConfigurer {
                 .allowedMethods("GET", "POST", "PUT", "PATCH", "DELETE", "OPTIONS")
                 .allowedHeaders("*")
                 .allowCredentials(true)
-                .exposedHeaders("Authorization")
+                .exposedHeaders("Authorization", "Location", "MemberId")
                 .maxAge(MAX_AGE_SECS);
     }
 
