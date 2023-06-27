@@ -1,13 +1,11 @@
 import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useSelector } from 'react-redux';
-import axios from 'axios';
 import styled from 'styled-components';
 
 import { IQuestionsData } from '../../../types/question';
 import { RootState } from '../../../store/store';
-import { config } from '../../../utils/axiosConfig';
-import { getQuestionAPI } from '../../../apis/questionApi';
+import { deleteQuestionAPI, getQuestionAPI } from '../../../apis/questionApi';
 interface IProps {
   questionId: string | undefined;
 }
@@ -19,10 +17,9 @@ const Question = ({ questionId }: IProps) => {
     ? question?.content?.split('myQuestionsTags:')
     : [];
   const { memberId: loginMemberId } = useSelector((state: RootState) => state.login);
-  const [writeMemberId, setWriteMemberId] = useState('');
 
   const handleQuestionDelete = () => {
-    axios.delete(`${import.meta.env.VITE_SERVER_URL}/questions/${questionId}`, config).then(() => {
+    deleteQuestionAPI(questionId).then(() => {
       navigate('/');
     });
   };
@@ -32,7 +29,6 @@ const Question = ({ questionId }: IProps) => {
       .then((response) => {
         if (response) {
           setQuestion(response.data);
-          setWriteMemberId(response.data.memberId);
         }
       })
       .catch((error) => alert(error));
@@ -50,10 +46,10 @@ const Question = ({ questionId }: IProps) => {
       <ProfileWrapper>
         <PostMenuWrapper>
           <button>Share</button>
-          {loginMemberId === writeMemberId && (
+          {loginMemberId === question?.memberId && (
             <button onClick={() => navigate(`/questions/modify/${questionId}`)}>Edit</button>
           )}
-          {loginMemberId === writeMemberId && (
+          {loginMemberId === question?.memberId && (
             <button onClick={handleQuestionDelete}>Delete</button>
           )}
           <button>Follow</button>

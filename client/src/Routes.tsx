@@ -1,11 +1,11 @@
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 
+import SignUpPage from './pages/SignUpPage';
 import LoginPage from './pages/LoginPage';
 import MainPage from './pages/MainPage';
+import QuestionWritePage from './pages/Question/WritePage/QuestionWritePage';
 import QuestionDetailPage from './pages/Question/DetailPage/QuestionDetailPage';
 import QuestionModifyPage from './pages/Question/DetailPage/QuestionModifyPage';
-import QuestionWritePage from './pages/Question/WritePage/QuestionWritePage';
-import SignUpPage from './pages/SignUpPage';
 
 const RouteProvider = ({ children }: { children: React.ReactNode }) => {
   return (

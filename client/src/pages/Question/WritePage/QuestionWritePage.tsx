@@ -1,12 +1,11 @@
 import { useState, ChangeEvent, MouseEvent, KeyboardEvent } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { useSelector } from 'react-redux';
-import axios from 'axios';
 import styled from 'styled-components';
 import { IconProp, SizeProp } from '@fortawesome/fontawesome-svg-core';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPencil } from '@fortawesome/free-solid-svg-icons';
 
+import { createQuestionAPI } from '../../../apis/questionApi';
 import { IDataType } from '../../../types/types';
 import Tooltip from '../../../components/ui/tooltip/Tooltip';
 import GoodWritingGuide from './GoodWritingGuide';
@@ -15,8 +14,6 @@ import WriteProblemForm from './WriteProblemForm';
 import WriteExpectForm from './WriteExpectingForm';
 import Tags from './Tags';
 import CustomButton from '../../../components/ui/buttons/CustomButton';
-import { RootState } from '../../../store/store';
-import { config } from '../../../utils/axiosConfig';
 
 const titleContent: IDataType[] = [
   {
@@ -67,8 +64,6 @@ const QuestionWritePage = () => {
   const [expectingContent, setExpectingContent] = useState('');
   const [tagValue, setTagValue] = useState<string>('');
   const [tags, setTags] = useState<string[]>([]);
-  const [data, setData] = useState({});
-  const { isLogin } = useSelector((state: RootState) => state.login);
   const navigate = useNavigate();
 
   /** state 값 변경 함수들 */
@@ -121,9 +116,7 @@ const QuestionWritePage = () => {
         title,
         content: `${problemContent}${expectingContent}myQuestionsTags:${tags}`,
       };
-
-      axios
-        .post(`${import.meta.env.VITE_SERVER_URL}/questions/ask`, data, config)
+      createQuestionAPI(data)
         .then((response) => {
           if (response) {
             const questionId = response?.headers.location.split('/questions/')[1];
@@ -181,10 +174,7 @@ const QuestionWritePage = () => {
 
   return (
     <Container>
-      <Img
-        src="https://fe-img-uploads.s3.ap-northeast-2.amazonaws.com/question_img.png"
-        alt="robot img"
-      />
+      <Img src="https://i.ibb.co/9bJVn2M/question-img.png" alt="robot img" />
       <MainContainer>
         <Title>Ask a public question</Title>
         <GoodWritingGuide />
@@ -231,6 +221,9 @@ const MainContainer = styled.div`
   display: flex;
   flex-direction: column;
   flex: 4.2;
+  & > button {
+    margin-top: 2rem;
+  }
 `;
 
 const SideContainer = styled.div`
@@ -263,6 +256,7 @@ const Title = styled.h1`
 `;
 
 const Img = styled.img`
+  margin-top: 4rem;
   width: 850px;
   height: 150px;
   position: absolute;

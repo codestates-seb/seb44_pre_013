@@ -1,14 +1,13 @@
 import { ChangeEvent, useEffect, useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
-import axios from 'axios';
 import styled from 'styled-components';
 
 import Quill from '../../../components/quill/Quill';
 import { IQuestionsData } from '../../../types/question';
+import { getQuestionAPI, modifyQuestionAPI } from '../../../apis/questionApi';
 import { Input } from '../../../components/ui/input/Input';
 import Label from '../../../components/ui/label/Label';
 import CustomButton from '../../../components/ui/buttons/CustomButton';
-import { modifyQuestionAPI } from '../../../apis/questionApi';
 
 const QuestionModifyPage = () => {
   const { questionId } = useParams();
@@ -35,29 +34,33 @@ const QuestionModifyPage = () => {
       title,
       content: `${content}myQuestionsTags:${tags}`,
     };
-
     modifyQuestionAPI(questionId, data)
       .then((response) => {
         if (response) {
           navigate(`/questions/${questionId}`);
         }
       })
-      .catch((error) => alert(error));
+      .catch((error) => {
+        alert(error);
+        console.log(error);
+      });
   };
 
   useEffect(() => {
-    axios
-      .get(`${import.meta.env.VITE_SERVER_URL}/questions/${questionId}`)
+    getQuestionAPI(questionId)
       .then((response) => {
         if (response) {
-          const { data } = response.data;
+          const data = response.data;
           setQuestion(data);
-          setTitle(data.title);
-          setContent(data.content.split('myQuestionsTags:')[0]);
-          setTags(data.content.split('myQuestionsTags:')[1]);
+          setTitle(data?.title);
+          setContent(data?.content.split('myQuestionsTags:')[0]);
+          setTags(data?.content.split('myQuestionsTags:')[1]);
         }
       })
-      .catch((error) => alert(error));
+      .catch((error) => {
+        alert(error);
+        console.log(error);
+      });
   }, [questionId]);
 
   return (
