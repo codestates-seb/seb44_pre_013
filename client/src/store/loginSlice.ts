@@ -5,6 +5,7 @@ import { getLocalStorage, setLocalStorage } from '../utils';
 export interface ILogin {
   accessToken: string | null;
   refreshToken?: string;
+  memberId?: string | null;
 }
 
 interface IInitialState extends ILogin {
@@ -16,6 +17,7 @@ const initialState: IInitialState = getLocalStorage('login', {
   isLogin: false,
   isValid: true,
   accessToken: '',
+  memberId: '',
 });
 
 export const loginSlice = createSlice({
@@ -23,7 +25,12 @@ export const loginSlice = createSlice({
   initialState,
   reducers: {
     setLogin: (state, action: PayloadAction<ILogin>) => {
-      const loginData = { ...state, isLogin: true, accessToken: action.payload.accessToken };
+      const loginData = {
+        ...state,
+        isLogin: true,
+        accessToken: action.payload.accessToken,
+        memberId: action.payload.memberId,
+      };
       setLocalStorage('login', loginData);
       return loginData;
     },
