@@ -2,8 +2,8 @@ import { styled, css } from 'styled-components';
 
 interface ButtonProps {
   color?: string;
-  hoverColor?: string;
-  fontColor?: string;
+  hovercolor?: string;
+  fontcolor?: string;
 }
 
 export const Button = styled.button<ButtonProps>`
@@ -17,15 +17,15 @@ export const Button = styled.button<ButtonProps>`
   justify-content: center;
   padding: 0.7rem;
   ${(props) =>
-    props.hoverColor &&
+    props.hovercolor &&
     css`
       &:hover {
-        background-color: ${props.hoverColor};
+        background-color: ${props.hovercolor};
       }
     `}
   ${(props) =>
-    props.fontColor &&
+    props.fontcolor &&
     css`
-      color: ${props.fontColor};
+      color: ${props.fontcolor};
     `}
 `;

@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 import { AiOutlineSearch } from 'react-icons/ai';
 import { BsFillPersonFill } from 'react-icons/bs';
@@ -36,7 +37,7 @@ const HeaderContainer = styled.div`
 `;
 
 // 로고
-const HeaderLogo = styled.a`
+const HeaderLogo = styled.span`
   padding: 5 calc(8px * 1);
   height: 100%;
   display: flex;
@@ -197,10 +198,17 @@ const AfterLoginHeader = () => {
     <HeaderPositioner>
       <HeaderContainer>
         <HeaderLogo>
-          <img src="../../public/HeaderLogo-removebg-preview.png" width="166px"></img>
+          <Link to="/">
+            <img
+              src="https://fe-img-uploads.s3.ap-northeast-2.amazonaws.com/HeaderLogo-removebg-preview.png"
+              width="166px"
+            />
+          </Link>
         </HeaderLogo>
         <HeaderNav>
-          <HeaderNavItem>Products</HeaderNavItem>
+          <Link to="/">
+            <HeaderNavItem>Products</HeaderNavItem>
+          </Link>
         </HeaderNav>
         <HeaderSearchComponent>
           <HeaderSearchIcon />

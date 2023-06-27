@@ -1,35 +1,62 @@
 import { styled } from 'styled-components';
 import OAuthArea from '../components/ui/OAuthArea';
-import LoginForm from '../components/form/LoginForm';
-import FormInput from '../components/form/FormInput';
+import Form from '../components/form/Form';
+import FormInput from '../components/ui/input/FormInput';
 import { Button } from '../components/ui/buttons/Button';
 import OAuthButton from '../components/ui/buttons/OAuthButton';
 import { OAuth } from '../constants/OAuth';
+import { useRef } from 'react';
+import useLoginMutation from '../queries/useLoginMutation';
+import { useSelector } from 'react-redux';
+import { RootState } from '../store/store';
 
 const LoginPage = () => {
+  const isValid = useSelector((state: RootState) => state.login.isValid);
+  const refId = useRef<HTMLInputElement>(null);
+  const refPw = useRef<HTMLInputElement>(null);
+
+  const loginMutation = useLoginMutation();
+
+  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    if (refId.current && refPw.current) {
+      loginMutation.mutate({ id: refId.current.value, password: refPw.current.value });
+    }
+  };
+
   return (
     <Container>
       <CenterWrapper>
+        <Icon
+          src="https://fe-img-uploads.s3.ap-northeast-2.amazonaws.com/stackoverflow_Icon.svg"
+          alt="아이콘"
+        />
         <OAuthArea>
           <OAuthButton
-            iconUrl={OAuth.GOOGLE.ICONURL}
+            IconUrl={OAuth.GOOGLE.ICONURL}
             title={OAuth.GOOGLE.LOGIN}
             color={OAuth.GOOGLE.COLOR}
-            hoverColor={OAuth.GOOGLE.HOVER_COLOR}
-            fontColor={OAuth.GOOGLE.FONT_COLOR}
+            hovercolor={OAuth.GOOGLE.HOVER_COLOR}
+            fontcolor={OAuth.GOOGLE.FONT_COLOR}
           />
           <OAuthButton
-            iconUrl={OAuth.GITHUB.ICONURL}
+            IconUrl={OAuth.GITHUB.ICONURL}
             title={OAuth.GITHUB.LOGIN}
             color={OAuth.GITHUB.COLOR}
-            hoverColor={OAuth.GITHUB.HOVER_COLOR}
+            hovercolor={OAuth.GITHUB.HOVER_COLOR}
           />
         </OAuthArea>
-        <LoginForm>
-          <FormInput title="Email" type="text" />
-          <FormInput title="Password" type="password" />
-          <Button>Log in</Button>
-        </LoginForm>
+        <Form onSubmit={handleSubmit}>
+          <FormInput
+            title="Email"
+            type="text"
+            ref={refId}
+            isValid={isValid}
+            warningText={!isValid ? 'No user found with matching email' : ''}
+          />
+          <FormInput title="Password" type="password" ref={refPw} />
+          <Button type="submit">Log in</Button>
+        </Form>
         <BottomQuestion>
           Don’t have an account?<a href="http://localhost:5173/members/signup"> Sign up</a>
         </BottomQuestion>
@@ -65,6 +92,10 @@ const BottomQuestion = styled.div`
   > a {
     color: #0374cc;
   }
+`;
+
+const Icon = styled.img`
+  width: 2rem;
 `;
 
 export default LoginPage;
