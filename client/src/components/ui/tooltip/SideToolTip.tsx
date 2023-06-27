@@ -2,11 +2,19 @@ import { styled } from 'styled-components';
 import { SizeProp } from '@fortawesome/fontawesome-svg-core';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPencil, faMessage, faLayerGroup } from '@fortawesome/free-solid-svg-icons';
+import { IconDefinition } from '@fortawesome/fontawesome-svg-core';
 
 import Tooltip from '../../../components/ui/tooltip/Tooltip';
-import { IDataType } from '../../../types/question';
+export interface IToolTipDataType {
+  icon?: IconDefinition;
+  size?: string;
+  postId?: number;
+  subtitle?: string;
+  content?: string;
+  subContent?: string;
+}
 
-const blogData: IDataType[] = [
+const blogData: IToolTipDataType[] = [
   {
     icon: faPencil,
     size: 'sm',
@@ -15,7 +23,7 @@ const blogData: IDataType[] = [
   { icon: faPencil, size: 'sm', content: 'Stack Exchange Network Outage – June 15, 2023' },
 ];
 
-const featuredOnMetaData: IDataType[] = [
+const featuredOnMetaData: IToolTipDataType[] = [
   { icon: faMessage, size: 'sm', content: 'Statement from SO: June 5, 2023 Moderator Action' },
   { icon: faMessage, size: 'sm', content: 'Stack Exchange Network Outage – June 15, 2023' },
   {
@@ -30,7 +38,7 @@ const featuredOnMetaData: IDataType[] = [
   },
 ];
 
-const hotMetaPost: IDataType[] = [
+const hotMetaPost: IToolTipDataType[] = [
   {
     postId: 3,
     content: 'How should non-English answers with code be handled in the Low Quality...',
@@ -43,7 +51,7 @@ const hotMetaPost: IDataType[] = [
   { postId: 27, content: 'Temporary policy: Generative AI (e.g., ChatGPT) is banned' },
 ];
 
-const renderContent = (data: IDataType[]) => {
+const renderContent = (data: IToolTipDataType[]) => {
   return (
     <TooltipContentStyle>
       {data?.map((item, idx) => (
