@@ -1,7 +1,7 @@
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 
-const NoticeWritingQuestion = () => {
+const GoodWritingGuide = () => {
   return (
     <Container>
       <Title>Writing a good question</Title>
@@ -66,4 +66,4 @@ const LinkStyle = styled.span`
   color: #0675c9;
 `;
 
-export default NoticeWritingQuestion;
+export default GoodWritingGuide;

@@ -1,4 +1,7 @@
+import { Link } from 'react-router-dom';
 import styled from 'styled-components';
+
+import CustomButton from '../../../components/ui/buttons/CustomButton';
 
 const QuestionHeader = () => {
   return (
@@ -7,7 +10,9 @@ const QuestionHeader = () => {
         <Title>
           What is causing the warning 'Removing intrinsics.ArrayPrototype.toReversed' in React?
         </Title>
-        <Button>Ask Question</Button>
+        <Link to="/questions">
+          <CustomButton content="Ask Question" />
+        </Link>
       </TitleBox>
       <TimeInfoBox>
         <SpanBox>
@@ -43,6 +48,17 @@ const TitleBox = styled.div`
   display: flex;
   justify-content: space-between;
   flex-flow: wrap;
+  & > h1 {
+    flex: 1;
+  }
+  & > button {
+    height: 2.375rem;
+    line-height: 2.375rem;
+  }
+  & > a {
+    width: 6.439rem;
+    padding: 0.65rem;
+  }
 `;
 
 const TimeInfoBox = styled.div`
@@ -53,20 +69,6 @@ const TimeInfoBox = styled.div`
 
 const Title = styled.h1`
   font-weight: 400;
-`;
-
-const Button = styled.button`
-  width: 6.5rem;
-  border: 1px solid #d6d9dc;
-  border-radius: 6px;
-  background-color: #0b95ff;
-  color: #ffffff;
-  display: flex;
-  justify-content: center;
-  padding: 0.7rem;
-  &:hover {
-    background-color: #0074cc;
-  }
 `;
 
 const SpanBox = styled.div`
@@ -84,7 +86,7 @@ const Time = styled.span`
   margin-left: 0.2rem;
 `;
 
-const Line = styled.div`
+export const Line = styled.div`
   border-bottom: 0.1rem solid #d6d8d8;
   margin: 0 0 1rem;
 `;

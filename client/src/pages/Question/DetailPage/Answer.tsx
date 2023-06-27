@@ -1,41 +1,91 @@
+import { useState } from 'react';
+import { useDispatch } from 'react-redux';
 import styled from 'styled-components';
 
-const Answer = () => {
+import Quill from '../../../components/quill/Quill';
+import { IAnswer } from '../../../types/answer';
+import { deleteAnswer, modifyAnswer } from '../../../store/answerSlice';
+import { deleteAnswerAPI, modifyAnswerAPI } from '../../../apis/answerApi';
+
+interface IProps {
+  answer: IAnswer;
+}
+
+const Answer = ({ answer }: IProps) => {
+  const dispatch = useDispatch();
+  const [isUpdate, setIsUpdate] = useState(false);
+  const [updateAnswerId, setUpdateAnswerId] = useState('');
+  const [writeContent, setContent] = useState(answer.content);
+
+  const { content, createdAt, modifiedAt } = answer;
+
+  const handleUpdate = (answerId: string) => {
+    setUpdateAnswerId(answerId);
+    setIsUpdate(!isUpdate);
+  };
+
+  const handleContentUpdate = (value: string) => {
+    setContent(value);
+  };
+
+  const handleDeleteAnswer = () => {
+    deleteAnswerAPI(answer.answerId)
+      .then((response) => {
+        dispatch(deleteAnswer(answer.answerId));
+      })
+      .catch((error) => {
+        alert(error);
+        console.log(error);
+      });
+  };
+
+  const handleUpdateAnswer = () => {
+    const data = {
+      content: writeContent,
+    };
+    modifyAnswerAPI(answer.answerId, data)
+      .then((response) => {
+        if (response) {
+          dispatch(modifyAnswer(response.data));
+          handleUpdate(`${answer.answerId}`);
+        }
+      })
+      .catch((error) => {
+        alert(error);
+        console.log(error);
+      });
+  };
+
   return (
     <Container>
       <ContentWrapper>
-        <div>
-          <p>
-            I randomly started getting this in my project right around the time you made this post
-            which was odd.
-          </p>
-          <p>
-            Do you have Metamask installed as a browser extension? I disabled the extension and the
-            warnings went away.
-          </p>
-
-          <p>
-            I found this post:{' '}
-            <span>https://github.com/MetaMask/eth-phishing-detect/issues/11900</span> Which
-            potentially suggests that something in our projects are triggering metamasks
-            anti-phishing feature somehow? Not quite sure, but disabling the extension removed the
-            warnings and confirmed it wasn't something in my app directly.
-          </p>
-        </div>
+        {!isUpdate && <div dangerouslySetInnerHTML={{ __html: `${content}` }} />}
       </ContentWrapper>
       <ProfileWrapper>
         <PostMenuWrapper>
           <button>Share</button>
-          <button>Edit</button>
-          <button>Follow</button>
+          <button onClick={() => handleUpdate(`${answer.answerId}`)}>
+            {isUpdate ? 'Cancel' : 'Edit'}
+          </button>
+          <button onClick={handleDeleteAnswer}>Delete</button>
+          {+updateAnswerId === answer.answerId && isUpdate && (
+            <Quill
+              value={writeContent}
+              onChange={handleContentUpdate}
+              width="100%"
+              height="10rem"
+            />
+          )}
+          {isUpdate && (
+            <AnswerModifySubmit onClick={handleUpdateAnswer}>수정 등록하기</AnswerModifySubmit>
+          )}
         </PostMenuWrapper>
-        <Time>answered Jun 2 at 10:07</Time>
         <PostSignatureWrapper>
+          <Time>answered {createdAt.split('T')[0]}</Time>
           <div>
             <img src="https://source.unsplash.com/random/32x32/?person" alt="profile img" />
             <UserDetailWrapper>
               <UserName>nickname</UserName>
-              <EditCommentBtn>edited Jun 8 at 17:53</EditCommentBtn>
               <div>
                 <span>
                   <strong>701</strong>
@@ -61,6 +111,7 @@ const Answer = () => {
 const Container = styled.div`
   display: flex;
   flex-direction: column;
+  width: 100%;
   padding: 1rem 0;
 `;
 
@@ -141,4 +192,12 @@ const EditCommentBtn = styled.div`
     cursor: pointer;
   }
 `;
+
+const AnswerModifySubmit = styled.button`
+  margin-top: 2.4rem;
+  &:hover {
+    color: #0a95ff;
+  }
+`;
+
 export default Answer;

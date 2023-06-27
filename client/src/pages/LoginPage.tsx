@@ -6,61 +6,51 @@ import { Button } from '../components/ui/buttons/Button';
 import OAuthButton from '../components/ui/buttons/OAuthButton';
 import { OAuth } from '../constants/OAuth';
 import { useRef } from 'react';
-import axios from 'axios';
-import { useMutation } from '@tanstack/react-query';
-
-interface AccountType {
-  email: string;
-  password: string;
-}
+import useLoginMutation from '../queries/useLoginMutation';
+import { useSelector } from 'react-redux';
+import { RootState } from '../store/store';
 
 const LoginPage = () => {
+  const isValid = useSelector((state: RootState) => state.login.isValid);
   const refId = useRef<HTMLInputElement>(null);
   const refPw = useRef<HTMLInputElement>(null);
 
-  const checkLogin = async (account: AccountType) => {
-    const response = await axios.post<AccountType>(
-      `http://localhost:3001/member?email=${account.email}&password=${account.password}`,
-      account
-    );
-    console.log(response);
-
-    return response;
-  };
-
-  const { mutate, isError } = useMutation((account: AccountType) => checkLogin(account));
+  const loginMutation = useLoginMutation();
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    if (refId.current && refPw.current)
-      mutate({ email: refId.current.value, password: refPw.current.value });
-    isError ? alert('아이디 또는 비밀번호가 틀렸습니다.') : alert('로그인 성공');
+    if (refId.current && refPw.current) {
+      loginMutation.mutate({ id: refId.current.value, password: refPw.current.value });
+    }
   };
 
   return (
     <Container>
       <CenterWrapper>
-        <Icon
-          src="https://fe-img-uploads.s3.ap-northeast-2.amazonaws.com/stackoverflow_Icon.svg"
-          alt="아이콘"
-        />
+        <Icon src="https://i.ibb.co/Qb5bWgL/stackoverflow-Icon.png" alt="아이콘" />
         <OAuthArea>
           <OAuthButton
-            iconUrl={OAuth.GOOGLE.ICONURL}
+            IconUrl={OAuth.GOOGLE.ICONURL}
             title={OAuth.GOOGLE.LOGIN}
             color={OAuth.GOOGLE.COLOR}
-            hoverColor={OAuth.GOOGLE.HOVER_COLOR}
-            fontColor={OAuth.GOOGLE.FONT_COLOR}
+            hovercolor={OAuth.GOOGLE.HOVER_COLOR}
+            fontcolor={OAuth.GOOGLE.FONT_COLOR}
           />
           <OAuthButton
-            iconUrl={OAuth.GITHUB.ICONURL}
+            IconUrl={OAuth.GITHUB.ICONURL}
             title={OAuth.GITHUB.LOGIN}
             color={OAuth.GITHUB.COLOR}
-            hoverColor={OAuth.GITHUB.HOVER_COLOR}
+            hovercolor={OAuth.GITHUB.HOVER_COLOR}
           />
         </OAuthArea>
         <Form onSubmit={handleSubmit}>
-          <FormInput title="Email" type="text" ref={refId} />
+          <FormInput
+            title="Email"
+            type="text"
+            ref={refId}
+            isValid={isValid}
+            warningText={!isValid ? 'No user found with matching email' : ''}
+          />
           <FormInput title="Password" type="password" ref={refPw} />
           <Button type="submit">Log in</Button>
         </Form>

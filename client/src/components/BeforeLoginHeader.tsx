@@ -199,7 +199,7 @@ const BeforeLoginHeader = () => {
             <img
               src="https://fe-img-uploads.s3.ap-northeast-2.amazonaws.com/HeaderLogo-removebg-preview.png"
               width="166px"
-            ></img>
+            />
           </Link>
         </HeaderLogo>
         <HeaderNav>
@@ -218,10 +218,10 @@ const BeforeLoginHeader = () => {
           <HeaderSearchbar aria-label="Search" placeholder="Search..." />
         </HeaderSearchComponent>
         <HeaderRightContents>
-          <Link to="/auth/login">
+          <Link to="/login">
             <HeaderLogin>Log in</HeaderLogin>
           </Link>
-          <Link to="/members/signup">
+          <Link to="/signup">
             <HeaderSignUp>Sign up</HeaderSignUp>
           </Link>
         </HeaderRightContents>

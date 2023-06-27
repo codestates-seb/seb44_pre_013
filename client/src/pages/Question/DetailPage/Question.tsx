@@ -1,36 +1,57 @@
+import { useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
+import { useSelector } from 'react-redux';
 import styled from 'styled-components';
 
-const Question = () => {
+import { IQuestionsData } from '../../../types/question';
+import { RootState } from '../../../store/store';
+import { deleteQuestionAPI, getQuestionAPI } from '../../../apis/questionApi';
+interface IProps {
+  questionId: string | undefined;
+}
+
+const Question = ({ questionId }: IProps) => {
+  const navigate = useNavigate();
+  const [question, setQuestion] = useState<IQuestionsData | null>(null);
+  const [renderedHTML, tags] = question?.content
+    ? question?.content?.split('myQuestionsTags:')
+    : [];
+  const { memberId: loginMemberId } = useSelector((state: RootState) => state.login);
+
+  const handleQuestionDelete = () => {
+    deleteQuestionAPI(questionId).then(() => {
+      navigate('/');
+    });
+  };
+
+  useEffect(() => {
+    getQuestionAPI(questionId)
+      .then((response) => {
+        if (response) {
+          setQuestion(response.data);
+        }
+      })
+      .catch((error) => alert(error));
+  }, [questionId]);
+
   return (
     <Container>
-      <ContentWrapper>
-        <div>
-          I am getting this warning on first load of my App. I'm using React.
-          <p>
-            lockdown-install.js:1 Removing intrinsics.%ArrayPrototype%.toReversed
-            intrinsics.%ArrayPrototype%.@@unscopables.toSpliced
-            intrinsics.%ArrayPrototype%.@@unscopables.toSorted
-          </p>
-          <p>
-            I really have no idea what this is about, so there's nothing that I have previosuly
-            tried.
-          </p>
-          <p>
-            I went into the node_modules to try and find something related to it... been searching
-            on the internet and even chat GPT but the information that I found is vague.
-          </p>
-        </div>
-      </ContentWrapper>
+      <title style={{ marginTop: '3rem' }}>{question?.title}</title>
+      <ContentWrapper>{<div dangerouslySetInnerHTML={{ __html: renderedHTML }} />}</ContentWrapper>
       <TagWrapper>
-        <Tag>reactjs</Tag>
-        <Tag>build</Tag>
-        <Tag>runtime</Tag>
-        <Tag>web-frontend</Tag>
+        {tags?.split(',').map((tag: string, idx: number) => (
+          <Tag key={idx}>{tag}</Tag>
+        ))}
       </TagWrapper>
       <ProfileWrapper>
         <PostMenuWrapper>
           <button>Share</button>
-          <button>Edit</button>
+          {loginMemberId === question?.memberId && (
+            <button onClick={() => navigate(`/questions/modify/${questionId}`)}>Edit</button>
+          )}
+          {loginMemberId === question?.memberId && (
+            <button onClick={handleQuestionDelete}>Delete</button>
+          )}
           <button>Follow</button>
         </PostMenuWrapper>
         <PostSignatureWrapper>
@@ -65,6 +86,8 @@ const Question = () => {
 const Container = styled.div`
   display: flex;
   flex-direction: column;
+  width: 100%;
+  padding: 1rem 2rem;
 `;
 
 const ContentWrapper = styled.div`
@@ -132,6 +155,7 @@ const Tag = styled.span`
   padding: 0.3rem 0.375rem;
   font-size: 0.75rem;
   border-radius: 0.2rem;
+  letter-spacing: 0.03rem;
   &:hover {
     color: #2c5877;
     background-color: #d0e3f1;

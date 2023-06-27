@@ -1,16 +1,20 @@
+import { useParams } from 'react-router-dom';
 import styled from 'styled-components';
+
 import QuestionHeader from './QuestionHeader';
 import QuestionDetailContainer from './QuestionDetailContainer';
 import AnswerDetailContainer from './AnswerDetailContainer';
 import SideToolTip from '../../../components/ui/tooltip/SideToolTip';
 
 const QuestionDetailPage = () => {
+  const { questionId } = useParams();
+
   return (
     <Container>
       <QuestionHeader />
       <MainContainer>
         <MainQuestionBar>
-          <QuestionDetailContainer />
+          <QuestionDetailContainer questionId={questionId} />
           <AnswerDetailContainer />
         </MainQuestionBar>
         <SideQuestionBar>
@@ -20,6 +24,7 @@ const QuestionDetailPage = () => {
     </Container>
   );
 };
+
 const Container = styled.div`
   padding: 1.5rem;
 `;

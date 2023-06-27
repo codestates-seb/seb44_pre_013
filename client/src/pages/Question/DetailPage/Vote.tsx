@@ -26,7 +26,7 @@ const Voting = () => {
 const Container = styled.div`
   display: flex;
   flex-direction: column;
-  margin: 0 1rem 0 0;
+  margin: 1rem 1rem 0 0;
   & > * {
     margin-bottom: 0.9rem;
   }

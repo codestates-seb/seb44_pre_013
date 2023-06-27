@@ -3,16 +3,16 @@ import { Button } from './Button';
 
 interface PropsType {
   title: string;
-  iconUrl?: string;
+  IconUrl?: string;
   color?: string;
-  hoverColor?: string;
-  fontColor?: string;
+  hovercolor?: string;
+  fontcolor?: string;
 }
 
-const OAuthButton = ({ iconUrl, title, color, hoverColor, fontColor }: PropsType) => {
+const OAuthButton = ({ IconUrl, title, color, hovercolor, fontcolor }: PropsType) => {
   return (
-    <Button color={color} hoverColor={hoverColor} fontColor={fontColor}>
-      <Img src={iconUrl} />
+    <Button color={color} hovercolor={hovercolor} fontcolor={fontcolor}>
+      <Img src={IconUrl} />
       {title}
     </Button>
   );
