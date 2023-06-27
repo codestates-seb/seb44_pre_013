@@ -139,12 +139,17 @@ const QuestionsContainer = styled.div`
   flex-direction: column;
 `;
 
+const QuestionTitleContainer = styled.div`
+  cursor: pointer;
+`;
+
 const QuestionContentContainer = styled.div`
-  > div {
+  > h3 {
     max-height: 73px;
     white-space: normal;
     font-size: 13px;
-    margin-bottom: 4px;
+    font-weight: 400;
+    margin-bottom: 10px;
     line-height: 1.5;
     overflow: hidden;
     text-overflow: ellipsis;
@@ -244,6 +249,7 @@ const StylePageButton = styled.div<activebutton>`
   padding: 0 8px;
   font-size: 13px;
   color: rgb(59, 64, 70);
+  cursor: pointer;
   background-color: ${(props) =>
     props.activebutton ? 'rgb(244, 130, 37);' : 'rgb(255, 255, 255);'};
   &:hover {
@@ -346,7 +352,9 @@ const BeforeLoginMainPage: React.FC = () => {
               <p>20 views</p>
             </QuestionCount>
             <Question>
-              <div>{question.title}</div>
+              <QuestionTitleContainer>
+                <div>{question.title}</div>
+              </QuestionTitleContainer>
               <QuestionContentContainer>
                 <h3>{question.content}</h3>
               </QuestionContentContainer>
