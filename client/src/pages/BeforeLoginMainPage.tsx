@@ -1,11 +1,10 @@
 import { useEffect, useState } from 'react';
-import { Link } from 'react-router-dom';
 
 import { Button } from '../components/ui/buttons/Button';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { Link } from 'react-router-dom';
 import Pagination from 'react-js-pagination';
-// import axios from 'axios';
-import dummyData from '../dummyData';
+import axios from 'axios';
 import { faFilter } from '@fortawesome/free-solid-svg-icons';
 import { styled } from 'styled-components';
 
@@ -14,12 +13,13 @@ const PageContainer = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
+  padding: 0px 200px 0px 2px;
 `;
 
 const MainPageContainer = styled.div`
   width: 680px;
-  padding: 40px 0px 0px 24px;
-  margin: 50px auto 0;
+  padding: 0px 0px 0px 28px;
+  margin: 30px auto 0;
 `;
 
 const MainTopTitle = styled.div`
@@ -44,7 +44,7 @@ const MainTopButtons = styled.div`
   align-items: center;
 `;
 
-const MainTopButton = styled.button<MainTopButtons & active>`
+const MainTopButton = styled.button<MainTopButtons & activebutton>`
   cursor: pointer;
   padding: 8px;
   margin: 0;
@@ -234,7 +234,7 @@ const StylePageContainer = styled.div`
   margin-left: 200px;
 `;
 
-const StylePageButton = styled.div<active>`
+const StylePageButton = styled.div<activebutton>`
   display: flex;
   align-items: center;
   border: 1px solid rgb(214, 217, 220);
@@ -244,9 +244,11 @@ const StylePageButton = styled.div<active>`
   padding: 0 8px;
   font-size: 13px;
   color: rgb(59, 64, 70);
-  background-color: ${(props) => (props.active ? 'rgb(244, 130, 37);' : 'rgb(255, 255, 255);')};
+  background-color: ${(props) =>
+    props.activebutton ? 'rgb(244, 130, 37);' : 'rgb(255, 255, 255);'};
   &:hover {
-    background-color: ${(props) => (props.active ? 'rgb(244, 130, 37);' : 'rgb(213, 217, 220);')};
+    background-color: ${(props) =>
+      props.activebutton ? 'rgb(244, 130, 37);' : 'rgb(213, 217, 220);'};
   }
 `;
 
@@ -254,24 +256,26 @@ interface MainTopButtons {
   borderradius?: string;
 }
 
-interface active {
-  active?: boolean;
+interface activebutton {
+  activebutton?: boolean;
 }
 
-interface IDummyData {
-  userId: number;
-  userName: string;
+interface IQuestion {
+  questionId: number;
+  memberId: number;
   title: string;
+  content: string;
   votes: number;
   answers: number;
-  content: string;
   views: number;
-  tag: string;
+  tags: string;
+  name: string;
+  createdAt: string;
 }
 
-const BeforeLoginMainPage = () => {
-  const [allQuestion, setAllQuestion] = useState<IDummyData[]>([]);
-  const [pageNationData] = useState({ totalElements: 120 });
+const BeforeLoginMainPage: React.FC = () => {
+  const [allQuestion, setAllQuestion] = useState<IQuestion[]>([]);
+  const [pageNationData, setPageNationData] = useState({ totalElements: 0 });
   const [activePage, setActivePage] = useState(1);
   const [activePageItemButton, setActivePageItemButton] = useState(15);
 
@@ -283,30 +287,27 @@ const BeforeLoginMainPage = () => {
     setActivePage(pageNumber);
   };
 
-  const displayedQuestions = allQuestion.slice(0, activePageItemButton * activePage);
+  const fetchData = async () => {
+    try {
+      const response = await axios.get(`http://localhost:8080/questions`, {
+        params: {
+          page: activePage,
+          size: activePageItemButton,
+        },
+      });
+      const { data, pageInfo } = response.data;
+      console.log(data);
+      console.log(pageInfo);
+      setAllQuestion(data);
+      setPageNationData(pageInfo);
+    } catch (error) {
+      console.error(error);
+    }
+  };
 
   useEffect(() => {
-    return setAllQuestion(dummyData);
-  }, []);
-
-  // useEffect(() => {
-  //   window.scrollTo(0, 0);
-  //   axios
-  //     .get(process.env.REACT_APP_DB_HOST + `/question`, {
-  //       params: {
-  //         page: activePage,
-  //         size: activePageItemButton,
-  //       },
-  //     })
-  //     .then((res) => {
-  //       setAllQuestion(res.data.data);
-  //       console.log(res.data.data);
-  //       setPageNationData(res.data.pageInfo);
-  //     })
-  //     .catch((error) => {
-  //       console.error(error);
-  //     });
-  // }, [activePage, activePageItemButton]);
+    fetchData();
+  }, [activePage, activePageItemButton]);
 
   return (
     <PageContainer>
@@ -337,24 +338,24 @@ const BeforeLoginMainPage = () => {
       </MainPageContainer>
 
       <QuestionsContainer>
-        {displayedQuestions.map((data, index) => (
-          <QuestionContainer key={index}>
+        {allQuestion.map((question) => (
+          <QuestionContainer key={question.questionId}>
             <QuestionCount>
-              <p>{data.votes} votes</p>
-              <p>{data.answers} answers</p>
-              <p>{data.views} views</p>
+              <p>{question.votes}votes</p>
+              <p>{question.answers}</p>
+              <p>{question.views}</p>
             </QuestionCount>
             <Question>
-              <div>{data.title}</div>
+              <div>{question.title}</div>
               <QuestionContentContainer>
-                <div>{data.content}</div>
+                <h3>{question.content}</h3>
               </QuestionContentContainer>
               <QuestionBottom>
                 <TagUserContainer>
-                  <TagContainer>{data.tag}</TagContainer>
+                  <TagContainer>{question.tags}</TagContainer>
                   <UserContainer>
-                    <a>{data.userName}</a>
-                    <span>asked 20 secs ago</span>
+                    <a>{question.name}</a>
+                    <span>asked {question.createdAt}</span>
                   </UserContainer>
                 </TagUserContainer>
               </QuestionBottom>
@@ -373,19 +374,28 @@ const BeforeLoginMainPage = () => {
         />
         <StylePageContainer>
           <StylePageButton
-            active={activePageItemButton === 15}
+            style={{
+              backgroundColor:
+                activePageItemButton === 15 ? 'rgb(244, 130, 37)' : 'rgb(255, 255, 255)',
+            }}
             onClick={() => handlePageItemClick(15)}
           >
             15
           </StylePageButton>
           <StylePageButton
-            active={activePageItemButton === 30}
+            style={{
+              backgroundColor:
+                activePageItemButton === 30 ? 'rgb(244, 130, 37)' : 'rgb(255, 255, 255)',
+            }}
             onClick={() => handlePageItemClick(30)}
           >
             30
           </StylePageButton>
           <StylePageButton
-            active={activePageItemButton === 50}
+            style={{
+              backgroundColor:
+                activePageItemButton === 50 ? 'rgb(244, 130, 37)' : 'rgb(255, 255, 255)',
+            }}
             onClick={() => handlePageItemClick(50)}
           >
             50
