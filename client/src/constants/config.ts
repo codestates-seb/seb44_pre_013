@@ -1,3 +1,3 @@
 export const CONFIG = {
-  BASE_URL: 'http://localhost:8080',
+  BASE_URL: import.meta.env.VITE_SERVER_URL,
 };

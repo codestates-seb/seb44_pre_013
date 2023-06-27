@@ -1,11 +1,11 @@
 import { useState } from 'react';
 import { useDispatch } from 'react-redux';
-import axios from 'axios';
 import styled from 'styled-components';
 
+import Quill from '../../../components/quill/Quill';
 import { IAnswer } from '../../../types/answer';
 import { deleteAnswer, modifyAnswer } from '../../../store/answerSlice';
-import Quill from '../../../components/quill/Quill';
+import { deleteAnswerAPI, modifyAnswerAPI } from '../../../apis/answerApi';
 
 interface IProps {
   answer: IAnswer;
@@ -29,27 +29,31 @@ const Answer = ({ answer }: IProps) => {
   };
 
   const handleDeleteAnswer = () => {
-    axios
-      .delete(`${import.meta.env.VITE_SERVER_URL}/answers/${answer.answerId}`)
+    deleteAnswerAPI(answer.answerId)
       .then((response) => {
         dispatch(deleteAnswer(answer.answerId));
       })
-      .catch((error) => alert(error));
+      .catch((error) => {
+        alert(error);
+        console.log(error);
+      });
   };
 
   const handleUpdateAnswer = () => {
     const data = {
       content: writeContent,
     };
-    axios
-      .patch(`${import.meta.env.VITE_SERVER_URL}/answers/${answer.answerId}`, data)
+    modifyAnswerAPI(answer.answerId, data)
       .then((response) => {
         if (response) {
           dispatch(modifyAnswer(response.data));
           handleUpdate(`${answer.answerId}`);
         }
       })
-      .catch((error) => alert(error));
+      .catch((error) => {
+        alert(error);
+        console.log(error);
+      });
   };
 
   return (

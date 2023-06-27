@@ -24,7 +24,7 @@ export const answerSlice = createSlice({
       return state;
     },
     deleteAnswer: (state, action) => {
-      state.data = state.data.filter((answer) => answer.answerId !== action.payload.answerId);
+      state.data = state.data.filter((answer) => answer.answerId !== action.payload);
     },
   },
 });

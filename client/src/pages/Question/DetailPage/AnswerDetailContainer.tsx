@@ -1,7 +1,6 @@
 import { useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
-import axios from 'axios';
 import styled from 'styled-components';
 
 import { IAnswer } from '../../../types/answer';
@@ -10,6 +9,7 @@ import { RootState } from '../../../store/store';
 import Voting from './Vote';
 import Answer from './Answer';
 import AnswerWrite from './AnswerWrite';
+import { getAllAnswerAPI } from '../../../apis/answerApi';
 
 const AnswerDetailContainer = () => {
   const dispatch = useDispatch();
@@ -29,7 +29,7 @@ const AnswerDetailContainer = () => {
   };
 
   useEffect(() => {
-    axios.get(`${import.meta.env.VITE_SERVER_URL}/answers`).then((response) => {
+    getAllAnswerAPI().then((response) => {
       const { data } = response;
       dispatch(getAllAnswer({ data }));
     });

@@ -15,6 +15,7 @@ const checkLogin = async (account: IAccountType) => {
     const response: Response = await authInstance.post(`/auth/login`, account);
     const header = getHeader(response, 'Authorization');
     const memberId = getHeader(response, 'MemberId');
+    console.log(memberId);
     const status = isStatusOK(response);
 
     return { header, status, memberId };
