@@ -341,9 +341,9 @@ const BeforeLoginMainPage: React.FC = () => {
         {allQuestion.map((question) => (
           <QuestionContainer key={question.questionId}>
             <QuestionCount>
-              <p>{question.votes}votes</p>
-              <p>{question.answers}answers</p>
-              <p>{question.views}views</p>
+              <p>3 votes</p>
+              <p>2 answers</p>
+              <p>20 views</p>
             </QuestionCount>
             <Question>
               <div>{question.title}</div>
@@ -351,10 +351,13 @@ const BeforeLoginMainPage: React.FC = () => {
                 <h3>{question.content}</h3>
               </QuestionContentContainer>
               <QuestionBottom>
-                <UserContainer>
-                  <a>{question.name}</a>
-                  <span>asked {question.createdAt}</span>
-                </UserContainer>
+                <TagUserContainer>
+                  <TagContainer>typescript</TagContainer>
+                  <UserContainer>
+                    <a>{question.name}</a>
+                    <span>asked {question.createdAt}</span>
+                  </UserContainer>
+                </TagUserContainer>
               </QuestionBottom>
             </Question>
           </QuestionContainer>
