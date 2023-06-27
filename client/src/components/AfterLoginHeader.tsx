@@ -6,6 +6,8 @@ import { GiPaperTray } from 'react-icons/gi';
 import { FaTrophy } from 'react-icons/fa';
 import { BsQuestionCircleFill } from 'react-icons/bs';
 import { RiLogoutBoxFill } from 'react-icons/ri';
+import { useDispatch } from 'react-redux';
+import { setLogout } from '../store/loginSlice';
 
 // 상단 고정, 위치
 const HeaderPositioner = styled.div`
@@ -194,15 +196,14 @@ const HeaderMessageIcon = styled(RiLogoutBoxFill)`
 `;
 
 const AfterLoginHeader = () => {
+  const dispatch = useDispatch();
+
   return (
     <HeaderPositioner>
       <HeaderContainer>
         <HeaderLogo>
           <Link to="/">
-            <img
-              src="https://fe-img-uploads.s3.ap-northeast-2.amazonaws.com/HeaderLogo-removebg-preview.png"
-              width="166px"
-            />
+            <img src="https://i.ibb.co/tCPLnm3/Header-Logo-removebg-preview.png" width="166px" />
           </Link>
         </HeaderLogo>
         <HeaderNav>
@@ -219,7 +220,12 @@ const AfterLoginHeader = () => {
           <HeaderTrayIcon />
           <HeaderTrophyIcon />
           <HeaderQuestionIcon />
-          <HeaderMessageIcon />
+          <HeaderMessageIcon
+            onClick={() => {
+              dispatch(setLogout());
+              location.reload();
+            }}
+          />
         </HeaderRightContents>
       </HeaderContainer>
     </HeaderPositioner>

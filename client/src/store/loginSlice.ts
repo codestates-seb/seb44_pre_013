@@ -35,8 +35,9 @@ export const loginSlice = createSlice({
       return loginData;
     },
 
-    setLogout: (state) => {
-      const logoutData = { ...state, isLogin: false };
+    setLogout: () => {
+      const logoutData = initialState;
+      localStorage.clear();
       return logoutData;
     },
     setValid: (state, action: PayloadAction<boolean>) => {
