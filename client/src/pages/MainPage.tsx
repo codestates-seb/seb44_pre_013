@@ -351,13 +351,10 @@ const BeforeLoginMainPage: React.FC = () => {
                 <h3>{question.content}</h3>
               </QuestionContentContainer>
               <QuestionBottom>
-                <TagUserContainer>
-                  <TagContainer>{question.tags}</TagContainer>
-                  <UserContainer>
-                    <a>{question.name}</a>
-                    <span>asked {question.createdAt}</span>
-                  </UserContainer>
-                </TagUserContainer>
+                <UserContainer>
+                  <a>{question.name}</a>
+                  <span>asked {question.createdAt}</span>
+                </UserContainer>
               </QuestionBottom>
             </Question>
           </QuestionContainer>
