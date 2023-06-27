@@ -4,7 +4,7 @@ import { config } from '../utils/axiosConfig';
 
 // 서버에서 전체 글 받아오는 axios 함수 호출
 export const getAllQuestionAPI = () => {
-  console.log('');
+  return;
 };
 
 export const getQuestionAPI = async (questionId: string | undefined) => {

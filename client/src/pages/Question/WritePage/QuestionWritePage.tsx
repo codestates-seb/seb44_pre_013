@@ -126,7 +126,6 @@ const QuestionWritePage = () => {
         .post(`${import.meta.env.VITE_SERVER_URL}/questions/ask`, data, config)
         .then((response) => {
           if (response) {
-            console.log(response);
             const questionId = response?.headers.location.split('/questions/')[1];
             navigate(`/questions/${questionId}`);
           }

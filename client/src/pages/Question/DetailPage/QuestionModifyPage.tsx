@@ -36,7 +36,6 @@ const QuestionModifyPage = () => {
       content: `${content}myQuestionsTags:${tags}`,
     };
 
-    console.log(data);
     modifyQuestionAPI(questionId, data)
       .then((response) => {
         if (response) {
