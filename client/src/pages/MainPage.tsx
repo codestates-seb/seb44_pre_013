@@ -342,8 +342,8 @@ const BeforeLoginMainPage: React.FC = () => {
           <QuestionContainer key={question.questionId}>
             <QuestionCount>
               <p>{question.votes}votes</p>
-              <p>{question.answers}</p>
-              <p>{question.views}</p>
+              <p>{question.answers}answers</p>
+              <p>{question.views}views</p>
             </QuestionCount>
             <Question>
               <div>{question.title}</div>
