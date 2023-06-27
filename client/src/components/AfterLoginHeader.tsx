@@ -1,11 +1,10 @@
-// import React from 'react';
 import styled from 'styled-components';
 import { AiOutlineSearch } from 'react-icons/ai';
 import { BsFillPersonFill } from 'react-icons/bs';
 import { GiPaperTray } from 'react-icons/gi';
 import { FaTrophy } from 'react-icons/fa';
 import { BsQuestionCircleFill } from 'react-icons/bs';
-import { MdMessage } from 'react-icons/md';
+import { RiLogoutBoxFill } from 'react-icons/ri';
 
 // 상단 고정, 위치
 const HeaderPositioner = styled.div`
@@ -179,7 +178,7 @@ const HeaderQuestionIcon = styled(BsQuestionCircleFill)`
     background-color: lightgray;
   }
 `;
-const HeaderMessageIcon = styled(MdMessage)`
+const HeaderMessageIcon = styled(RiLogoutBoxFill)`
   height: 50px;
   margin-right: 4px;
   padding: 0 calc(6px * 1);
