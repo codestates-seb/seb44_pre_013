@@ -22,7 +22,7 @@
 |                     최연수<br>(FE, 팀장)                     |                        김영웅<br>(FE)                        |                        유지예<br>(FE)                        |                    조성원<br>(FE)                     |                        이보미<br>(BE, 부팀장)                        |                       서승아<br>(BE)                        |                       안형준<br>(BE)                        |
 | :----------------------------------------------------------: | :----------------------------------------------------------: | :----------------------------------------------------------: | :----------------------------------------------------------: | :----------------------------------------------------------: | :----------------------------------------------------------: | :----------------------------------------------------------: |
 |  <img alt="최연수" src="https://cdn.discordapp.com/attachments/1122914475549413456/1122914584689377350/Ella.png" height="100" width="100"> |               <img alt="김영웅" src="https://cdn.discordapp.com/attachments/1122914475549413456/1123047369139826799/6382.png" height="100" width="100">               | <img alt="유지예" src="https://cdn.discordapp.com/attachments/1122914475549413456/1123118755346653194/2023-06-27_2.12.41.png" height="100" width="100"> | <img alt="조성원" src="https://cdn.discordapp.com/attachments/1122914475549413456/1123085321106620488/KakaoTalk_20230407_205807391.jpg" height="100" width="100"> | <img alt="이보미" src="https://cdn.discordapp.com/attachments/1122914475549413456/1123069336786051173/734cf021e04d5f5187052943ad702398.png" height="100" width="100"> | <img alt="서승아" src="https://avatars.githubusercontent.com/u/83910139?v=4" height="100" width="100"> | <img alt="안형준" src="https://avatars.githubusercontent.com/u/121507312?v=4" height="100" width="100"> | <img alt="이보미" src="" height="100" width="100"> |
-|<p align="left">**Pages**<br/>- main page <br/>-  <br/>**Components**<br/>- <br/>- <br/>- <br/>**Features**<br/>-  <br/>-  <br/> -   <br/>-  </p><br/> | <p align="left"> **Pages**<br/>- Login Page<br/> - Signup Page <br/>**Components**<br/>- Form<br/> - FormInput<br/> - Button<br/> - OAuthButton<br/> **Features**<br/> - axios Instance<br/> - useMutation hook<br/> - logout</p> <br/> | <p align="left"> **Pages**<br/>- Question Page<br/> - Answer Page<br/>**Components**<br/> - CustomButtom <br/> - Tooltip <br/> - Label <br/> - Editor(Quill) <br/> **Features**<br/>- Question CRUD <br/> - Answer CRUD  <br/><br/><br/> | <p align="left">**Pages**<br/>- MyPage <br/><br/>**Components**<br/>- Header <br/> - Footer <br/> - LeftNav <br/> | <p align="left">**Member** <br/> - login <br/> - singup <br/> - spring security <br/>  - mypage <br/> - <br/> member inquir <br/>| <p align="left">**Answer** <br/> - CRUD <br/> **CI/CD** <br/> - Github Actions <br/> - Ec2<br/> - Aws Codedeploy <br/>|<p align="left">**Questions** <br/> - CRUD <br/>
+|<p align="left">**Pages**<br/>- Main Page <br/><br/>**Components**<br/>- Filter Button <br/><br/>**Features**<br/>- Pagination </p><br/> | <p align="left"> **Pages**<br/>- Login Page<br/> - Signup Page <br/>**Components**<br/>- Form<br/> - FormInput<br/> - Button<br/> - OAuthButton<br/> **Features**<br/> - axios Instance<br/> - useMutation hook<br/> - logout</p> <br/> | <p align="left"> **Pages**<br/>- Question Page<br/> - Answer Page<br/>**Components**<br/> - CustomButtom <br/> - Tooltip <br/> - Label <br/> - Editor(Quill) <br/> **Features**<br/>- Question CRUD <br/> - Answer CRUD  <br/><br/><br/> | <p align="left">**Pages**<br/>- MyPage <br/><br/>**Components**<br/>- Header <br/> - Footer <br/> - LeftNav <br/> | <p align="left">**Member** <br/> - login <br/> - singup <br/> - spring security <br/>  - mypage <br/> - <br/> member inquir <br/>| <p align="left">**Answer** <br/> - CRUD <br/> **CI/CD** <br/> - Github Actions <br/> - Ec2<br/> - Aws Codedeploy <br/>|<p align="left">**Questions** <br/> - CRUD <br/>
 
 |  Name  | Github ID                                      |
 | :----: | :--------------------------------------------- |
@@ -99,11 +99,14 @@
 <br/>
 
 ## 💡API 명세서
-
+<details>
+<summary>API 명세서 자세히 보기</summary>
+<div markdown="1">
 <img width="100%" src="./public/api1.png"/>
 <img width="100%" src="./public/api2.png"/>
 <img width="100%" src="./public/api3.png"/>
 <img width="100%" src="./public/api4.png"/>
+</details>
 
 <br/>
 
@@ -119,7 +122,7 @@
 
 <br/>
 
-```text
+```markdown
 📌 PR 메시지 템플릿 📌
 
 ## 개요
@@ -168,7 +171,7 @@
 
 ### 🔥 Our Team Culture
 
-```text
+```markdown
 📌 우리 팀의 문화 📌
 
 🌟 스크럼
